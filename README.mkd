@@ -1,0 +1,12 @@
+Typesetting Chuck Moore's "Programming a Problem-Oriented-Language" 
+available here: http://colorforth.com/POL.htm
+
+What I am trying to do:
+
+  * Convert HTML to markdown using Pandoc
+  * Correct spelling mistakes
+  * Fix formatting 
+  * Convert hand-written drawings to vector graphics using something like `ditaa`
+  * convert to `LaTeX` using Pandoc
+  * Add a cover page?
+  * 
