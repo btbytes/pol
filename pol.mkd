@@ -181,7 +181,7 @@ define the Basic Principle:
 
 As the number of capabilities you add to a program increases, the
 complexity of the program increases exponentially. The problem of
-maintaining compatibility among these capabililties, to say nothing of
+maintaining compatibility among these capabilities, to say nothing of
 some sort of internal consistency in the program, can easily get out of
 hand. You can avoid this if you apply the Basic Principle. You may be
 acquainted with an operating system that ignored the Basic Principle.
@@ -216,7 +216,7 @@ The Basic Principle has another corollary:
 -   Do It Yourself!
 
 Now we get down the the nitty-gritty. This is our first clash with the
-establishment. The conventionsl approach, enforced to a greater or
+establishment. The conventional approach, enforced to a greater or
 lesser extent, is that you shall use a standard subroutine. I say that
 you should write your own subroutines.
 
@@ -240,7 +240,7 @@ your input. To abdicate to a system subroutine that hasn't the slightest
 interest in your particular problem is foolish. The same can be said for
 output subroutine and disk-access subroutine.
 
-Moreovere, the task is not that great as to deter you. Although it takes
+Moreover, the task is not that great as to deter you. Although it takes
 hundreds of instructions to write a general purpose subroutine, you can
 do what you need with tens of instructions. In fact, I would advise
 against writing a subroutine longer that a hundred instructions.
@@ -250,7 +250,7 @@ the COBOL input subroutine, or wait till the manufacturer revises it.
 It's a lot easier to write your own.
 
 But suppose everyone wrote their own subroutines? Isn't that a step
-backward; away from the millenium when our programs are machine
+backward; away from the millennium when our programs are machine
 independent, when we all write in the same language, maybe even on the
 same computer? Let me take a stand: I can't solve the problems of the
 world. With luck, I can write a good program.
@@ -430,7 +430,7 @@ equivalent for your computer and language.
 
 Now let's look at the major failing of higher-level languages. In
 attempting to achieve machine-independence and to be applicable to a
-wide range of applications, they only give you acess to a fraction of
+wide range of applications, they only give you access to a fraction of
 the capabilities of your computer. If you compare the number of loop
 control instructions on your computer to the number of loop constructs
 in your language, you'll see what I mean.
@@ -510,7 +510,7 @@ core, secondary memory and input/output device.
 
 ## 2.3 *Arrangement and formatting*
 
-Now I'm goiong to tell you how to write a program. Independent of
+Now I'm going to tell you how to write a program. Independent of
 language or computer. Things you ought to be doing already, but probably
 aren't because on one ever told you to. Little things. But if you don't
 do them you won't have a good program; and we're going to write a good
@@ -543,7 +543,7 @@ loop. If you indent conditionally executed statements you'll find that
 nested conditions sort themselves out - automatically. If you indent
 little statements you wish you didn't have to include (I = I) you'll
 find they intrude less as you glance through the listing. Always indent
-the same amount, 3 spaces/level is good. Be consistant and be accurate.
+the same amount, 3 spaces/level is good. Be consistently and be accurate.
 Sloppy indenting is obvious.
 
 ## 2.4 *Mnemonics*
@@ -559,9 +559,9 @@ mnemonic words tend to be long, which conflicts with:
 
 Use short words. You don't want to type long words, and I don't want to
 read them. In COBOL this means avoid dashes and avoid qualification,
-though both can be useful upon occassion.
+though both can be useful upon occasion.
 
-So let me suggest a compromise: abbreviate in some consistant fashion
+So let me suggest a compromise: abbreviate in some consistent fashion
 and stick to your own rules. I can probably figure out the rules you're
 using. You might even mention them in a comment.
 
@@ -743,7 +743,7 @@ have different numbers of arguments:
 -   Binary verbs combine 2 arguments to leave a single result.
 
 Arithmetic operations are binary, arithmetic functions are usually
-unary. However, there are more verbs than we can usefully catagorize.
+unary. However, there are more verbs than we can usefully categorize.
 For example, the verb "," that types the stack is not unary, since it
 removes the number from the stack. Although it does have a single
 argument.
@@ -819,11 +819,11 @@ unreasonable.
 
 I don't want to belabor the point, for we're getting ahead of ourselves.
 But variables require special verbs, one of which (@) is not ordinarily
-explicit. Incidently, I originally used the word VALUE for @. But the
+explicit. Incidentally, I originally used the word VALUE for @. But the
 verb is used so often it deserves a single character name, and I thought
 @ (at) had some mnemonic value, besides being otherwise useless.
 
-I urge you to adopt the vereb @. Although you can conceal it in various
+I urge you to adopt the verb @. Although you can conceal it in various
 ways - we'll discuss one later - it adds needless complication. Such a
 useful verb oughtn't be invisible. Besides it lets you store addresses
 in variables - indirect addressing
@@ -860,7 +860,7 @@ use the word RETURN; you should provide a standard macro or label in
 your program for the same purpose.
 
 Actually, you accomplish 2 purposes: you mark the end of a routine. And
-you identify the preceeding code as being a routine, as distinct from a
+you identify the preceding code as being a routine, as distinct from a
 subroutine. Thus, I use the word RETURN with a totally different meaning
 from the FORTRAN RETURN statement. I shall speak of EXITing from a
 subroutine.
@@ -940,7 +940,7 @@ because we may want to modify it.
 Fetch input characters and discard them so long as they're spaces.
 Thereafter deposit them until you find another space. Deposit this space
 and as many others as needed to fill out the last computer-word. If you
-have a character-oriented machine you may be amused at my insistance on
+have a character-oriented machine you may be amused at my insistence on
 word-alignment. Mainly I'm anticipating the search subroutine when we'll
 want to compare as large a piece of the word as possible. If a word
 holds 6 characters (or even 2) it's much more efficient to compare them
@@ -1013,7 +1013,7 @@ There are exceptions, but we don't usually read input and prepare output
 simultaneously. At least we never have to.
 
 However, we do need a switch (1 bit) that states whether the message
-buffer still contains input. The first time (or perhaps everytime) we
+buffer still contains input. The first time (or perhaps every time) we
 type output, we must reset this switch. We'll use it later.
 
 We need a receive subroutine that will exit when we have a complete
@@ -1021,7 +1021,7 @@ input message. Likewise a transmit subroutine that will exit after
 sending an output message. It should await an acknowledgement if the
 hardware provides one. Don't try to overlap transmission of one message
 with preparation of the next. Transmission is so slow and preparation so
-fast that no noticable increase in speed is available. And it
+fast that no noticeable increase in speed is available. And it
 complicates the program considerably.
 
 ## 3.3.2 *Moving characters*
@@ -1188,7 +1188,7 @@ your arithmetic.
 
 Now let's discuss the NUMBER subroutine in detail. First, why is it a
 subroutine? If you examine the program I've outlined so far, and even
-the program as augmented by the end of the book, you'll fiind NUMBER is
+the program as augmented by the end of the book, you'll find NUMBER is
 called only once - in the control loop. By my own rules NUMBER should
 thus be in-line code. However, I can't bring myself to put it in line;
 the logic in NuMBER is so complex that I want to isolate it away from
@@ -1239,8 +1239,8 @@ the format ft'in
 If you want to verify that "in" are less than 12, you'll want to modify
 this slightly.
 
-In NATURAL the number-so-far is multipled by 10. Don't use a litereal
-10, but rathere define a field (BASE) and store a 10 there as
+In NATURAL the number-so-far is multiplied by 10. Don't use a literal
+10, but rather define a field (BASE) and store a 10 there as
 multiplier. Then you can change BASE to 8 (or 16) and handle octal
 numbers. You can even change it to 2 to use binary numberes. NATURAL
 should test for digits by comparing them with BASE, thus prohibiting 9
@@ -1324,7 +1324,7 @@ the bad number.
 Let me acknowledge that if you are going to right-justify numbers you
 can place the digits directly into position from right to left, for you
 know where the rightmost digit must go. But then you must space-fill the
-message buffeer before starting output, and you can't type unbuffered
+message buffer before starting output, and you can't type unbuffered
 output immediately. However, my main objection is that you can't compose
 free-format output. For example, place a number in a sentence without
 extra leading spaces. And very often unformatted output is adequate,
@@ -1358,7 +1358,7 @@ This stack stores return information. One use is to store the return
 address for subroutines, when subroutine calls use an index register.
 The last-in first-out nature of a stack is exactly the behavior required
 for nested subroutine calls. We will later encounter several other kinds
-of return inforrmation that can be stored in the same stack. It is
+of return information that can be stored in the same stack. It is
 important not to attempt to combine the return stack and the parameter
 stack. They are not synchronized. 8 words is probably enough space for
 the return stack.
@@ -1373,7 +1373,7 @@ parameters are present, or how long ago they were placed there. You
 should not implement a parameter stack less than 16 words long.
 
 A valuable refinement to the parameter stack is to set aside a register
-to hold the word on top of the stack. Several rules must be religously
+to hold the word on top of the stack. Several rules must be religiously
 observed if this is not to cause trouble:
 
 -   You must never use this register for any other purpose.
@@ -1404,7 +1404,7 @@ terminology above:
 
 Every program with input must have a dictionary. Many programs without
 input have dictionaries. However these are often not recognised as such.
-A common 'casual' dictionary is a sereies of IF . . . ELSE IF . . . ELSE
+A common 'casual' dictionary is a series of IF . . . ELSE IF . . . ELSE
 IF . . . statements, or their equivalent. Indeed this is a reasonable
 implementation if the dictionary is small (8 entries) and
 non-expandable.
@@ -1413,7 +1413,7 @@ It is important to acknowledge the function and existence of a
 dictionary, to concentrate it in a single place and to standardize the
 format of entries. A common characteristic of bad programs is that the
 equivalent of a dictionary is scattered all over the program at great
-cost in space, time and apparant complexity.
+cost in space, time and apparent complexity.
 
 The most important property of an entry is one that is usually
 overlooked. Each entry should identify a routine that is to be executed.
@@ -1500,7 +1500,7 @@ To identify a word, place it (or its first portion) in a register and
 compare for equality with each entry (or its first portion). An
 algebraic comparison is adequate. Concern is sometimes expressed that
 treating words as floating-point numbers may permit a false equality.
-This has 0 probablity and you can always change the word - ignore it.
+This has 0 probability and you can always change the word - ignore it.
 
 A full-word compare (rather than a character-by-character) should be
 used for speed. A match is usually found on the first portion, and
@@ -1531,7 +1531,7 @@ entries).
 ## 3.6.3 *Initialization*
 
 The dictionary is built into your program and is presumably initialized
-by your compiler. This is centainly true if you have fixed-size entries.
+by your compiler. This is certainly true if you have fixed-size entries.
 Variable-sized entries must be linked together, however, and this can be
 beyond the ability of your compiler, especially if you have multiple
 chains.
@@ -1556,7 +1556,7 @@ one place.
 
 Applications tend to be complicated before they become interesting. But
 here's a fairly common problem that shows off a control language to
-advantage. Implementation would be tricky, execution woud be
+advantage. Implementation would be tricky, execution would be
 inefficient; but the program would be simple, and its application
 flexible.
 
@@ -1646,7 +1646,7 @@ Another way of viewing the transition is the entries in your dictionary.
 At first they were words that executed pieces of code that constituted
 your application program. A purely control function. Now they tend to
 become words that let you construct your application program. They
-constsitute a problem-oriented-language. The distinction need not be
+constitute a problem-oriented-language. The distinction need not be
 abrupt but it is irreversible. You change from an application to a
 system programmer - your system being your application.
 
@@ -1768,7 +1768,7 @@ are faced with a wicked re-location problem, since we use absolute
 addresses. To avoid absolute addresses is inefficient and unnecessary.
 
 Deleting trailing entries is a completely satisfactory solution. I know
-of no argument to prove thie, except to say try it and see. You'll find
+of no argument to prove this, except to say try it and see. You'll find
 that, in practice, you add a bunch of entries; find a problem; delete
 those entries; fix the problem; and reenter all the entries. Or you fill
 your dictionary for one application; clear it; and re-fill with another
@@ -1787,7 +1787,7 @@ dictionary pointer that identifies the next available word in the
 dictionary. That's easy. However you must reset the chain heads that
 identify the previous entry for each of your search chains. It only
 takes a small loop: follow each chain back, as you do when searching,
-until you find a link that preceeds your indicated point.
+until you find a link that precedes your indicated point.
 
 If you have fixed-size entries, you must reset the pointer to the
 parameter area, but you don't have to follow links.
@@ -1923,7 +1923,7 @@ since there is an instruction on your computer that does exactly that.
 you're quite right, definitions tend to be clumsy. But they let us use
 words that we hadn't the foresight to provide entries for. Given certain
 basic words we can construct any entry we need. Definitions provide a
-succinct distinction betwen a control language and an application
+succinct distinction between a control language and an application
 language: The control language must have all its capabilities built in;
 the application language can construct those capabilities it needs.
 
@@ -2041,7 +2041,7 @@ Before showing how to compile a number, let me define pseudo-entries. A
 pseudo-entry is a dictionary entry that is not in the dictionary. That
 is, it has the format of an entry but it is not linked to other entries.
 Thus it would never be found during a dictionary search. You see, we
-occassionally need entries to permit the virtual computer to run
+occasionally need entries to permit the virtual computer to run
 smoothly, but we don't want to slow the dictionary search by including
 non-referencable entries.
 
@@ -2062,7 +2062,7 @@ perhaps 1000 entries. If your real computer word length is longer than
 word. This is possibly awkward, since you must modify DP to address
 other than a real computer word. But you'll save a lot of space.
 
-Incidently, since literals require extra space when compiled, you might
+Incidentally, since literals require extra space when compiled, you might
 define commonly used literals as words:
 
 -   1 CONSTANT 1
@@ -2080,7 +2080,7 @@ compiling. It also performs another task, which requires a digression.
 Notice that when we're compiling a definition we're searching the
 dictionary for each word. If we reference the word we've just defined,
 we'll find it. Thus we'll have made a recursive reference. If you want
-recursive definitions, fine. However it's extrememly convenient to
+recursive definitions, fine. However it's extremely convenient to
 exchange recursion for re-definition. That is, to understand a reference
 to itself inside a definition to refer to an earlier definition. For
 example,
@@ -2126,7 +2126,7 @@ identifies the next entry to be executed, and must be advanced during
 execution.
 
 You can now see the complete operation of NEXT~I~: fetch the entry
-identified by IC, advance IC to the next enty, and return to the same
+identified by IC, advance IC to the next entry, and return to the same
 point NEXT~W~ does to execute the entry (or compile it, as the case may
 be). If you use definitions at all, you'll use them extensively. So
 NEXT~I~ should be optimized at the cost of NEXT~W~. In particular, the
@@ -2158,7 +2158,7 @@ this limited way.
 That's all there is to it. The combination of EXECUTE, NEXT~I~ and ";"
 provide a powerful and efficient subroutine facility. Notice that the
 code "executed" for a definition might actually be compiled, depending
-on the field STATE, as dicussed earlier. Notice also that the entries
+on the field STATE, as discussed earlier. Notice also that the entries
 executed by a definition might compile other entries. That is, one entry
 might deposit numbers in the dictionary, using DP. Thus although the
 fields IC and DP are similar in use, DP deposits entries and IC fetches
@@ -2447,7 +2447,7 @@ and it will work. I'll review the rules:
 -   A definition can be made imperative by using ":!" instead of ":" to
     define it.
 
-Now the restriction I mentioned should be apparant. A literal cannot be
+Now the restriction I mentioned should be apparent. A literal cannot be
 made imperative with a "!" because it's a double-length instruction -
 and the "!" code has no way of knowing that. Oh well, we could set a
 field to indicate the length of the last compiled instruction, but it's
@@ -2495,7 +2495,7 @@ routine several times, constructing variables and definitions, but we've
 not had an entry for it. I suggest the word "," although that might
 conflict with your output entries. All it does is move a number from the
 stack to the parameter field. Instructions are numbers of course. You'll
-construct them on the stack and then deposit them. Incidently, this is a
+construct them on the stack and then deposit them. Incidentally, this is a
 useful entry - apart from compiling code. You'll find it useful for
 initializing data arrays of all kinds.
 
@@ -2591,7 +2591,7 @@ computer.
 One more suggestion might prove helpful. You might define a new kind of
 constant: an instruction. When executed, an instruction expects an
 address on the stack, extracts a constant from its parameter field and
-constrcts and deposits a completed instruction. You'll probably have a
+constructs and deposits a completed instruction. You'll probably have a
 large number of instructions, and use a large number. This will save you
 many deposit entries.
 
@@ -2657,7 +2657,7 @@ Which means that we must allocate, and re-allocate, disk in block-sized
 pieces.
 
 All addresses start at 0, block addresses included (otherwise you find
-youself forever adding and subtracting 1). However we cannot use block 0
+yourself forever adding and subtracting 1). However we cannot use block 0
 - for anything. You will find that most addressing errors involve block
 0. If you look at block 0 from time to time you will find the most
 amazing things there. You will find block 1 a useful place to store
@@ -2666,13 +2666,13 @@ first block available for re-use - none: 0. And the address of the last
 block used - initially: 1.
 
 You will want to copy disk (onto another disk, or tape) for protection.
-You need only copy the nuber of blocks used, which is usually less than
+You need only copy the number of blocks used, which is usually less than
 half the disk capacity, or else you're pretty worried about space. If
 you destroy block 1 (you will) you will have to re-load the entire disk
 from your back-up. Never try to recover just block 1, you'll end up
 horribly confused.
 
-You may want to put your object proram on this disk. Fine! It won't even
+You may want to put your object program on this disk. Fine! It won't even
 take many blocks. You may need to start it in block 0 in order to do an
 initial load (bootstrap). OK, but be able to re-load the program (only)
 from back-up because you will destroy block 0. Only if you destroy the
@@ -2686,7 +2686,7 @@ So when you need a block, you type a word (GET) which reads block 1,
 places the block up for re-use on the stack, reads that block, places
 the contents of its first word into block 1, and re-writes block 1. The
 first word, of course, contains the address of the next block up for
-re-use. If no block was availabe for re-use (initially the case), GET
+re-use. If no block was available for re-use (initially the case), GET
 increments the last block used, puts it on the stack and re-writes block
 1. GET then clears your new block to 0 and re-writes it.
 
@@ -2734,7 +2734,7 @@ If you check the GET routine, you'll see that you'll need 2 blocks in
 core at once. This is a reasonable minimum, it makes it easy to move
 things from one block to another. However, you'll have lots of core left
 over and you might as well use it for buffering disk; especially if
-access time is noticable.
+access time is noticeable.
 
 You'll want a table specifying which blocks are in core: your read
 routine can check this table before reading.
@@ -2814,7 +2814,7 @@ text stored in blocks (SCREENs) is simple.
 You must be able to handle character strings surrounded with quotes
 (4.1). Given that, I shall exhibit a text editing screen. This is a
 simple example of the value of definitions. You may notice it is the
-first non-trivial exmple I've given. You should be motivated by now to
+first non-trivial example I've given. You should be motivated by now to
 give it proper attention.
 
 Naturally, you're going to have to type these definitions twice. Once to
@@ -2885,7 +2885,7 @@ the most efficient possible, but it's fast enough and illustrates many
 points: In dealing with small amounts of text, you needn't be clever;
 let the machine do the work. The verb LINE is an extremely useful one;
 such useful verbs are invariably an empirical discovery. The verbs ,C
-and =C are the heart of the method; incidently, they only work on fields
+and =C are the heart of the method; incidentally, they only work on fields
 less than 64 characters. Notice how one definition wants to reference
 another (R used by I and D; LINE used by all). Notice how I and D are
 similar yet different. And notice how a few verbs eliminate a lot of
@@ -2901,7 +2901,7 @@ failing that it converts it to a binary number and places it onto the
 stack; failing that it types an error message.
 
 So far I've ignored that error message; not because it's unimportant or
-trivial to implement, but because it's part of a diffcult subject -
+trivial to implement, but because it's part of a difficult subject -
 output. Logically I oughtn't have delayed discussing output this long,
 for even a control language needs output. But as usual in this program
 it is involved with other features that we've only just discussed. I'll
@@ -2913,7 +2913,7 @@ inverse of input. For example, FORTRAN uses the same FORMAT statements
 for output as for input, thereby suggesting that the two processes are
 very similar. But are they?
 
-*You* conpose input: you select words and combine them into fairly
+*You* compose input: you select words and combine them into fairly
 complex phrases; your program spends considerable effort deciphering
 this input and extracting its meaning. In reply it will not go through
 any such elaborate procedure. You'll see that most of its output
@@ -3045,7 +3045,7 @@ Character strings won't fit, and that isn't what we want to do with them
 anyway.
 
 My solution is this. When you see a character string, leave it alone.
-Put on the stack a descriptor giving the address of the first charactere
+Put on the stack a descriptor giving the address of the first character
 and the number of characters in the string. Skip over the string. That
 is, advance the input pointer to its end. You can't do it in quite that
 order, of course, because only by skipping can you discover the number
@@ -3091,7 +3091,7 @@ To move a string is harder, but still easy. You have 2 descriptors on
 the stack: on top a field descriptor; below the string descriptor. Set
 the input and output pointers, and do a character move of length the
 smaller of the 2 field sizes. Space fill the remainder of the
-destination field. Notice that you musn't move more characters than you
+destination field. Notice that you mustn't move more characters than you
 have, or will fit. And of course, string descriptors will rarely have
 the right size. Truncating a string is not an error condition!
 
@@ -3149,7 +3149,7 @@ Apply the Basic Principle.
 
 ## 7. *Programs that share*
 
-It is not obvious, but a program orgainzed as we have discussed is
+It is not obvious, but a program organised as we have discussed is
 ideally suited to handling several users simultaneously. All of the
 basic problems of interactive processing have been solved by interacting
 with one user. The organization is such that all data is, or can be,
@@ -3159,7 +3159,7 @@ the program recognise the proper dictionary.
 Of course the value of multiple users depends upon the application.
 There appears to be a correlation between the complexity of an
 application and the number of potential users. An application that
-deserves a problem-oriented-langage my well be of interest to many users
+deserves a problem-oriented-language my well be of interest to many users
 on a continuous basis.
 
 Moreover, once the basic program is available, it is relatively simple
@@ -3206,7 +3206,7 @@ and the computer will process it when possible.
 Each such independent activity should have a ready table entry and a
 (perhaps) small dictionary in which to store its parameters; return
 address, register contents, etc. in the same format as a user activity.
-In fact these activities are competely equivalent to users, except that
+In fact these activities are completely equivalent to users, except that
 they don't process users. This is significant, for it means they never
 generate error messages, they must handle their own errors, somehow.
 
@@ -3266,7 +3266,7 @@ time quantum that will take control from him. For this reason: With
 several users, code must clearly be re-entrant. However, if a user is
 promised that he will be allowed to finish what he starts, if he will
 not lose control to someone else except when he relinquishes it, the
-re-entrant requirements become much less onorous. The program need only
+re-entrant requirements become much less onerous. The program need only
 be re-entrant across I/O, which can save a lot of bother.
 
 All right, what happens when a user relinquishes control? The computer
@@ -3404,12 +3404,12 @@ establishing the words GET and RELEASE with the code identified in the
 17th and 18th table positions. Library subroutines (FORTRAN arithmetic
 subroutines) might be treated similarly.
 
-Incidently, this illustrates a general method of protection: In addition
+Incidentally, this illustrates a general method of protection: In addition
 to using a word, the user must define it correctly. Clearly you can
 cascade the process. The value of such protection against malicious
 mischief depends on secrecy, which is always the ultimate protection.
 However even in the absence of secrecy, it provides valuable protection
-against inadvertant damage.
+against inadvertent damage.
 
 ## 7.3.1 *Memory protection*
 
@@ -3518,7 +3518,7 @@ basic issues as to be worth it.
 ## 8. *Programs that think*
 
 The mystery of consciousness has intrigued philosophers for a long time.
-It now seems apparant that just as life is a result of complex
+It now seems apparent that just as life is a result of complex
 organization, so is consciousness. It is somehow a byproduct of complex
 interactions among data. Interactions so complex they only occur in
 mammalian brains.
@@ -3552,7 +3552,7 @@ that make prefixing desirable, too.
 It is not difficult to modify the word subroutine to recognise
 characters other than space as terminating characters. But it is
 impossible to provide satisfying generality. Inevitably, you complicate
-the word subroutine unduely by considering innumerable special cases.
+the word subroutine unduly by considering innumerable special cases.
 And you can waste much ingenuity trying to achieve generality. For
 example, there are no simple rules that permit all these to be words:
 
@@ -3563,7 +3563,7 @@ words intended:
 
 -   -ALPHA 1+ ALPHA+BETA +X\*\*-3 X,Y,Z; X.OR.Y
 
-But don't dispair! There is a general solution that can handle all these
+But don't despair! There is a general solution that can handle all these
 cases. It is expensive in time, perhaps very expensive. But it solves
 the problem so thoroughly, while demonstrating that no lesser solution
 is possible, that I consider it well worth the price. Besides, the speed
@@ -3572,14 +3572,14 @@ so that we can afford extravagances such as this.
 
 If you haven't already guessed: We read a word terminated by a space,
 search the dictionary, convert it to a number. If it isn't a word by
-this defintion, we drop the last character and try again. Eventually we
+this definition, we drop the last character and try again. Eventually we
 strip off enough characters so that the remainder is a word.
 
 Let me review the cost. We do as many dictionary searches (plus numeric
 conversions) as there are letters to be dropped. This encourages fast
 searches and quick recognition of non-numbers. It also encourages
 minimizing the length of strings that must be dissected. But let's be
-practical: The number of occassions when dissection is convenient are
+practical: The number of occasions when dissection is convenient are
 few enough that you can afford the price. With the exception of compiler
 source code. But I'm not writing a compiler, and if you are you can
 probably make your word subroutine cope.
@@ -3587,7 +3587,7 @@ probably make your word subroutine cope.
 There are several things to be careful of: As you drop characters from
 the aligned word, you must keep track of your current position within
 this word. However, you must also back-up the input pointer so that you
-can start the next word correctly. Incidently this requires an initial
+can start the next word correctly. Incidentally this requires an initial
 back-up over the terminal space that is not repeated.
 
 Backing the input pointer is not possible with unbuffered input. This is
@@ -3616,7 +3616,7 @@ hardware permits, you may be able to use a 64-bit table - classic
 trade-off of time vs. space.
 
 However, this means you cannot dissect letter strings and you might want
-to. Plurals, for instance, can be easily accomodated by dropping the
+to. Plurals, for instance, can be easily accommodated by dropping the
 terminal 's'. On the other hand, you can easily mis-identify words by
 dissecting letter strings: I once dissected the word SWAP: S was
 defined, W was defined and my error message was AP ? Perhaps when
@@ -3639,9 +3639,9 @@ What does word dissection mean to a program? How does it help it
 'think'? It means that your program can read your mind. It means that no
 matter how you type something, the computer will extract the meaning you
 intended. It will use the meaning of the longest character string it
-can, consistant with a left-to-right scan. It's not infallible: if you
+can, consistent with a left-to-right scan. It's not infallible: if you
 define +1 and then type +1000 it will mis-understand. But if you use
-your language consistantly, it will follow.
+your language consistently, it will follow.
 
 I would like to be able to say that this ability will impress people. It
 will impress you - at least it should. But ordinary people, like your
@@ -3669,18 +3669,18 @@ operator becomes available. For example:
 -   A+B\*C
 
 the multiply must be done before the add. Moreover, parentheses are used
-to modify the standard heirarchy:
+to modify the standard hierarchy:
 
 -   A\*(B+C)
 
-Such a notation is competely equivalent to ours. It offers no advantages
-over the operands-preceeding-operator and has some limitations. But
+Such a notation is completely equivalent to ours. It offers no advantages
+over the operands-preceding-operator and has some limitations. But
 people are accustomed to it and negatively-impressed by its absence. So
 I will show you how to provide the capability.
 
 However there is no reason to restrict our attention to the customary
 arithmetic and/or logical operators. I will show you some other similar
-heirarchies. The capability I describe will handle them all.
+hierarchies. The capability I describe will handle them all.
 
 Let us establish a new kind of dictionary entry. It is identical to a
 definition except that it has a number appended, a level number. So
@@ -3730,7 +3730,7 @@ level-definitions? You've seen a couple, their definitions are simple.
 Level-definitions tend to be simple compared to ordinary definitions.
 But given level-definitions you can write a compiler, for any language!
 Level-definitions are necessary and sufficient to implement any
-context-free grammer, not only the LR-1 grammers at the base of
+context-free grammar, not only the LR-1 grammars at the base of
 contemporary languages. Frankly I don't know what to do with the power
 they provide, but I'll toss out some suggestions later.
 
@@ -3832,7 +3832,7 @@ But let me mention 2 particular uses:
 
     Define IF so it will be forced out by THEN and generate a
     conditional branch. Define THEN so it will be forced out by ELSE and
-    fix-up the adddress left dangling by IF. Define ELSE so it will
+    fix-up the address left dangling by IF. Define ELSE so it will
     first generate an unconditional branch, then force out THEN, and
     then await being forced out itself. Define ; to force out ELSE and
     fix-up the forward branch.
@@ -3857,7 +3857,7 @@ your program to solve the problems at the end of a high-school physics
 text.
 
 Keep in mind, that level-entries do not enhance the power of the
-computer. They merely let you specify instructons in what, to the
+computer. They merely let you specify instructions in what, to the
 computer, is an unnatural order. You are well advised to get your
 application working, and *then* to append a fancy control language.
 
@@ -3876,7 +3876,7 @@ maybe you want the symbols for 104 elements available; or the names of
 1000 approved additives.
 
 Clearly such volume must be stored on disk. Also clearly, you don't want
-to have to search disk explicitely. There is a gratifyingly effective
+to have to search disk explicitly. There is a gratifyingly effective
 solution: If you can't find the word in the core dictionary, and it's
 not a number, search a block on disk. Now the question reduces to: Which
 block?
@@ -3910,7 +3910,7 @@ of a block - to compensate for the first "roughly". Or else provide for
 overflow by linking blocks together.
 
 Such a disk dictionary can be really impressive - even to non-computer
-folk - because you have fast access to a prodigous vocabulary. Fast
+folk - because you have fast access to a prodigious vocabulary. Fast
 means you can search tens-of-thousands of entries in a single disk
 access.
 
@@ -3948,7 +3948,7 @@ How do you put an entry on disk? A special defining entry:
 
 analogous to CONSTANT. Alternatively you might set a flag and let the
 dictionary entry subroutine decide whether to use disk or core. This
-latter is preferable if you have several dfferent kinds of entries that
+latter is preferable if you have several different kinds of entries that
 might go either to disk or core.
 
 You will also need a way to forget disk entries:
@@ -3980,7 +3980,7 @@ the same name for a report screen that you use for its instruction
 screen; distinguish them by CONTEXT. If you're scrambling anyway, you
 may as well add in CONTEXT (modulo a power of 2); it costs nothing, and
 vastly extends the universe of names. In fact, you can use CONTEXT in
-both the ways we've discussed, simultaneously. For as an aditive
+both the ways we've discussed, simultaneously. For as an additive
 constant it tends to be small; and as a block number, large. So your
 search routine can decide whether to scramble or not based on its size.
 
@@ -4014,7 +4014,7 @@ obtain the field. Of course a number of fields will point to the same
 block address.
 
 Before you start objecting, let me rush on. Stored with the block
-address is the location of the core buffer that block last occuppied. So
+address is the location of the core buffer that block last occupied. So
 the program needn't actually read disk, or even search core buffers for
 the block, unless the block has been overlaid. Hence repeated accesses
 to the same block cost little.
@@ -4060,7 +4060,7 @@ have a word parameter that tells which word the field is in (or starts
 in). If this field references another, you add the word parameters
 together. When you find the core address of the disk block, you add the
 word offset and voila': you have the word you want. Going through
-intermediate fields has little advangage unless the intermediate fields
+intermediate fields has little advantage unless the intermediate fields
 change. Why not? By incrementing a base field address, you can access
 different rows of a matrix or different records in a block. Or you can
 access different sub-records of a record. Very useful! It's enough to
@@ -4131,7 +4131,7 @@ life comes from previously existing life. For practical purposes, all
 programs are prepared by previously existing programs.
 
 Although this makes life somewhat easier for compiler writers,
-expecially when the target computer isn't built yet, it has a drawback.
+especially when the target computer isn't built yet, it has a drawback.
 You can never drop you ultimate dependence on the pre-existing program.
 If you use a compiler that generates certain instructions, or assumes a
 certain disk format, you are constrained to be compatible. Consider that
@@ -4205,13 +4205,13 @@ from the switches and use the typewriter. So set up a message buffer
 from which you can send and receive text. Presumably when awaiting text
 your program sits in an endless loop somewhere. Learn to recognise that
 loop. You'll spend most of your running time there and it's reassuring
-to know that everything's allright.
+to know that everything's all right.
 
 No dictionary entry is associated with message I/O. You could define
 one, but we won't need it. In general we will construct entries only
 when they'll be needed. We can always add any entry we need, later.
 
-Your're doing great. Now establish the stacks, the dictionary search
+You're doing great. Now establish the stacks, the dictionary search
 subroutine and entries for WORD and NUMBER. Be very careful to do it
 right the first time; that is, don't simplify NUMBER and plan to re-do
 it later. The total amount of work is greater, even using the switches.
@@ -4251,7 +4251,7 @@ and we can read the text in that block.
 Now we write screens that provide definitions, an improved compiler,
 improved block handler, improved text-editor and we can proceed with our
 application. We want a REMEMBER entry. We haven't needed it so far
-bacause we could always reach in and reset the dictionary manually.
+because we could always reach in and reset the dictionary manually.
 
 I'm sure you've noticed the difficulty with modifying code in the root.
 A powerful tool is to be able to shift the dictionary in core. If the
@@ -4260,5 +4260,10 @@ Otherwise minimize the number of absolute addresses and define a more
 elaborate SHIFT verb that adjusts them.
 
 Be careful SAVEing your program. Keep a back-up of your old version
-before SAVEing a new one, just in case. ![image](./POL_files/Fig123.jpg)
-![image](./POL_files/Fig62.jpg) ![image](./POL_files/Fig4.jpg)
+before SAVEing a new one, just in case. 
+
+![image](./POL_files/Fig123.jpg)
+
+![image](./POL_files/Fig62.jpg) 
+
+![image](./POL_files/Fig4.jpg)
