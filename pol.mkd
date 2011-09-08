@@ -1,4 +1,8 @@
-## Preface
+% Programming a Program-Oriented-Language
+% Charles H. Moore
+% 2011
+
+# Preface
 
 **This is an unpublished book I wrote long ago. Just after I'd written
 the first versions of Forth. Perhaps it explains the motivation behind
@@ -18,100 +22,13 @@ I'm making minimal changes to the text; just enough to fit HTML. The
 language remains quaint, ungrammatical or unclear. Any remaining typos
 are modern.
 
-Chuck Moore 2011
+-- Chuck Moore 2011
 
-### COMPUTER DIVISION \
-File Copy
+written \~ June 1970
 
-# PROGRAMMING A PROBLEM-ORIENTED-LANGUAGE \
-Charles H. Moore
 
-### written \~ June 1970
 
-## Contents
-
-## 
-
-1.  Introduction
-    1.  Basic Principle
-    2.  Preview
-
-2.  Programs without input
-    1.  Choosing a language
-    2.  Choosing a computer
-    3.  Arrangement and formatting
-    4.  Mnemonics
-    5.  Routines and subroutines
-
-3.  Programs with input
-    1.  Nouns and verbs
-    2.  Control loop
-    3.  Word subroutine
-        1.  Message I/O
-        2.  Moving characters
-
-    4.  Decimal conversion
-        1.  Numbers
-        2.  Input conversion
-        3.  Output conversion
-
-    5.  Stacks
-        1.  Return stack
-        2.  Parameter stack
-
-    6.  Dictionary
-        1.  Entry format
-        2.  Search strategy
-        3.  Initialization
-
-    7.  Control language - an example
-
-4.  Programs that grow
-    1.  Adding dictionary entries
-    2.  Deleting entries
-    3.  Operations
-    4.  Definition entries
-        1.  Conditions
-        2.  Loops
-
-    5.  Code entries
-
-5.  Programs with memory
-    1.  Organization of disk
-        1.  Getting blocks
-        2.  Releasing blocks
-        3.  Reading and writing
-
-    2.  Text on disk
-        1.  Text editing
-
-6.  Programs with output
-    1.  Output routines
-    2.  Character strings
-    3.  Field entries
-
-7.  Programs that share
-    1.  User control
-        1.  Non-user activities
-        2.  Message handling
-
-    2.  Queing
-    3.  Private dictionaries
-        1.  Memory protection
-        2.  Controlled access
-
-    4.  Disk buffers
-    5.  User swapping
-
-8.  Programs that think
-    1.  Word dissection
-    2.  Level definitions
-    3.  Infinite dictionary
-    4.  Infinite memory
-
-Dates
-
-## 1. *Introduction*
+# Introduction
 
 **I'm not sure why you're reading this book. It's taken me a while to
 discover why I'm writing it. Let's examine the title: *Programming a
@@ -160,7 +77,7 @@ language. A very crude one, a very awkward one; mostly because you
 hadn't given the matter any thought. Recognising the problem, I'm sure
 you can design a better solution. This book will show you how.
 
-## 1.1 *The Basic Principle*
+## The Basic Principle
 
 We have a large number of subjects to talk about. I'm going to throw
 before you a lot of techniques that you may be able to use. This is
@@ -255,7 +172,7 @@ independent, when we all write in the same language, maybe even on the
 same computer? Let me take a stand: I can't solve the problems of the
 world. With luck, I can write a good program.
 
-## 1.2 *Preview*
+## Preview
 
 I'm going to tell you how to write a program. It is a specific program;
 that is, a program with a specific structure and capabilities. In
@@ -331,7 +248,7 @@ should do and how you should do it. But I will use words, and not
 diagrams. I doubt that you would give a diagram the attention it
 deserved, anyway. Or that I would in preparing it.
 
-## 2. *Programs without input*
+# Programs without input
 
 The simplest possible program is one that has no input. That is a
 somewhat foolish statement, but if you'll give me a chance to explain we
@@ -388,7 +305,7 @@ programs in general, so I'll make them here. For one thing, we will be
 climbing a tree. When we reach the higher branches we'll have enough
 trouble keeping our balance without worrying about the roots.
 
-## 2.1 *Choosing a language*
+## Choosing a language
 
 We shall be less interested in computer language than most programmers.
 For 3 reasons: First, we will eventually define our own
@@ -483,7 +400,7 @@ absolute, binary instructions with the switches. Depending on the
 hardware and software available, and the nature of your application, it
 may just be the best language of all.
 
-## 2.2 *Choosing a computer*
+## Choosing a computer
 
 Of course I don't expect that you're in a position to choose a computer.
 Nor am I going to discuss hardware at all. But I do have a mental image
@@ -508,7 +425,7 @@ from a complex operating system, and you have a enormous capital
 investment. But the configuration I have in mind remains the same: 4K of
 core, secondary memory and input/output device.
 
-## 2.3 *Arrangement and formatting*
+## Arrangement and formatting
 
 Now I'm going to tell you how to write a program. Independent of
 language or computer. Things you ought to be doing already, but probably
@@ -546,7 +463,7 @@ find they intrude less as you glance through the listing. Always indent
 the same amount, 3 spaces/level is good. Be consistently and be accurate.
 Sloppy indenting is obvious.
 
-## 2.4 *Mnemonics*
+## Mnemonics
 
 You will find as you read, that I have strong opinions on some subjects
 and no opinion of others. Actually I have strong opinions on all, but
@@ -595,7 +512,7 @@ entity, to indicate its current use. However, don't waste effort naming
 things that don't need names. If you need a counter, use I, J, K; to
 assign a big name (EXC-CNTR) to an insignificant variable is no help.
 
-## 2.5 *Routines and subroutines*
+## Routines and subroutines
 
 There are two words I need to establish precise definitions for: A
 *subroutine* is a set of instructions that return from whence they came.
@@ -650,7 +567,7 @@ When I say register, I'm obviously thinking assembler. However, you will
 have to simulate the function of registers with subscripts, etc. in
 other languages, and the same considerations apply.
 
-## 3. *Programs with input*
+# Programs with input
 
 A program without input is a program with a single task. A program with
 input may have many tasks, which it will perform as directed by its
@@ -678,7 +595,7 @@ reading words, identifying them and executing code for them is certainly
 not unusual. I am simply trying to systematize the process, to extract
 the inevitable functions and see that they are efficiently performed.
 
-## 3.1 *Nouns and verbs*
+## Nouns and verbs
 
 I've mentioned the dictionary and we'll soon examine the details
 required to implement it. But first I'd like to talk a bit about
@@ -844,7 +761,7 @@ will now describe, once you decide what entries an application requires,
 you'll find it absolutely trivial to code those entries, and thus
 complete your problem.
 
-## 3.2 *Control loop*
+## Control loop
 
 Our program has a structure that is easy to miss: it is a single loop.
 However, it is a loop that is diffuse - scattered among all the code in
@@ -909,7 +826,7 @@ overflow and underflow should be non-fatal. A good solution is to let
 the parameter stack overflow into the return stack, and underflow into
 the message buffer. The return stack should never underflow.
 
-## 3.3 *Word subroutine*
+## Word subroutine
 
 I've described the control loop that will run our program. The first
 thing it does is to read a word; so the first thing we shall discuss is
@@ -967,7 +884,7 @@ We'd like these to be words:
 
 -   1,000 1.E-6 I.B.M. B&O 4'3" $4.95
 
-## 3.3.1 *Message I/O*
+### Message I/O
 
 The WORD subroutine presumably examines input characters. Where does it
 get these characters?
@@ -1024,7 +941,7 @@ with preparation of the next. Transmission is so slow and preparation so
 fast that no noticeable increase in speed is available. And it
 complicates the program considerably.
 
-## 3.3.2 *Moving characters*
+### Moving characters
 
 I will speak of fetching and depositing characters several times, mostly
 concerned with input and output. For example, the WORD subroutine moves
@@ -1054,7 +971,7 @@ to a move and saved after it, for they will be used for a number of
 purposes, and it becomes impractical to store anything there
 permanently.
 
-## 3.4 *Decimal conversion*
+## Decimal conversion
 
 After isolating and aligning a word from the input string, your control
 loop searches the dictionary for it. If it isn't in the dictionary, it
@@ -1066,7 +983,7 @@ representation of the number onto the stack.
 We will discuss the stack in the next section. First let's define a
 number more precisely.
 
-## 3.4.1 *Numbers*
+### Numbers
 
 It is very hard to state exactly what is a number and what is not. You
 will have to write a NUMBER subroutine to convert numbers to binary, and
@@ -1184,7 +1101,7 @@ conversion (input and output) and truncation during multiplication and
 division being more subtle. And possibly the difficulty of explaining
 your arithmetic.
 
-## 3.4.2 *Input conversion*
+### Input conversion
 
 Now let's discuss the NUMBER subroutine in detail. First, why is it a
 subroutine? If you examine the program I've outlined so far, and even
@@ -1337,7 +1254,7 @@ pointer - if the stack is negative. This is useful if you want to
 suppress that space provided by TYPE~B~. A tab entry might calculate the
 amount to space in order to reach a specific position on the stack.
 
-## 3.5 *Stacks*
+## Stacks
 
 We will be using several push-down stacks and I want to make sure you
 can implement them. A push-down stack operates in a last-in first-out
@@ -1352,7 +1269,7 @@ A stack pointer is an excellent use for an index register, if you have
 enough. Indirect addressing is also a possibility, especially if you
 have an add-to-memory instruction.
 
-## 3.5.1 *Return stack*
+### Return stack
 
 This stack stores return information. One use is to store the return
 address for subroutines, when subroutine calls use an index register.
@@ -1363,7 +1280,7 @@ important not to attempt to combine the return stack and the parameter
 stack. They are not synchronized. 8 words is probably enough space for
 the return stack.
 
-## 3.5.2 *Parameter stack*
+### Parameter stack
 
 This stack is the one I intend when I say simply stack. Numbers,
 constants, variables are all placed on this stack, as will be discussed
@@ -1400,7 +1317,7 @@ terminology above:
 -   SWAP exchange the top and lower words.
 -   OVER place the lower word onto the stack; move it over the top word.
 
-## 3.6 *Dictionary*
+## Dictionary
 
 Every program with input must have a dictionary. Many programs without
 input have dictionaries. However these are often not recognised as such.
@@ -1426,7 +1343,7 @@ to that code can be designed.
 Significantly, the IF . . . ELSE IF construction has the characteristic
 of associating a routine with each entry.
 
-## 3.6.1 *Entry format*
+### Entry format
 
 There are 2 distinct ways to organize dictionary entries. The choice may
 depend upon hardware characteristics, but I recommend the second. A
@@ -1487,7 +1404,7 @@ The parameter field will typically contain 4 kinds of information:
     executed for this entry. Such data must probably be aligned on word
     boundary, the other need not.
 
-## 3.6.2 *Search strategies*
+### Search strategies
 
 One basic principle applies to dictionary search: it must be backwards -
 from latest to oldest entries. You have perhaps noticed that the
@@ -1528,7 +1445,7 @@ However, search time is not a important consideration, and I advise
 against multiple chains unless the dictionary is very large (hundreds of
 entries).
 
-## 3.6.3 *Initialization*
+### Initialization
 
 The dictionary is built into your program and is presumably initialized
 by your compiler. This is certainly true if you have fixed-size entries.
@@ -1552,7 +1469,7 @@ Other things may need initializing, particularly any registers that are
 assigned specific tasks. All such duties should be concentrated in this
 one place.
 
-## 3.7 *Control language, example*
+## Control language, example
 
 Applications tend to be complicated before they become interesting. But
 here's a fairly common problem that shows off a control language to
@@ -1606,7 +1523,7 @@ even such a simple example uses all our facilities: the word subroutine,
 the number subroutine, the dictionary, the stack. We're not speculating,
 we are providing essential code.
 
-## 4. *Programs that grow*
+# Programs that grow
 
 So far our dictionary has been static. It contains all the entries you
 need - placed there when the program was compiled. This need not be. We
@@ -1668,7 +1585,7 @@ is the question!
 Let me now assume that you have a problem that qualifies for a
 descriptive language. What dictionary entries do you need?
 
-## 4.1 *Adding dictionary entries*
+## Adding dictionary entries
 
 Let us now assume that you want to expand your dictionary; that you have
 a sufficiently complex application to justify a specialized language.
@@ -1804,7 +1721,7 @@ need a parameter field, unless you use fixed-length entries, whereupon
 it must save the current value of the parameter pointer. This is our
 first example of a verb-defining entry.
 
-## 4.3 *Operations*
+## Operations
 
 **Recall that the stack is where arguments are found. There are some
 words you may want to define to provide arithmetic capabilities. They
@@ -1898,7 +1815,7 @@ leads to complications about constants.
 In general, the number of things you *might* do with numbers increases
 indefinitely. Many of these are mutually incompatible. Basic Principle!
 
-## 4.4 *Definition entries*
+## Definition entries
 
 I must now describe an entry more complicated than any so far, though
 not the most complicated that you'll see. It is also exceptional in that
@@ -2005,7 +1922,7 @@ control, rather than perform, calculations is inexpensive. And the ease
 of constructing them reduces the time and effort, and thus cost, of
 implementation.
 
-## 4.4.1 *Defining a definition*
+### Defining a definition
 
 The defining entry ":" acts just like any other. It passes the address
 EXECUTE to the ENTRY subroutine. I'll discuss that code in the next
@@ -2043,7 +1960,7 @@ is, it has the format of an entry but it is not linked to other entries.
 Thus it would never be found during a dictionary search. You see, we
 occasionally need entries to permit the virtual computer to run
 smoothly, but we don't want to slow the dictionary search by including
-non-referencable entries.
+non-referenceable entries.
 
 As you've probably guessed, in order to compile a literal you compile a
 pseudo-entry. You then follow it by the number itself; that is, you
@@ -2098,7 +2015,7 @@ definitions, you could provide a defining entry ":R" that did not
 bugger, providing you make ";" work for both. I'll mention another
 technique later.
 
-## 4.4.2 *Executing a definition*
+### Executing a definition
 
 I named the code executed for a definition EXECUTE. It must modify the
 instruction-fetch circuitry of the virtual computer.
@@ -2165,7 +2082,7 @@ fields IC and DP are similar in use, DP deposits entries and IC fetches
 them, they may both be in use at the same time. If you're short of index
 registers, don't try to combine them.
 
-## 4.4.3 *Conditions*
+### Conditions
 
 Let me review briefly the process of defining a definition: The word ":"
 sets a switch that modifies the control loop; it will now compile words
@@ -2216,7 +2133,7 @@ All right, back to IF. At definition time it compiles the conditional
 jump pseudo-entry, followed by a 0. For it doesn't know how far to jump.
 And it places the location of the 0, the unknown address, onto the
 stack. Remember that the stack is currently not in use, because we're
-defining. Later it wil be used by those words we're defining, but at the
+defining. Later it will be used by those words we're defining, but at the
 moment we're free to use it to help in the process.
 
 Now look at ELSE. At definition time it compiles an unconditional jump
@@ -2297,7 +2214,7 @@ would seem quite natural. Just watch that you match all IFs. Moreover
 the same technique could be applied to more complex logical expressions
 - with even greater clumsiness.
 
-## 4.4.2 *Loops*
+### Loops
 
 I'll continue with a couple more examples of words executed at
 definition time. This time examples of backward jumps, used to construct
@@ -2362,7 +2279,7 @@ CONTINUE will fix-up. Thus you may do a loop *no* times. However, such
 loops are the exception; but if you encounter one, you'll find the
 conditional statement required to protect it most awkward.
 
-## 4.4.3 *Implementation*
+### Implementation
 
 I hope you now appreciate the need for words that are executed at define
 time. I'm sure you're aware of the need for branches and loops. Perhaps
@@ -2454,7 +2371,7 @@ field to indicate the length of the last compiled instruction, but it's
 not that great a problem. Besides, in that case successive !s wouldn't
 work.
 
-## 4.5 *Code entries*
+## Code entries
 
 I've explained definitions and how they, in effect, compile instructions
 for the virtual-computer. What about compiling code for your real
@@ -2518,7 +2435,7 @@ enough to justify the effort.
 
 All right, you've done that much. Now you've got to decide how to
 construct an instruction. They have several fields - instruction, index,
-adddress - that you'll want to put onto the stack separately and combine
+address - that you'll want to put onto the stack separately and combine
 somehow. This is easy to do, but hard to design. You probably don't want
 to copy your assembler, and probably couldn't follow its format
 conveniently anyway. In fact you can do a good job of designing a
@@ -2602,7 +2519,7 @@ rightly so. Don't attempt to apply the same code to several computers;
 definitions already do that for you. The purpose of code is to exploit
 the properties of your particular computer.
 
-## 5. *Programs with memory*
+# Programs with memory
 
 You may perhaps grant the value of a program that grows, without being
 willing to provide the volume of input required. Naturally it does
@@ -2622,7 +2539,7 @@ dictionary entries are constructed. It is a simple matter to divert the
 input routine from reading your message buffer to reading disk. This
 chapter will show how.
 
-## 5.1 *Organization of disk*
+## Organization of disk
 
 There is only one way to organize disk. In the same way that core is
 divided into a large number of words, disk must be divided into a large
@@ -2642,7 +2559,7 @@ useful for data as well as text. I say no less than 512 characters nor
 more than 1024. 128 word blocks have recently been mentioned; fine if
 the words are 6 or 3 bytes (characters).
 
-## 5.1.1 *Getting blocks*
+### Getting blocks
 
 In trying to anticipate the organization of a random file, certain
 principles are obvious. Cross-references between blocks will probably be
@@ -2697,7 +2614,7 @@ except for the problem of arm motion. Forget arm motion. You just have
 to live with it. This is, after all, a random memory. Don't neglect
 clearing the block to 0.
 
-## 5.1.2 *Releasing blocks*
+### Releasing blocks
 
 To release a block, put it on the stack and say RELEASE. It will read
 block 1, extract the next block for re-use, place the stack there and
@@ -2764,7 +2681,7 @@ subject to interfering constraints.
 You will inevitably spend a lot of effort reading-writing disk. But
 remember the Basic Principle!
 
-## 5.2 *Text on disk*
+## Text on disk
 
 You will store a lot of text on disk - hundreds of blocks - but this is
 probably a small fraction of your disk. The rest is presumably data for
@@ -2803,7 +2720,7 @@ You will find that with text on disk, the original characterization of
 dictionary searches. However, on a microsecond computer, you won't
 notice it.
 
-## 5.2.1 *Text editing*
+### Text editing
 
 Never put anything on disk you can't modify! And we haven't discussed
 how you get text on disk in the first place. Do not load it from cards!
@@ -2891,7 +2808,7 @@ another (R used by I and D; LINE used by all). Notice how I and D are
 similar yet different. And notice how a few verbs eliminate a lot of
 bookkeeping and let you concentrate on the problem and not the details.
 
-## 6. *Programs with output*
+# Programs with output
 
 By now I'm sure you're aware that the heart of your program is its
 control loop. It not only controls the operation, but also the
@@ -2926,7 +2843,7 @@ input. In Chapter 8 I'll describe a way your program can compose complex
 output messages. Although such a technique might provide a 2-way dialog,
 it has even less similarity to interpreting input.
 
-## 6.1 *Output routines*
+## Output routines
 
 You will need 3 output subroutines; conceivably you could get by with 2.
 One to type a number of spaces. One to type a number of characters from
@@ -2954,7 +2871,7 @@ might help you locate an error. But it usually is most convenient. Don't
 try to reset the dictionary since you're not sure what you may want to
 reset it to.
 
-## 6.2 *Acknowledgement*
+## Acknowledgement
 
 I mentioned in Chapter 3 that you must write subroutines to send and
 receive messages. Now I must expand on exactly how you should use these
@@ -3035,7 +2952,7 @@ output is currently in the message buffer. Output may have been placed
 there and already sent. If the message buffer is empty, type OK before
 jumping to QUERY.
 
-## 6.3 *Character strings*
+## Character strings
 
 Everything isn't easy, and this particular feature is my nemesis.
 Perhaps a measure of its value is the difficulty of its implementation.
@@ -3108,7 +3025,7 @@ We've slid into the subject of field descriptors. You might want to type
 a character field, and of course the same code should work as for string
 descriptors.
 
-## 6.4 *Field entries*
+## Field entries
 
 We've talked about the different kinds of numbers you might want, and
 the different entries these require. However, all these entries dealt
@@ -3147,7 +3064,7 @@ and =) will work on all.
 
 Apply the Basic Principle.
 
-## 7. *Programs that share*
+# Programs that share
 
 It is not obvious, but a program organised as we have discussed is
 ideally suited to handling several users simultaneously. All of the
@@ -3188,7 +3105,7 @@ expanded to many users. If you plan to take this step, there are certain
 precautions you should take with your original implementation. But mind
 the Basic Principle!
 
-## 7.1.1 *Non-user activities*
+### Non-user activities
 
 Each user has a position in the ready table to identify his status. The
 computer examines this table to decide what to do next. You may want to
@@ -3198,7 +3115,7 @@ representing tasks that must be performed by the computer.
 For example, if you have to poll phone lines to acquire input, you want
 to perform these polls asynchronously with whatever other work you're
 doing. Since interrupt routines are best kept small, the task of
-translating character sets, checking parity, distributing messages, ets.
+translating character sets, checking parity, distributing messages, etc.,
 should be performed at lower priority. This is easy to do with an entry
 in the ready table. The interrupt routine sets a message routine "ready"
 and the computer will process it when possible.
@@ -3224,7 +3141,7 @@ other asynchronous activities you might want:
 Such activities cost little, and usually provide the simplest answer to
 any asynchronous problem. Mind the Basic Principle, though!
 
-## 7.1.2 *Message handling*
+### Message handling
 
 If you can read input from one user, you can read input from many. You
 must get an interrupt that tells you input is available and from whom it
@@ -3242,7 +3159,7 @@ users might reside in core, causes an unreasonable complication, and the
 fact that disk access is fast compared to message transmission means
 that to attempt to save such disk accesses is not efficient.
 
-## 7.1 *User control*
+## User control
 
 The fact that you have several users creates a new problem. Of course
 the computer can only process one user at a time (we assume a single
@@ -3277,7 +3194,7 @@ And if no one is ready, the computer scans the table endlessly - it's
 got nothing better to do. Naturally, upon program start-up, no one is
 ready.
 
-## 7.2 *Queing*
+## Queing
 
 You can save yourself a lot of trouble by putting some code in the user
 controller. Two subroutines: QUE and UNQUE. When a user needs a facility
@@ -3345,8 +3262,6 @@ by the re-initialize routine.
 It's complicated, it's troublesome, and it's the price you must pay for
 multiple users.
 
-## 7.4
-
 To gain exclusive use of a block, with the exception of block 1, best
 handled as an exception, set aside some facility que-words for this
 purpose. Find a free one and store the block number it represents
@@ -3361,7 +3276,7 @@ necessary only under exceptional circumstances. Block 1 is an example of
 such: The block may not be used by anyone else until another block has
 been read, and the available space up-dated.
 
-## 7.3 *Private dictionaries*
+## Private dictionaries
 
 The key to the case of conversion to multiple users is that all required
 information about a user is stored in his dictionary - a single
@@ -3386,7 +3301,7 @@ If you establish several user dictionaries, the first entry in each will
 link to the system dictionary (Fig 7.1) at the same point.Thus each user
 is unaware of any other user, and his dictionary search is unaffected.
 
-## 7.3.2 *Controlled access*
+## Controlled access
 
 It would appear that you want the system dictionary as large as possible
 to avoid redundancy. That is not necessarily the case. There are some
@@ -3411,7 +3326,7 @@ mischief depends on secrecy, which is always the ultimate protection.
 However even in the absence of secrecy, it provides valuable protection
 against inadvertent damage.
 
-## 7.3.1 *Memory protection*
+## Memory protection
 
 If all users will fit in core simultaneously, we are finished. You
 divide memory into the appropriate dictionaries. You should provide
@@ -3443,7 +3358,7 @@ from the user's to the system dictionary. This is only a problem when
 re-initializing the dictionary, and can be easily solved by keeping a
 copy of the chain heads for the system dictionary.
 
-## 7.4 *Disk buffers*
+## Disk buffers
 
 The fact that you may have several users reading disk simultaneously has
 no effect at all upon the disk-access subroutine. It can search the
@@ -3456,7 +3371,7 @@ assume it's there before it arrives. If you attempt to read a busy
 block, you should relinquish control and try again when you're
 re-started.
 
-## 7.5 *User swapping*
+## User swapping
 
 So far we've had all users resident in core. This is by far the best
 arrangement for handling a small number of users. The step to allowing
@@ -3515,7 +3430,7 @@ Do this if you have the slightest intention of implementing a many-user
 version. This violates the Basic Principle, but we're dealing with such
 basic issues as to be worth it.
 
-## 8. *Programs that think*
+# Programs that think
 
 The mystery of consciousness has intrigued philosophers for a long time.
 It now seems apparent that just as life is a result of complex
@@ -3542,7 +3457,7 @@ had less than 1500 instructions so it is practical to include everything
 in a single program. But I was experimenting, and never found an
 application that needed a fraction of them.
 
-## 8.1 *Word dissection*
+## Word dissection
 
 One of the most awkward characteristics of our program is that words
 must be separated by spaces. Very often you'd like to suffix punctuation
@@ -3648,7 +3563,7 @@ will impress you - at least it should. But ordinary people, like your
 boss, expect this kind of ability from computers. They are only
 impressed, negatively, if they discover its absence.
 
-## 8.2 *Level definitions*
+## Level definitions
 
 I am embarrassed not to know the standard terminology for what I am
 going to discuss. I have never heard it discussed and I have never
@@ -3866,7 +3781,7 @@ human-oriented format of control languages. Not even this is impressive
 to anyone but us! And even how impressed are you by FORTRAN's expression
 evaluator any longer?
 
-## 8.3 *Infinite dictionary*
+## Infinite dictionary
 
 I would guess that your dictionary will average several hundred entries.
 Even a small amount of data seems to generate a large number of fields -
@@ -3993,7 +3908,7 @@ CONTEXT and let 0 inhibit the disk search. That is, make dissection and
 disk searching mutually exclusive. As is often the case, the problem is
 serious only if you aren't aware of it.
 
-## 8.4 *Infinite memory*
+## Infinite memory
 
 Of course you can't really have infinite memory. Not even unlimited
 memory. But you can access directly the entire random memory available
@@ -4120,7 +4035,7 @@ One thing! If field entries can address other field entries, you need
 some way to distinguish a field from a disk address. I have no
 suggestion.
 
-## 9. *Programs that bootstrap*
+# Programs that bootstrap
 
 It's sometimes hard to appreciate how it all gets started. We have been
 tacitly assuming that your computer has a compiler and that you used it
@@ -4155,7 +4070,7 @@ hours. Can you and the computer write a program? Can you write a program
 that didn't descend from a pre-existing program? You can learn a bit and
 have a lot of fun trying.
 
-## 9.1 *Getting started*
+## Getting started
 
 First you'll have to know some things: how to turn the computer on and
 off (odd hours), how to enter and display data from the console
@@ -4190,7 +4105,7 @@ So, with a couple hours work - providing you read the manual first - you
 have an operating system (SAVE, LOAD) and debugging package (DUMP). And
 you know a lot about your computer.
 
-## 9.2 *The roots*
+## The roots
 
 Lest you worry, I have gone through this process myself. I've done it
 twice, actually, and I'm not describing it as I did it, but as I now
@@ -4232,7 +4147,7 @@ word, the word that places the stack in core. Now you can type octal
 numbers and store them in the dictionary. No more switches. You can also
 construct new dictionary entries, for code.
 
-## 9.3 *The branches*
+## The branches
 
 We've reached a milestone. The invisible work is done and we can have a
 written record of what remains. There are many things to do and the
