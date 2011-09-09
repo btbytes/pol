@@ -30,9 +30,8 @@ body {
 	max-width:42em;  
 	font: 13px/19.5px Georgia, Minion Web, Palatino, Book Antiqua, Utopia, Times New Roman, serif;    
 	font: 16px/22px arial, sans-serif;    
-	
-		font-size-adjust:	.5;
-		background:	url(http://www.w3.org/StyleSheets/Core/source/graphics/textura.gif) #fffff5;
+	font-size-adjust:	.5;
+	background:	url(http://www.w3.org/StyleSheets/Core/source/graphics/textura.gif) #fffff5;
 	color: #666;
 }              
 a { text-decoration:none; 
@@ -112,7 +111,11 @@ $if(html5)$
 $endif$
 <h1 class="title">$title$</h1>
 $if(author)$
+$if(homeurl)$
+<p class="author"><a href="$homeurl$">$author$</a></p>
+$else$
 <p class="author">$author$</p>
+$endif$
 $endif$
 $if(date)$
 <p><time datetime="$date$">$date$</time></p>
