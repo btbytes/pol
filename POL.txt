@@ -1667,7 +1667,7 @@ Anything you need for your application you can define. But you can never
 define everything. Basic Principle!
 
 
-## 4.2 *Deleting entries*
+## Deleting entries
 
 So far we've only discussed defining nouns. Actually you'll be using
 more verbs than nouns, but they require much longer explanations. Here
