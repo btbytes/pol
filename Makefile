@@ -1,8 +1,8 @@
 html:
-	pandoc pol.mkd -f markdown -t html --toc  --template=templates/template.html --html5 --smart --chapters --number-sections --standalone -o POL.html
+	pandoc POL.txt -f markdown -t html --toc  --template=templates/template.html --html5 --smart --chapters --number-sections --standalone -o POL.html
 
 pdf:
-	pandoc pol.mkd -f markdown -t latex --toc --template=templates/template.tex  --chapters --number-sections --standalone -o POL.tex
+	pandoc POL.txt -f markdown -t latex --toc --template=templates/template.tex  --chapters --number-sections --standalone -o POL.tex
 	pdflatex POL.tex
 
 all: html pdf

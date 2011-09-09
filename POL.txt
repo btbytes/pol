@@ -1186,7 +1186,7 @@ will probably not destroy its numeric appearance so that no error will
 be detected; but the conversion will be incorrect. This problem is not
 serious, just be aware of it.
 
-## 3.4.3 *Output conversion*
+### Output conversion
 
 Numeric output is harder than numeric input because there is an extra
 step involved. During input, you multiply the number by 10 and add each
@@ -4181,8 +4181,8 @@ elaborate SHIFT verb that adjusts them.
 Be careful SAVEing your program. Keep a back-up of your old version
 before SAVEing a new one, just in case. 
 
-![image](./images/Fig123.jpg)
+![image](./Fig123.jpg)
 
-![image](./images/Fig62.jpg) 
+![image](./Fig62.jpg) 
 
-![image](./images/Fig4.jpg)
+![image](./Fig4.jpg)
