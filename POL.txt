@@ -98,7 +98,7 @@ nature of an empirical discovery.
 So to offer guidance when the trade-offs become obscure, I am going to
 define the Basic Principle:
 
--   Keep it Simple
+> Keep it Simple
 
 As the number of capabilities you add to a program increases, the
 complexity of the program increases exponentially. The problem of
@@ -122,7 +122,7 @@ programs that will fit comfortably in 4K words of core.
 
 The Basic Principle has a corollary:
 
--   Do Not Speculate!
+> Do Not Speculate!
 
 Do not put code in your program that *might* be used. Do not leave hooks
 on which you can hang extensions. The things you might want to do are
@@ -134,7 +134,7 @@ aspect of your program?
 
 The Basic Principle has another corollary:
 
--   Do It Yourself!
+> Do It Yourself!
 
 Now we get down the the nitty-gritty. This is our first clash with the
 establishment. The conventional approach, enforced to a greater or
@@ -260,16 +260,15 @@ can establish some useful definitions.
 
 First consider the word "input". I want to use it in a specific sense:
 
--   Input is information that controls a program.
+> Input is information that controls a program.
 
 In particular, I do not consider as input:
 
--   Moving data between media within the computer. For instance,
-    -   copying tape onto disk, or disk into core.
+  * Moving data between media within the computer. For instance,
+    * copying tape onto disk, or disk into core.
 
--   Reading data into the computer. This is really a transfer between
-    media:
-    -   from card to core.
+  * Reading data into the computer. This is really a transfer between media:
+    * from card to core.
 
 However, data very often has input mixed with it - information that
 identifies or disposes of the data. For example, a code in col. 80 might
@@ -359,9 +358,9 @@ in your language, you'll see what I mean.
 Let me indulge in a 1-sentence characterization of 3 popular languages
 to illustrate their restricted capabilities:
 
--   FORTRAN is great at evaluating complicated algebraic expressions.
--   COBOL is great a processing packed decimal data.
--   ALGOL is great a providing loops and conditional statements.
+ * FORTRAN is great at evaluating complicated algebraic expressions.
+ * COBOL is great a processing packed decimal data.
+ * ALGOL is great a providing loops and conditional statements.
 
 Each language can be very efficient at its sort of job. But if you want
 conditional loops involving complicated decimal expressions you have a
@@ -498,7 +497,7 @@ those comments? How soon did you quit reading them? Programs are
 self-documenting, even assembler programs, with a modicum of help from
 mnemonics. It does no good to say:
 
--   LA B . Load A with B
+    LA B . Load A with B
 
 In fact it does positive bad: if I see comments like that I'll quit
 reading them - and miss the helpful ones.
@@ -507,7 +506,7 @@ What comments should say is *what* the program is doing. I have to
 figure out *how* it's doing it from the instructions anyway. A comment
 like this is welcome:
 
--   COMMENT SEARCH FOR DAMAGED SHIPMENTS
+> COMMENT SEARCH FOR DAMAGED SHIPMENTS
 
 Mnemonics apply to variables and labels (You can even get mnemonic value
 in FORTRAN statement numbers). Where possible you should apply them to
@@ -609,7 +608,7 @@ We're going to read words from your input, find them in the dictionary,
 and execute their code. A particular kind of word is a literal, a word
 that identifies itself:
 
--   1 17 -3 .5
+    1 17 -3 .5
 
 We won't find such words in the dictionary, but we can identify them by
 their appearance. Such words act as if they were in the dictionary, and
@@ -617,19 +616,19 @@ the code executed for them places them on a push-down stack.
 
 Other words act upon arguments found on this stack, for example:
 
--   + add the last 2 numbers placed on the stack, leave the sum there.
--   , type the number on top of the stack, and remove it from the stack.
+    `+` -- add the last 2 numbers placed on the stack, leave the sum there.
+    `,` -- type the number on top of the stack, and remove it from the stack.
 
 If we type a phrase such as:
 
--   1 17 + ,
+    1 17 + ,
 
 We are saying: put 1 onto the stack, 17 onto the stack, add them, and
 type their sum. Each word performs its specific, limited function;
 independently of any other word. Yet the combination of words achieves
 something useful. In fact if we type:
 
--   4837 758 + -338 + 23 + 4457 + -8354 + ,
+    4837 758 + -338 + 23 + 4457 + -8354 + ,
 
 we can even do something non-trivial: each number is added to the sum of
 its predecessors, and the result typed.
@@ -640,8 +639,8 @@ operations in a flexible way to accomplish a task.
 Let's look more closely at the words we used above. They fall into 2
 distinct classes; English even provides names for them:
 
--   Nouns place arguments onto the stack.
--   Verbs operate upon arguments on the stack.
+  * Nouns place arguments onto the stack.
+  * Verbs operate upon arguments on the stack.
 
 All words cause code to be executed. However in the case of nouns, the
 code does very little: simply place a number on the stack. Verbs are
@@ -660,8 +659,8 @@ execute the verb. In fact, this substantially simplifies our program.
 We can extend the characterization of entries a little further. Verbs
 have different numbers of arguments:
 
--   Unary verbs modify the number on the stack.
--   Binary verbs combine 2 arguments to leave a single result.
+  *  Unary verbs modify the number on the stack.
+  *  Binary verbs combine 2 arguments to leave a single result.
 
 Arithmetic operations are binary, arithmetic functions are usually
 unary. However, there are more verbs than we can usefully categorize.
@@ -671,8 +670,8 @@ argument.
 
 Another way of distinguishing verbs is:
 
--   Destructive verb removes its arguments from the stack.
--   Non-destructive verb leaves its arguments on the stack.
+  * Destructive verb removes its arguments from the stack.
+  * Non-destructive verb leaves its arguments on the stack.
 
 Unary and binary verbs, as well as the type verb ",", are destructive.
 The verb DUP, which I define to duplicate the top of the stack, is
@@ -684,13 +683,12 @@ the same.
 Literals are nouns. We can define other words as nouns; words that use
 their parameter field to place numbers onto the stack:
 
--   Constants place the contents of their parameter field onto the
-    stack.
--   Variables place the address of their parameter field onto the stack.
+  * Constants place the contents of their parameter field onto the stack.
+  * Variables place the address of their parameter field onto the stack.
 
 For example, if PI is a constant, it places 3.14 onto the stack. Thus:
 
--   1. PI 2. \* / ,
+    1. PI 2. \* / ,
 
 reads: place 1. onto the stack, place 3.14 onto the stack, place 2. onto
 the stack, multiply (2. and PI), divide (1. by 2PI), and type. Constants
@@ -702,8 +700,8 @@ variable gives a name to a location and not to a value, as elementary
 programming texts laboriously explain. However, what higher-level
 languages conceal is that variables may be used in 2 distinct ways:
 
--   To name a location from which a value is to be taken.
--   To name a location into which a value is to be stored.
+  * To name a location from which a value is to be taken.
+  * To name a location into which a value is to be stored.
 
 A constant automatically performs the first; and inherently prevents the
 second (you can't store a value into a constant, for you don't know
@@ -711,28 +709,27 @@ where the constant came from). Rather than try to distinguish function
 by context, as compilers do, we shall define 2 verbs that act upon
 variables:
 
--   @ replace the address on the stack with its contents.
--   = Store into the address on the stack, the value just beneath it on
-    the stack.
+  * `@` replace the address on the stack with its contents.
+  * `=` Store into the address on the stack, the value just beneath it on the stack.
 
 Thus if I type, where X is a variable,
 
--   X @ ,
+    X @ ,
 
 I mean: place the address of X onto the stack, fetch its value, and
 type. And if I type,
 
--   X @ Y @ + ,
+    X @ Y @ + ,
 
 I mean: fetch the value of X, the value of Y, add, and type. On the
 other hand,
 
--   X @ Y =
+    X @ Y =
 
 will: fetch the address of X, then its value, fetch the address of Y,
 and store the value of X into Y. But if I type
 
--   X Y =
+    X Y =
 
 I'm saying: fetch the address of X, the address of Y, and store the
 address of X into Y. Maybe this is that I mean to do, it's not
@@ -749,7 +746,7 @@ ways - we'll discuss one later - it adds needless complication. Such a
 useful verb oughtn't be invisible. Besides it lets you store addresses
 in variables - indirect addressing
 
--   X Y = Y @ @ ,
+    X Y = Y @ @ ,
 
 reads: store the address of X in Y; place the address of Y on the stack,
 fetch its value (the address of X) fetch *its* value (the contents of
@@ -886,7 +883,7 @@ just say that we need to embed periods, dashes, and other characters in
 words in order not to unreasonably restrict our potential vocabulary.
 We'd like these to be words:
 
--   1,000 1.E-6 I.B.M. B&O 4'3" $4.95
+    1,000 1.E-6 I.B.M. B&O 4'3" $4.95
 
 ### Message I/O
 
@@ -1002,7 +999,7 @@ There is one kind of word that invariably is a number: a string of
 digits possible prefixed with a minus. Such numbers are usually
 converted to binary integers. For example:
 
--   1 4096 -3 7777 0 00100 10000000 6AF2 -B
+    1 4096 -3 7777 0 00100 10000000 6AF2 -B
 
 are some decimal, octal and hex numbers. The number does not specify its
 base, and a word that may be a hexadecimal number, may not be a decimal
@@ -1030,17 +1027,17 @@ rules permit a simple NUMBER subroutine which I will outline.
 
 Your application may need special number formats:
 
--   45'6 for 45 ft. 6 in., an integer
--   1,000,000 an integer
--   $45.69 an integer
+  * `45'6` for `45 ft. 6 in.`, an integer
+  *  `1,000,000` an integer
+  * `$45.69` an integer
 
 It is not hard to include such numbers in NUMBER, but you cannot include
 all possible formats. Some are incompatible:
 
--   3'9 for 3 ft. 9 in.
--   12'30 for 12 min. 30 sec. of arc
--   12'30 for 12 min. 30 sec. of time
--   4'6 for 4 shillings 6 pence
+  * `3'9` for `3 ft. 9 in.`
+  * `12'30` for `12 min. 30 sec.` of arc
+  * `12'30` for `12 min. 30 sec.` of time
+  *  `4'6` for `4 shillings 6 pence`
 
 Basic Principle!
 
@@ -1070,10 +1067,10 @@ numbers (with decimal points) as if you had typed exactly that number of
 decimal places. Thereafter treat that number like an integer. That is,
 if you choose 3 decimal places:
 
--   1. is considered 1.000 and treated as 1000
--   3.14 is 3.140 and 3140
--   2.71828 is 2.718 and 2718
--   -.5 is -.500 and -500
+  *  1. is considered 1.000 and treated as 1000
+  *  3.14 is 3.140 and 3140
+  *  2.71828 is 2.718 and 2718
+  * -.5 is -.500 and -500
 
 I wouldn't bother rounding unless your application demanded it, or your
 hardware made it easy.
@@ -1135,27 +1132,27 @@ number-so-far negative. Exit.
 
 The routine that calls NUMBER can test the stopping character:
 
--   If it is a space, the conversion was successful.
--   Otherwise, the word was not a number.
+  *  If it is a space, the conversion was successful.
+  * Otherwise, the word was not a number.
 
 For example, the following are numbers:
 
--   0 3.14 -17 -.5
+    0 3.14 -17 -.5
 
 The following are not:
 
--   0- 3.14. +17 -.5Z X 6.-3 1.E3
+    0- 3.14. +17 -.5Z X 6.-3 1.E3
 
 In each case NUMBER will stop on a non-space. The number-so-far will be
 correctly converted up to that point (possibly 0) but it is of no value.
 
 SIGNED/NATURAL is a valid subroutine since it is called twice. Moreover,
 if you define other number formats, you'll find it useful. For example,
-the format ft'in
+the format `ft'in`
 
--   After calling SIGNED, if the stopping character is a ' multiply
-    number-so-far by 12 and call NATURAL. Then proceed as usual, testing
-    for decimal point.
+> After calling SIGNED, if the stopping character is a ' multiply
+> number-so-far by 12 and call NATURAL. Then proceed as usual, testing
+> for decimal point.
 
 If you want to verify that "in" are less than 12, you'll want to modify
 this slightly.
@@ -1163,15 +1160,15 @@ this slightly.
 In NATURAL the number-so-far is multiplied by 10. Don't use a literal
 10, but rather define a field (BASE) and store a 10 there as
 multiplier. Then you can change BASE to 8 (or 16) and handle octal
-numbers. You can even change it to 2 to use binary numberes. NATURAL
+numbers. You can even change it to 2 to use binary numbers. NATURAL
 should test for digits by comparing them with BASE, thus prohibiting 9
 in an octal number. Hexadecimal input numbers cause an additional
 problem because the digits A-Z do not follow 9 in standard character
 sets. It is thus harder to recognise digits; but this problem is
 isolated in a single place (NATURAL) and is easy to code:
 
--   An origin must usually be subtracted from a digit to get its binary
-    value. If BASE is 16, a different origin is subtracted from A-F.
+>     An origin must usually be subtracted from a digit to get its binary
+>    value. If BASE is 16, a different origin is subtracted from A-F.
 
 NUMBER should be efficient, at least in recognising words that are not
 numbers. Not so much because you will use so many numbers, but because
@@ -1213,8 +1210,8 @@ fraction.
 If you take the care, and spend a couple of instructions, you can
 improve the appearance of your numbers by:
 
--   Not typing a decimal point if the number has no decimal places.
--   Not typing a leading zero to the left of the decimal point.
+  * Not typing a decimal point if the number has no decimal places.
+  * Not typing a leading zero to the left of the decimal point.
 
 You will probably have several dictionary entries specifying different
 output formats. For example, each kind of number: integer, float,
@@ -1297,8 +1294,8 @@ A valuable refinement to the parameter stack is to set aside a register
 to hold the word on top of the stack. Several rules must be religiously
 observed if this is not to cause trouble:
 
--   You must never use this register for any other purpose.
--   You must keep this register full; no flag to indicate that it's
+  * You must never use this register for any other purpose.
+  * You must keep this register full; no flag to indicate that it's
     empty.
 
 If you cannot fulfill these conditions, you're better off with the stack
@@ -1306,27 +1303,27 @@ entirely in core.
 
 We need some terminology:
 
--   You *place* a word *onto* then stack, thereby increasing its size.
--   You *drop* a word *from* the stack, thereby decreasing its size.
--   The word on top of the stack is called the *top* word.
--   The word immediately below the top of the stack is called the
+  * You *place* a word *onto* then stack, thereby increasing its size.
+  * You *drop* a word *from* the stack, thereby decreasing its size.
+  * The word on top of the stack is called the *top* word.
+  * The word immediately below the top of the stack is called the
     *lower* word.
 
 You may need to control the parameter stack from the input. These words
 (dictionary entries) are extremely useful, and illustrate the
 terminology above:
 
--   DROP drop the top word from the stack.
--   DUP place the top word onto the stack, thereby duplicating it.
--   SWAP exchange the top and lower words.
--   OVER place the lower word onto the stack; move it over the top word.
+  * `DROP` drop the top word from the stack.
+  * `DUP` place the top word onto the stack, thereby duplicating it.
+  * `SWAP` exchange the top and lower words.
+  * `OVER` place the lower word onto the stack; move it over the top word.
 
 ## Dictionary
 
 Every program with input must have a dictionary. Many programs without
 input have dictionaries. However these are often not recognised as such.
-A common 'casual' dictionary is a series of IF . . . ELSE IF . . . ELSE
-IF . . . statements, or their equivalent. Indeed this is a reasonable
+A common 'casual' dictionary is a series of `IF ... ELSE IF ... ELSE
+IF ...` statements, or their equivalent. Indeed this is a reasonable
 implementation if the dictionary is small (8 entries) and
 non-expandable.
 
@@ -1398,13 +1395,13 @@ distance from the current entry.
 
 The parameter field will typically contain 4 kinds of information:
 
--   A number, constant or variable, of variable size. The nature of the
-    number is determined by the code it executes.
--   Space in which numbers will be stored - an array. The size of the
+  * A number, constant or variable, of variable size. The nature of the
+    number is determined by the code it executes.  
+  * Space in which numbers will be stored - an array. The size of the
     array may be a parameter, or may be implicit in the code executed.
--   A definition: an array of dictionary entries representing
+  *  A definition: an array of dictionary entries representing
     virtual-computer instructions; see 3.9.
--   Machine instructions: code compiled by your program which is itself
+  * Machine instructions: code compiled by your program which is itself
     executed for this entry. Such data must probably be aligned on word
     boundary, the other need not.
 
@@ -1485,37 +1482,37 @@ The problem is to examine a sequential file, select certain records,
 sort them, and list them - in many different ways. Suppose these
 variables define the fields in the record:
 
--   NAME AGE SALARY DEPT JOB SENIORITY
+    NAME AGE SALARY DEPT JOB SENIORITY
 
 Let's define these verbs:
 
--   LIST SORT EQUAL GREATER LESS
+    LIST SORT EQUAL GREATER LESS
 
 Each acts upon the temporary file produced by the previous, in
 accordance with the following examples:
 
 List in alphabetical order all employees in dept 6:
 
--   6 DEPT EQUAL NAME SORT LIST
+    6 DEPT EQUAL NAME SORT LIST
 
 First we choose records with dept = 6 and copy them into a temporary
 file. Then we sort that file by name. Then we list it.
 
 List twice, by seniority, all employees holding job 17 in dept 3:
 
--   17 JOB EQUAL 3 DEPT EQUAL SENIORITY SORT LIST LIST
+    17 JOB EQUAL 3 DEPT EQUAL SENIORITY SORT LIST LIST
 
 List, by age, all employees whose salary is greater than $10,000; and
 identify those whose seniority is less than 3:
 
--   10000 SALARY GREATER AGE SORT LIST 3 SENIORITY LESS LIST
+    10000 SALARY GREATER AGE SORT LIST 3 SENIORITY LESS LIST
 
 Several comments seem indicated. We can apply a logical "and" by using
 several select verbs in sequence; we cannot use a logical "or". We can
 sort on several fields, if our sorting technique does not unnecessarily
 re-arrange records. We need 2 more verbs:
 
--   REWIND END
+    REWIND END
 
 to start over with the original file, and to quit.
 
@@ -1526,6 +1523,8 @@ combine to provide great flexibility with a simple program. Notice how
 even such a simple example uses all our facilities: the word subroutine,
 the number subroutine, the dictionary, the stack. We're not speculating,
 we are providing essential code.
+
+
 
 # Programs that grow
 
@@ -1618,7 +1617,7 @@ I'm afraid this is confusing. We have one entry that supplies the
 address field of a new entry from its own parameter field. Let's take an
 example; suppose we want to define a constant:
 
--   0 CONSTANT ZERO
+    0 CONSTANT ZERO
 
 0 is placed on the stack; the code for the word CONSTANT reads the next
 word, ZERO, and constructs a dictionary entry for it: it establishes the
@@ -1636,10 +1635,9 @@ defining entry.
 
 Other defining entries might be:
 
--   0 INTEGER I - an integer-size parameter field is initialized to 0;
-    its address will be placed on the stack.
--   1. REAL X - a floating-point parameter field is initialized to 1.
--   8 ARRAY TEMP - an 8 word parameter field is cleared to 0; the
+  * `0 INTEGER I` -- an integer-size parameter field is initialized to 0; its address will be placed on the stack.
+  * `1. REAL X` -- a floating-point parameter field is initialized to 1.
+  * `8 ARRAY TEMP` -- an 8 word parameter field is cleared to 0; the
     address of its 1st word will be placed on the stack.
 
 I must emphasize the word "might". Different applications will require
@@ -1652,21 +1650,22 @@ enough, and no matter how many they provide, someone will want one more.
 
 For example, you might define the following noun:
 
--   0 8 INDEX J - J is defined to be an index, that varies from 0 to 8.
+    `0 8 INDEX J` -- J is defined to be an index, that varies from 0 to 8.
     When executed, it adds its value to the top of the stack.
 
 If you then define appropriate verbs to advance, test and reset J, you
 can have a powerful indexing facility. Or define:
 
--   3 VECTOR X 3 VECTOR Y 9 VECTOR Z
+    3 VECTOR X 3 VECTOR Y 9 VECTOR Z
 
 and define arithmetic verbs to implement vector arithmetic:
 
--   X Z = Z Y + add X and Y, store in Z.
--   X Y Z \*C multiply X and Y (outer product), store in Z.
+    X Z = Z Y + add X and Y, store in Z.
+    X Y Z \*C multiply X and Y (outer product), store in Z.
 
 Anything you need for your application you can define. But you can never
 define everything. Basic Principle!
+
 
 ## 4.2 *Deleting entries*
 
@@ -1717,13 +1716,14 @@ A convenient way to specify the point you want to delete from is to
 place a special entry there. A verb that will delete itself and
 evereything following it when you execute it. For example,
 
--   REMEMBER HERE
+    REMEMBER HERE
 
 is a defining entry. When you type HERE, it is forgotten; it both marks
 a place in the dictionary and executes the deleting code. HERE doesn't
 need a parameter field, unless you use fixed-length entries, whereupon
 it must save the current value of the parameter pointer. This is our
 first example of a verb-defining entry.
+
 
 ## Operations
 
