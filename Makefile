@@ -14,7 +14,7 @@ all: html pdf
 
 clean:
 	rm *.tex
-	rm POL.html
+	rm POL.htm
 	rm *.tmp
 	rm *.log
 	rm *.aux 
