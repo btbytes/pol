@@ -1,11 +1,11 @@
 html:
-	pandoc pol.mkd -f markdown -t html --toc --standalone -o polnew.html
+	pandoc pol.mkd -f markdown -t html --toc  --template=templates/template.html --html5 --smart --chapters --number-sections --standalone -o POL.html
 
 pdf:
-	pandoc pol.mkd -f markdown -t latex --toc --chapters --number-sections --standalone -o polnew.tex
-	pdflatex polnew.tex
+	pandoc pol.mkd -f markdown -t latex --toc --template=templates/template.tex  --chapters --number-sections --standalone -o POL.tex
+	pdflatex POL.tex
 
-all: html
+all: html pdf
 
 clean:
 	rm *.tex

@@ -1,13 +1,18 @@
 % Programming a Program-Oriented-Language
 % Charles H. Moore
 % 2011
+          
+\clearpage
 
-# Preface
 
-**This is an unpublished book I wrote long ago. Just after I'd written
+\begin{center}
+\LARGE\textsf{Preface}\par
+\end{center}
+
+This is an unpublished book I wrote long ago. Just after I'd written
 the first versions of Forth. Perhaps it explains the motivation behind
 Forth. There is some interest in it, and publishing is no longer
-relevant since I can post it on my website.**
+relevant since I can post it on my website.
 
 I have a typescript that I recovered from Forth, Inc long ago. I had
 typed it on my Smith-Corona portable, complete with overstrikes and
@@ -27,16 +32,15 @@ are modern.
 written \~ June 1970
 
 
-
 # Introduction
 
-**I'm not sure why you're reading this book. It's taken me a while to
+I'm not sure why you're reading this book. It's taken me a while to
 discover why I'm writing it. Let's examine the title: *Programming a
 Problem-Oriented-Language*. The key word is programming. I've written
 many programs over the years. I've tried to write *good* programs, and
 I've observed the manner in which I write them rather critically. My
 goal has been to decrease the effort required and increase the quality
-produced.**
+produced.
 
 In the course of these observations, I've found myself making the same
 mistakes repeatedly. Mistakes that are obvious in retrospect, but
@@ -2643,7 +2647,7 @@ subroutine to choose one of several disks. You must re-format all your
 block addresses (cross-references on disk, remember) to expand the
 second.
 
-## 5.1.3 *Reading and writing disk*
+### Reading and writing disk
 
 I'm sure you know how to read disk. However, do not choose a block size
 that causes the slightest difficulty: like half a block between tracks.
@@ -4177,8 +4181,8 @@ elaborate SHIFT verb that adjusts them.
 Be careful SAVEing your program. Keep a back-up of your old version
 before SAVEing a new one, just in case. 
 
-![image](./POL_files/Fig123.jpg)
+![image](./images/Fig123.jpg)
 
-![image](./POL_files/Fig62.jpg) 
+![image](./images/Fig62.jpg) 
 
-![image](./POL_files/Fig4.jpg)
+![image](./images/Fig4.jpg)

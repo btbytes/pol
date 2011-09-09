@@ -1,0 +1,115 @@
+$if(html5)$
+<!DOCTYPE html>
+<html$if(lang)$ lang="$lang$"$endif$>
+$else$
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"$if(lang)$ lang="$lang$" xml:lang="$lang$"$endif$>
+$endif$
+<head>
+$if(html5)$
+  <meta charset="utf-8" />
+$else$
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+$endif$
+  <meta name="generator" content="pandoc" />
+$for(author)$
+  <meta name="author" content="$author$" />
+$endfor$
+$if(date)$
+  <meta name="date" content="$date$" />
+$endif$
+  <title>$if(title-prefix)$$title-prefix$ - $endif$$if(pagetitle)$$pagetitle$$endif$</title>
+$if(html5)$
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+$endif$ 
+<style type="text/css" media="screen">
+	html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,header,nav,section,article,aside,footer{border:0;margin:0;outline:0;padding:0;background:transparent;vertical-align:baseline;}
+	blockquote,q{quotes:none;}
+	blockquote:before,blockquote:after,q:before,q:after{content:'';content:none;}
+	header,nav,section,article,aside,footer{display:block;}
+	body{background:#ffffff;color:#000000;font:0.75em/1.5em Helvetica,Arial,"Liberation Sans","Bitstream Vera Sans",sans-serif;}
+	html>body{font-size:13px;}
+	img{display:inline-block;vertical-align:bottom;}
+	h1,h2,h3,h4,h5,h6,strong,b,dt,th{font-weight:700;}
+	address,cite,em,i,caption,dfn,var{font-style:italic;}
+	h1{margin:0 0 0.75em;font-size:2em;}
+	h2{margin:0 0 1em;font-size:1.5em;}
+	h3{margin:0 0 1.286em;font-size:1.167em;}
+	h4{margin:0 0 1.5em;font-size:1em;}
+	h5{margin:0 0 1.8em;font-size:.834em;}
+	h6{margin:0 0 2em;font-size:.75em;}
+	p,ul,ol,dl,blockquote,pre{margin:0 0 1.5em;}
+	li ul,li ol{margin:0;}
+	ul{list-style:outside disc;}
+	ol{list-style:outside decimal;}
+	li{margin:0 0 0 2em;}
+	dd{padding-left:1.5em;}
+	blockquote{padding:0 1.5em;}
+	a{text-decoration:underline;}
+	a:hover{text-decoration:none;}
+	abbr,acronym{border-bottom:1px dotted;cursor:help;}
+	del{text-decoration:line-through;}
+	ins{text-decoration:overline;}
+	sub{font-size:.834em;line-height:1em;vertical-align:sub;}
+	sup{font-size:.834em;line-height:1em;vertical-align:super;}
+	tt,code,kbd,samp,pre{font-size:1em;font-family:"Courier New",Courier,monospace;}
+	table{border-collapse:collapse;border-spacing:0;margin:0 0 1.5em;}
+	caption{text-align:left;}
+	th,td{padding:.25em .5em;}
+	tbody td,tbody th{border:1px solid #000;}
+	tfoot{font-style:italic;}
+	img.left{display:inline;float:left;margin:0 1.5em .75em 0;}
+	img.right{display:inline;float:right;margin:0 0 .75em .75em;}
+	body{font-family:helvetica,verdana,sans-serif;color:#444;}
+	html>body{font-family:helvetica,verdana,sans-serif;background:#fff;color:#444;}
+	a{text-decoration:none;border-bottom:dotted 1px #ccc;color:#a44;}
+	h1,h2,h3{color:#000000;}
+	h1 a,h2 a,h3 a,h4 a,h5 a,h6 a{text-decoration:none;color:#000000;border-bottom:none;}  
+	body { margin: 3em auto; max-width: 52em;}
+	html > body { margin: 3em auto; max-width: 52em;}
+	header h2, header h3 {text-align:center;}
+</style>
+$if(highlighting-css)$
+  <style type="text/css">
+$highlighting-css$
+  </style>
+$endif$
+$for(css)$
+  <link rel="stylesheet" href="$css$" $if(html5)$$else$type="text/css" $endif$/>
+$endfor$
+$if(math)$
+$if(html5)$
+$else$
+  $math$
+$endif$
+$endif$
+$for(header-includes)$
+  $header-includes$
+$endfor$
+</head>
+<body>
+$for(include-before)$
+$include-before$
+$endfor$
+$if(title)$
+$if(html5)$
+<header>
+$endif$
+<h1 class="title">$title$</h1>  
+<h2>Charles H. Moore</h2>
+<h3>2011</h3>
+$if(html5)$
+</header>
+$endif$
+$endif$
+$if(toc)$
+$toc$
+$endif$
+$body$
+$for(include-after)$
+$include-after$
+$endfor$
+</body>
+</html>
