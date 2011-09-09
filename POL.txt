@@ -1735,34 +1735,34 @@ definition of top and lower from 3.6.**
 
 Unary operators: change the number on top of the stack.
 
--   MINUS changes sign of top.
--   ABS sets sign positive.
--   ZERO if top is zero, replace it with TRUE; otherwise place FALSE
+  *  MINUS changes sign of top.
+  *  ABS sets sign positive.
+  *  ZERO if top is zero, replace it with TRUE; otherwise place FALSE
     onto the stack.
--   NONZERO if top is nonzero, place TRUE onto the stack; otherwise
+  *  NONZERO if top is nonzero, place TRUE onto the stack; otherwise
     leave it alone (leave FALSE on the stack).
 
 Binary operators: Remove top from the stack and replace lower by a
 function of both.
 
--   + add top to lower.
--   \* multiply lower by top.
--   - subtract top from lower.
--   / divide lower by top, leave the quotient.
--   MOD divide lower by top, leave the remainder.
--   MAX if top is larger than lower, replace lower by top.
--   MIN if top is smaller than lower, replace lower by top.
--   \*\* raise lower to power of top.
+  *  + add top to lower.
+  *  \* multiply lower by top.
+  *  - subtract top from lower.
+  *  / divide lower by top, leave the quotient.
+  *  MOD divide lower by top, leave the remainder.
+  *  MAX if top is larger than lower, replace lower by top.
+  *  MIN if top is smaller than lower, replace lower by top.
+  *  \*\* raise lower to power of top.
 
 These are only samples. Clearly you are free to define whatever words
 you feel useful. Keep in mind that you must place the arguments on the
 stack before you operate on them. Numbers are automatically placed on
 the stack. Constants are too. Thus the following make sense:
 
--   1 2 +
--   PI 2. \*
--   1 2 + 3 \* 7 MOD 4 MAX
--   1 2 3 + \*
+    1 2 +
+    PI 2. \*
+    1 2 + 3 \* 7 MOD 4 MAX
+    1 2 3 + \*
 
 This notation permits arithmetic calculation in the same manner a desk
 calculator. It is often called parenthesis-free representation or
@@ -1773,20 +1773,19 @@ implement (8.2).
 Other binary operations are the arithmetic relations: these leave a
 truth value on the stack:
 
--   = are they equal?
--   < is top greater than lower?
--   \> is top less than lower?
--   \>= is top not greater than lower?
--   <= is top not less than lower?
+  *  `=` are they equal?
+  *  `<` is top greater than lower?
+  *  `\>` is top less than lower?
+  *  `\>=` is top not greater than lower?
+  *  `<=` is top not less than lower?
 
 The logical operations include a unary and several binary:
 
--   NOT if top is FALSE, replace with TRUE; otherwise replace with
-    FALSE.
--   OR logical or.
--   AND logical and.
--   IMP logical implication.
--   XOR logical exclusive or.
+  *  NOT if top is FALSE, replace with TRUE; otherwise replace with FALSE.
+  *  OR logical or.
+  *  AND logical and.
+  *  IMP logical implication.
+  *  XOR logical exclusive or.
 
 Your stack must have a fixed word-length. However the operations
 mentioned above might apply to several kinds of numbers: integers,
@@ -1798,9 +1797,9 @@ various kinds of numbers.
 
 One way is to define separate operations for each kind of number:
 
--   + integer and fixed-point add (they are the same).
--   +F floating-point add.
--   +D double-precision add.
+  *  `+` integer and fixed-point add (they are the same).
+  *  `+F` floating-point add.
+  *  `+D` double-precision add.
 
 Another is to make a stack entry long enough to contain a code
 identifying the kind of number. This makes the code defining each
@@ -1833,7 +1832,7 @@ A definition consists of a defining entry ":" followed by a series of
 words terminated by ";". The intention is that the word defined by ":"
 has the meaning expressed by the words that follow. For example:
 
--   : ABS DUP 0 LESS IF MINUS THEN ;
+    : ABS DUP 0 LESS IF MINUS THEN ;
 
 This is a definition of the word ABS. Its purpose is to take the
 absolute value of the number on the stack. It does this by executing a
@@ -1986,7 +1985,7 @@ other than a real computer word. But you'll save a lot of space.
 Incidentally, since literals require extra space when compiled, you might
 define commonly used literals as words:
 
--   1 CONSTANT 1
+    1 CONSTANT 1
 
 Recall that numbers may be words, since the dictionary is searched
 before numeric conversion is attempted. And a word requires only a
@@ -2006,7 +2005,7 @@ exchange recursion for re-definition. That is, to understand a reference
 to itself inside a definition to refer to an earlier definition. For
 example,
 
--   : = SWAP = ;
+    : = SWAP = ;
 
 Here I redefine the = verb to operate upon arguments in the opposite
 order. I could use a different word for that purpose, but = has mnemonic
@@ -2086,6 +2085,7 @@ fields IC and DP are similar in use, DP deposits entries and IC fetches
 them, they may both be in use at the same time. If you're short of index
 registers, don't try to combine them.
 
+
 ### Conditions
 
 Let me review briefly the process of defining a definition: The word ":"
@@ -2112,7 +2112,7 @@ mine in their basic effects.
 Define the words IF, ELSE and THEN to permit the following conditional
 statement format:
 
--   boolean value IF true statement ELSE false statement THEN continue
+    boolean value IF true statement ELSE false statement THEN continue
 
 The words have a certain mnemonic value, though they are permuted from
 the familiar ALGOL format. Such a statement can only appear in a
@@ -2170,17 +2170,17 @@ The truth value of such expressions may be determined before the entire
 expression is evaluated. You can save time by quitting once you know the
 final result. For example, consider the statement:
 
--   a b AND c AND IF . . . THEN
+    a b AND c AND IF . . . THEN
 
 where a, b, c are boolean expressions; and the statement would read in
 ALGOL
 
--   *if* a *and* b *and* c *then* . . .
+    *if* a *and* b *and* c *then* . . .
 
 If a is false, we might as well quit, since the disjunction cannot
 possibly be true. If you re-write the statement as:
 
--   a IF b IF c IF . . . THEN THEN THEN
+    a IF b IF c IF . . . THEN THEN THEN
 
 the effect is the same; if a, b and c are all true the conditional
 statement is executed. Otherwise not. Each IF generates a forward jump
@@ -2190,21 +2190,21 @@ It is an extremely efficient construction.
 
 Now consider the corresponding statement with ORs:
 
--   a b OR c OR IF . . . THEN
+    a b OR c OR IF . . . THEN
 
 or in ALGOL
 
--   *if* a *or* b *or* c *then*
+    *if* a *or* b *or* c *then*
 
 If a is true you may as well quit, for the conjunction cannot be false.
 If you re-write the statement as
 
--   a -IF b -IF c IF HERE HERE . . . THEN
+    a -IF b -IF c IF HERE HERE . . . THEN
 
 and if you define
 
--   : HERE SWAP THEN ;
--   : -IF NOT IF ;
+    : HERE SWAP THEN ;
+    : -IF NOT IF ;
 
 the statement works as follows: if a is true, -IF will jump; if b is
 true, -if will jump; if c is false, IF will jump. The first HERE will
@@ -2218,6 +2218,7 @@ would seem quite natural. Just watch that you match all IFs. Moreover
 the same technique could be applied to more complex logical expressions
 - with even greater clumsiness.
 
+
 ### Loops
 
 I'll continue with a couple more examples of words executed at
@@ -2226,7 +2227,7 @@ loops.
 
 Consider the pair of words BEGIN and END, as used in a statement like:
 
--   BEGIN . . . boolean END
+    BEGIN . . . boolean END
 
 BEGIN stores DP onto the stack, thus marking the beginning of a loop.
 END generates a conditional backward jump to the location left by BEGIN.
@@ -2239,9 +2240,9 @@ BEGIN and END provide a loop terminated by a logical condition. Let's
 define another loop. This one counts an index through a range to control
 the looping:
 
--   a b DO . . . CONTINUE
+    a b DO . . . CONTINUE
 
-a and b represent arguments on the stack. DO acts just like BEGIN.
+`a` and `b` represent arguments on the stack. DO acts just like BEGIN.
 CONTINUE requires a new pseudo-entry that tests the top 2 words on the
 stack for equality, and jumps if they are unequal. During compilation
 CONTINUE deposits this pseudo-entry and then computes the jump distance
@@ -2254,7 +2255,7 @@ Presumably, inside the DO . . . CONTINUE loop the arguments are modified
 so as to terminate the loop. This can be done many ways. For example, to
 run the loop from 1 to 10:
 
--   10 0 DO 1 + . . . CONTINUE
+    10 0 DO 1 + . . . CONTINUE
 
 The first argument is 10, the stopping value; the second is 0, which is
 immediately incremented to 1, the index value. Within the loop this
@@ -2265,7 +2266,7 @@ loop and drop the 2 arguments - now both 10.
 
 Alternatively, the same loop could be written:
 
--   11 1 DO . . . 1 + CONTINUE
+    11 1 DO . . . 1 + CONTINUE
 
 Here the index is incremented at the end of the loop, instead of the
 beginning. Upon reaching 11 and exceeding the limit of 10, the loop is
@@ -2301,8 +2302,8 @@ mechanism whereby the control loop would compile them. I mentioned a
 switch that distinguished execution from compilation. Let's establish a
 similar flag (1 bit) in each dictionary entry, with the values
 
--   1: execute
--   0: compile
+    1: execute
+    0: compile
 
 applying both to switch and flag.
 
@@ -2322,7 +2323,7 @@ did not endure. Don't try to reconcile what I said. I can't.
 
 Consider the definition of HERE I gave above:
 
--   : HERE SWAP THEN ;
+    : HERE SWAP THEN ;
 
 Here is one of those imperative words; it must be executed at definition
 time. But it is defined as an ordinary definition - and would be
@@ -2345,8 +2346,8 @@ Consider the switch STATE. It's normally 0; ":" makes it 1 to indicate
 compilation. Let's define a new defining entry ":!" that acts exactly
 like ":" with 2 exceptions:
 
--   It sets the entry flag to 1; to mark an imperative word.
--   It sets STATE to 2; to force all words to be compiled. Since the
+  *  It sets the entry flag to 1; to mark an imperative word.
+  *  It sets STATE to 2; to force all words to be compiled. Since the
     test in the control loop is to execute if STATE and flag are equal,
     nothing will execute.
 
@@ -2358,14 +2359,14 @@ Define a new entry "!". Let it execute the last entry compiled and
 remove it from the compilation. Now we can re-write the definition of
 HERE as
 
--   :! HERE SWAP ! THEN ;
+  *  :! HERE SWAP ! THEN ;
 
 and it will work. I'll review the rules:
 
--   All words are normally executed.
--   Only words flagged imperative are executed in definitions.
--   Any word can be made imperative by following it with an "!".
--   A definition can be made imperative by using ":!" instead of ":" to
+  *  All words are normally executed.
+  *  Only words flagged imperative are executed in definitions.
+  *  Any word can be made imperative by following it with an "!".
+  *  A definition can be made imperative by using ":!" instead of ":" to
     define it.
 
 Now the restriction I mentioned should be apparent. A literal cannot be
@@ -2470,16 +2471,16 @@ the top of the stack by a constant.
 As usual when adding an ability, several distinct entries must cooperate
 to provide it. In this case ENTER and ;CODE. Let me illustrate:
 
--   : UNIT ENTER , ;CODE 1 V LDA , SP MPY , SP STA , NEXT ,
--   2.54 UNIT IN
--   4. IN
+    : UNIT ENTER , ;CODE 1 V LDA , SP MPY , SP STA , NEXT ,
+    2.54 UNIT IN
+    4. IN
 
 The first line defines the word UNIT. The next line uses this defining
 entry to define the word IN (inches). The last line uses IN in a way
 that puts 4 inches onto the stack, as centimeters. The 3 lines are
 equivalent to
 
--   : IN 2.54 \* ;
+    : IN 2.54 \* ;
 
 which is certainly simpler. But if you want to define many UNITs, a
 special defining entry is much more convenient and efficient.
@@ -2523,6 +2524,8 @@ rightly so. Don't attempt to apply the same code to several computers;
 definitions already do that for you. The purpose of code is to exploit
 the properties of your particular computer.
 
+
+
 # Programs with memory
 
 You may perhaps grant the value of a program that grows, without being
@@ -2543,6 +2546,7 @@ dictionary entries are constructed. It is a simple matter to divert the
 input routine from reading your message buffer to reading disk. This
 chapter will show how.
 
+
 ## Organization of disk
 
 There is only one way to organize disk. In the same way that core is
@@ -2562,6 +2566,7 @@ may involve storing data on disk, and you must choose a block size
 useful for data as well as text. I say no less than 512 characters nor
 more than 1024. 128 word blocks have recently been mentioned; fine if
 the words are 6 or 3 bytes (characters).
+
 
 ### Getting blocks
 
@@ -2618,6 +2623,7 @@ except for the problem of arm motion. Forget arm motion. You just have
 to live with it. This is, after all, a random memory. Don't neglect
 clearing the block to 0.
 
+
 ### Releasing blocks
 
 To release a block, put it on the stack and say RELEASE. It will read
@@ -2646,6 +2652,7 @@ careful! You can circumvent the first limit by modifying your read
 subroutine to choose one of several disks. You must re-format all your
 block addresses (cross-references on disk, remember) to expand the
 second.
+
 
 ### Reading and writing disk
 
@@ -2685,6 +2692,7 @@ subject to interfering constraints.
 You will inevitably spend a lot of effort reading-writing disk. But
 remember the Basic Principle!
 
+
 ## Text on disk
 
 You will store a lot of text on disk - hundreds of blocks - but this is
@@ -2708,7 +2716,7 @@ and the first character position. Define the word ;S to restore the
 original input pointer. Very simply you can have your program read block
 123:
 
--   123 READ
+    123 READ
 
 However . . . there's always a however, isn't there. You must modify
 your word routine to read the current block before scanning. This is
@@ -2723,6 +2731,7 @@ You will find that with text on disk, the original characterization of
 'input' as low volume is strained. You will read many words and do many
 dictionary searches. However, on a microsecond computer, you won't
 notice it.
+
 
 ### Text editing
 
@@ -2747,35 +2756,35 @@ I'm going to exhibit an annotated copy of the EDIT screen I used in a
 particular program. It uses system entries whose value may not be clear.
 They are borrowed from other aspects of the application.
 
--   0 C1 42 \# :R RECORD
+    0 C1 42 \# :R RECORD
 
 Here I am constructing a field description: RECORD is a 42 character
 field starting in character 1 of word 0 of the current block
 (understood). I'm using blocks that can hold 15 42-character lines; a
 word has 6 characters, so that's 15 7-word lines.
 
--   : LINE 1 - 7 \* RECORD + ;
+    : LINE 1 - 7 \* RECORD + ;
 
 Here I'm defining a verb that will convert a line number (1-15) to a
 field address. It modifies the RECORD descriptor by changing the word
 specification (low order bits). Thus line 1 starts in word 0; line 2 in
 word 7; etc.
 
--   : T CR LINE ,C ;
+    : T CR LINE ,C ;
 
 If I type 3 T - I want line 3 typed. T does a carriage return (CR),
 executes LINE to compute the field address, and copies the (character)
 field into the message buffer (,C).
 
--   : R LINE =C ;
+    : R LINE =C ;
 
 If I type " NEW TEXT" 6 R - I want line 6 to be replaced by the text in
 quotes. The leading quote puts a string descriptor on the stack. R then
 executes LINE, followed by =C to store the quote string in the field.
 The block will automatically be re-written, since it was changed.
 
--   : LIST 15 0 DO 1 +
--   CR DUP LINE ,C DUP ,I CONTINUE ;
+    : LIST 15 0 DO 1 +
+    CR DUP LINE ,C DUP ,I CONTINUE ;
 
 LIST will list the entire block: 15 42-character lines followed by line
 numbers. It sets up a DO-CONTINUE loop with the stack varying from 1 -
@@ -2783,8 +2792,8 @@ numbers. It sets up a DO-CONTINUE loop with the stack varying from 1 -
 executes LINE; types the field (,C); copies the stack again and types it
 as an integer (,I).
 
--   : I 1 + DUP 15 DO 1 -
--   DUP LINE DUP 7 + =C CONTINUE R ;
+    : I 1 + DUP 15 DO 1 -
+    DUP LINE DUP 7 + =C CONTINUE R ;
 
 If I type " NEW TEXT" 6 I - I want the text inserted after line 6. "I"
 must first shift lines 7 - 14 down one position (losing line 15) and
@@ -2793,8 +2802,8 @@ DO-CONTINUE loop starting at 14, constructs two field descriptors, LINE
 and LINE+7, and shifts them (,C). When the loop if finished, it does an
 R.
 
--   : D 15 SWAP DO 1 +
--   DUP LINE DUP 7 - =C CONTINUE " " 15 R ;
+    : D 15 SWAP DO 1 +
+    DUP LINE DUP 7 - =C CONTINUE " " 15 R ;
 
 If I type 12 D - I want to delete line 12. D must move lines 13-15 up
 one position and clear line 15: It sets up a DO-CONTINUE loop from
@@ -2811,6 +2820,8 @@ less than 64 characters. Notice how one definition wants to reference
 another (R used by I and D; LINE used by all). Notice how I and D are
 similar yet different. And notice how a few verbs eliminate a lot of
 bookkeeping and let you concentrate on the problem and not the details.
+
+
 
 # Programs with output
 
@@ -2847,6 +2858,7 @@ input. In Chapter 8 I'll describe a way your program can compose complex
 output messages. Although such a technique might provide a 2-way dialog,
 it has even less similarity to interpreting input.
 
+
 ## Output routines
 
 You will need 3 output subroutines; conceivably you could get by with 2.
@@ -2874,6 +2886,7 @@ stacks empty. This is sometimes unfortunate since the parameter stack
 might help you locate an error. But it usually is most convenient. Don't
 try to reset the dictionary since you're not sure what you may want to
 reset it to.
+
 
 ## Acknowledgement
 
@@ -2930,14 +2943,14 @@ generating entry should set it true. Actually output generating verbs
 have much in common with each other, and each should jump to a routine
 that does the following:
 
--   Drop the stack. Each output verb must have an argument. Its last
+  * Drop the stack. Each output verb must have an argument. Its last
     argument can be dropped at this point, and the stack pointer checked
     against its lower limit.
--   Set EMPTY true.
--   If NEXT contains NEXT~W~ and SCREEN is 0, jump to QUERY. Under these
+  * Set EMPTY true.
+  * If NEXT contains NEXT~W~ and SCREEN is 0, jump to QUERY. Under these
     circumstances there is no further input available in the message
     buffer.
--   Jump to NEXT.
+  * Jump to NEXT.
 
 Notice that if entries are coming from a definition or from a screen, no
 conflict can arise with the message buffer. Only if input is currently
@@ -2955,6 +2968,7 @@ true, it states that input has been destroyed; it does not indicate that
 output is currently in the message buffer. Output may have been placed
 there and already sent. If the message buffer is empty, type OK before
 jumping to QUERY.
+
 
 ## Character strings
 
@@ -2975,7 +2989,7 @@ of characters.
 What does a character string look like? Of all the ways you might
 choose, one is completely natural:
 
--   "ABCDEF . . . XYZ"
+    "ABCDEF . . . XYZ"
 
 A character string is enclosed in quotes. It can contain any character
 except a quote, specifically including spaces.
@@ -2988,7 +3002,7 @@ treated like any other dictionary entry, for it can then be re-defined.
 But words are terminated by spaces, and I still resist making quote an
 exception. So let's type character strings:
 
--   " ABCDEF . . . XYZ"
+    " ABCDEF . . . XYZ"
 
 The extra space is annoying, but in Chapter 8 I will tell you how to
 eliminate it without the objections I just raised. So a character string
@@ -3055,9 +3069,9 @@ process that is executed automatically for a variable.
 These various capabilities require various entries to effect them. You
 might define:
 
--   ,NM - type out field name.
--   F - extract field width.
--   @F - obtain field address.
+    ,NM - type out field name.
+    F - extract field width.
+    @F - obtain field address.
 
 Depending (as usual) you might be able to make @F compatible with @. Or
 make @ automatically work correctly for field entries. You may want to
@@ -3067,6 +3081,8 @@ the same reason - so that the same operations (in this case probably @
 and =) will work on all.
 
 Apply the Basic Principle.
+
+
 
 # Programs that share
 
@@ -3135,10 +3151,10 @@ If you haven't already noticed, we're now talking about operating
 systems. I don't have much more to say on the subject, but there are
 other asynchronous activities you might want:
 
--   A clock to handle the timer interrupt and maintain a time and date
+  *  A clock to handle the timer interrupt and maintain a time and date
     in core and disk. It might ready other activities that relinquished
     control for a fixed time.
--   A routine to write blocks on disk. Periodically it might scan the
+  *  A routine to write blocks on disk. Periodically it might scan the
     block buffers for blocks to copy. (however, writing blocks when the
     read routine needs a buffer seems simpler.)
 
@@ -3232,23 +3248,23 @@ otherwise it is the number of the user waiting.
 
 If I want a facility and its free:
 
--   I place my number in the owner field and exit.
+  *  I place my number in the owner field and exit.
 
 If it's busy, but no one's waiting:
 
--   I place my number in the waiter field, 0 my link field, and
+  *  I place my number in the waiter field, 0 my link field, and
     relinquish control.
 
 If someone's waiting:
 
--   I follow the chain of links starting at the waiter's link field
+  *  I follow the chain of links starting at the waiter's link field
     until I find a 0 link; I place my number there, 0 my link field, and
     relinquish control.
 
 When I'm through with a facility (UNQUE):
 
--   IF no one's waiting, I 0 the owner field, and exit.
--   If someone's waiting, I move his number to the owner field, move his
+  *  IF no one's waiting, I 0 the owner field, and exit.
+  *  If someone's waiting, I move his number to the owner field, move his
     link field to the waiter field, mark him ready, and exit.
 
 The whole procedure is simple and efficient. It handles a lot of
@@ -3317,7 +3333,7 @@ solution is to place the code in the system, without a dictionary entry.
 Define a table of entry points into code of this nature. Then if a user
 wants to use an entry point, he must first define it, perhaps:
 
--   17 ENTRY GET 18 ENTRY RELEASE
+    17 ENTRY GET 18 ENTRY RELEASE
 
 establishing the words GET and RELEASE with the code identified in the
 17th and 18th table positions. Library subroutines (FORTRAN arithmetic
@@ -3424,10 +3440,10 @@ treated properly.
 To avoid impossible difficulties, you should be careful to write your
 single-user program with the following constraints:
 
--   Reserve an index register for a user pointer, the origin of the
+  *  Reserve an index register for a user pointer, the origin of the
     user's dictionary, andd *use* this index. That is, treat the
     dictionary as relative, even though you needn't.
--   Make all code re-entrant. At least all code within which a user
+  *  Make all code re-entrant. At least all code within which a user
     might relinquish control - which turns out to be most code.
 
 Do this if you have the slightest intention of implementing a many-user
@@ -3475,12 +3491,12 @@ the word subroutine unduly by considering innumerable special cases.
 And you can waste much ingenuity trying to achieve generality. For
 example, there are no simple rules that permit all these to be words:
 
--   HELLO GOOD-BY 3.14 I.B.M. -.5 1.E-3
+    HELLO GOOD-BY 3.14 I.B.M. -.5 1.E-3
 
 Likewise, there are no simple rules that separate these strings into the
 words intended:
 
--   -ALPHA 1+ ALPHA+BETA +X\*\*-3 X,Y,Z; X.OR.Y
+    -ALPHA 1+ ALPHA+BETA +X\*\*-3 X,Y,Z; X.OR.Y
 
 But don't despair! There is a general solution that can handle all these
 cases. It is expensive in time, perhaps very expensive. But it solves
@@ -3585,12 +3601,12 @@ operand is available.
 Moreover, we have a hierarchy of operations than control when that other
 operator becomes available. For example:
 
--   A+B\*C
+    A+B\*C
 
 the multiply must be done before the add. Moreover, parentheses are used
 to modify the standard hierarchy:
 
--   A\*(B+C)
+    A\*(B+C)
 
 Such a notation is completely equivalent to ours. It offers no advantages
 over the operands-preceding-operator and has some limitations. But
@@ -3610,22 +3626,22 @@ equal or smaller level number is encountered.
 
 A convenient format for level-definitions is:
 
--   2 :L word . . . ;
+    2 :L word . . . ;
 
 The 2 is the level number, taken from the stack. :L declares the next
 word as a level-definition. ';' marks the end.
 
 Let's talk about + and \*:
 
--   0 :L , ;
--   1 :L + + ;
--   2 :L \* \* ;
+    0 :L , ;
+    1 :L + + ;
+    2 :L \* \* ;
 
 We have re-defined them in terms of their old definitions, but as
 level-definitions. We defined ',' to have some way to stop. Now we can
 say:
 
--   3 + 4 \* 5 ,
+    3 + 4 \* 5 ,
 
 What happened? 3 goes onto the parameter stack, + goes onto the
 level-stack, 4 onto the parameter stack, \* onto the level-stack (since
@@ -3680,11 +3696,11 @@ However, the first thing the level-entry does is execute the LEVEL
 routine, to give it a name, with its level number as parameter. LEVEL
 tests this level number against the level-stack. 3 cases arise:
 
--   It may place the level number and entry on the level-stack (higher
+  *  It may place the level number and entry on the level-stack (higher
     level entry) and RETURN.
--   It may replace the top of the level-stack with this entry, and
+  *  It may replace the top of the level-stack with this entry, and
     execute the old top.
--   If the level-stack is empty, and the level is 0, it will execute
+  *  If the level-stack is empty, and the level is 0, it will execute
     this entry.
 
 All 3 cases are required!
@@ -3707,11 +3723,11 @@ to FORCE. The only way you can get to FORCE is by completing a
 level-entry. Its function is to check the level stack and see if any
 other entry can be forced off by the one on top. 3 cases arise:
 
--   It may leave the level-stack alone (higher level on top), and
+  *  It may leave the level-stack alone (higher level on top), and
     restore SOURCE and virtual-IC from return-stack, and RETURN.
--   It may execute the lower entry, replacing it with the top - thus
+  *  It may execute the lower entry, replacing it with the top - thus
     dropping the level-stack.
--   If there is no lower entry, and the level is 0, it will execute the
+  *  If there is no lower entry, and the level is 0, it will execute the
     top entry - thus emptying the level-stack. At this time it will
     restore from the return-stack.
 
@@ -3729,24 +3745,24 @@ the definition; complex cases take care of themselves.
 Now you should be able to implement level-entries, definitions among
 them. What can you do with them?
 
--   You can define the customary arithmetic operations: + - \* / MOD
+  *  You can define the customary arithmetic operations: + - \* / MOD
     \*\*.
--   You can define the customary logical operations: OR AND NOT IMPL.
--   You can define infix relations: = < \> <= \>= /=.
--   You can define an infix replacement: = := (one that works in either
+  *  You can define the customary logical operations: OR AND NOT IMPL.
+  *  You can define infix relations: = < \> <= \>= /=.
+  *  You can define an infix replacement: = := (one that works in either
     direction).
--   You can define all the above.
+  *  You can define all the above.
 
 It depends on your application.
 
--   You can define words like PLUS MINUS TIMES DIVIDED-BY EQUALS; an
+  *  You can define words like PLUS MINUS TIMES DIVIDED-BY EQUALS; an
     English language arithmetic.
--   You can define phrases like MOVE . . TO . . or DIVIDE . . INTO . .
+  *  You can define phrases like MOVE . . TO . . or DIVIDE . . INTO . .
     or ADD . . TO . . A COBOL language arithmetic.
 
 But let me mention 2 particular uses:
 
--   Consider a statement with the form
+  *  Consider a statement with the form
     -   IF relation THEN statement ELSE statement ;
 
     Define IF so it will be forced out by THEN and generate a
@@ -3758,8 +3774,9 @@ But let me mention 2 particular uses:
 
 With a few statements you can implement any such compiler construct.
 
--   Consider a statement like
-    -   1800. FT / SEC \*\* 2
+  *  Consider a statement like
+
+    1800. FT / SEC \*\* 2
 
     Define a kind of entry UNIT that puts a constant on the stack
     immediately and acts like a multiply when it's forced to. Define /
@@ -3863,7 +3880,7 @@ or suffix a \# character.
 
 How do you put an entry on disk? A special defining entry:
 
--   0 NAME ZERO
+    0 NAME ZERO
 
 analogous to CONSTANT. Alternatively you might set a flag and let the
 dictionary entry subroutine decide whether to use disk or core. This
@@ -3872,7 +3889,7 @@ might go either to disk or core.
 
 You will also need a way to forget disk entries:
 
--   FORGET ZERO
+    FORGET ZERO
 
 FORGET must call WORD as defining entries do, since this is a
 non-typical use of the word ZERO. When it finds the entry, it simple
