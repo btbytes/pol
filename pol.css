@@ -1,0 +1,17 @@
+<style type="text/css">
+  header h1 { 
+    font-size: 1.33em;
+    text-transform:uppercase;
+ }
+ section#toc ul li {
+	 list-style-type: none;
+ }
+ p#pdflink{
+	text-align: center;
+	-moz-border-radius: 5px;
+	border-radius: 5px; 
+	border: solid 1px #999;
+	background-color: #ffa;
+	padding: 0.5em;
+ }
+</style>
