@@ -31,6 +31,9 @@ are modern.
 
 written \~ June 1970
 
+\thispagestyle{empty}
+\pagenumbering{arabic}
+
 
 # Introduction
 

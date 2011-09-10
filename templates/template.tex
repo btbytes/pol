@@ -93,7 +93,8 @@ $endfor$
 %\date{$date$}
 %$endif$
  
-\begin{document}
+\begin{document}       
+	\thispagestyle{empty}
 	% title page
 	\vspace*{\fill}
 	\begin{center}
@@ -118,7 +119,8 @@ $endfor$
 	%\textrm{\normalsize Typeset by Pradeep K. Gowda} \\
 	%\textrm{\normalsize Sept 2011} \\
 	\end{center}
-	\clearpage
+	\clearpage  
+	
 %$if(title)$
 %\maketitle
 %$endif$
@@ -129,7 +131,10 @@ $include-before$
 $endfor$
 $if(toc)$
 \tableofcontents
-
+\thispagestyle{empty}
+\clearpage
+\pagenumbering{arabic}
+\setcounter{page}{1}
 $endif$
 $body$
 $if(biblio-files)$
