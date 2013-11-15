@@ -88,7 +88,7 @@ display:inline;
 </head>
 <body>
 <p id="pdflink"><a href="POL.pdf">This book can be downloaded as a US letter sized, two-sided, print-ready PDF</a>.
-<!-- 2011-09-09 -->
+<!-- 2013-11-15 -->
 </p>
 <header>
 <h1 class="title">Programming a Program-Oriented-Language</h1>
@@ -192,16 +192,17 @@ display:inline;
 <p>I have a typescript that I recovered from Forth, Inc long ago. I had typed it on my Smith-Corona portable, complete with overstrikes and annotations. It is illegible enough to discourage a casual reader, so I’m re-keying it in HTML.</p>
 <p>This is useful, since I used to be a good typist and that skill has deteriorated. My fingers can use the exercise and I’m curious if I can reduce my error rate.</p>
 <p>I’m making minimal changes to the text; just enough to fit HTML. The language remains quaint, ungrammatical or unclear. Any remaining typos are modern.</p>
-<p>— Chuck Moore 2011</p>
+<p>– Chuck Moore 2011</p>
 <p>written ~ June 1970</p>
-<h1 id="introduction"><a href="#TOC"><span class="header-section-number">1</span> Introduction</a></h1>
+<p> </p>
+<h1 id="introduction"><a href="#introduction"><span class="header-section-number">1</span> Introduction</a></h1>
 <p>I’m not sure why you’re reading this book. It’s taken me a while to discover why I’m writing it. Let’s examine the title: <em>Programming a Problem-Oriented-Language</em>. The key word is programming. I’ve written many programs over the years. I’ve tried to write <em>good</em> programs, and I’ve observed the manner in which I write them rather critically. My goal has been to decrease the effort required and increase the quality produced.</p>
 <p>In the course of these observations, I’ve found myself making the same mistakes repeatedly. Mistakes that are obvious in retrospect, but difficult to recognise in context. I thought that if I wrote a prescription for programming, I could at least remind myself of problems. And if the result is of value to me, it should be of value to others; if what I say is new to you, you may learn something of value; if I cover familiar ground, you at least get a new point of view.</p>
 <p>I’ve also been distressed at the lack of concern from others about problems I consider significant. It amounts to a general indifference to quality; a casual attitude of confidence that one’s programs are pretty good, in any case as good as necessary. I’m convinced this confidence is misplaced. Moreover this attitude is reinforced by the massive trend to high-level languages and a placid acceptance of their inefficiencies: What’s the use of designing a really good algorithm if the compiler’s going to botch it up anyway?</p>
 <p>So I’ve written a book about programming. I have no great taste for debating over a one-way communication link and no real interest in convincing you that I’m right in what I say. So you’ll probably find that I’m being brusk. I’m quite likely to state bluntly something you may take issue with. Please do! My intention is to document an approach I’ve found useful, and perhaps to stimulate critical interest in programming. If you care enough to take issue, I’m delighted.</p>
 <p>Back to the title. What about Problem-Oriented-Language? I didn’t start out to write about that; and I’m not sure that I’m qualified to do so. But I discovered that in order to justify what I was doing and identify the appropriate circumstances for doing it, the term became essential.</p>
 <p>A problem-oriented-language is a language tailored to a particular application. To avoid that uniquely clumsy term, I’ll usually substitute <em>application language</em> as synonymous. Very often such a language isn’t recognised for what it is. For instance, if your program reads a code in column 80 to identify an input card, you are implementing an application language. A very crude one, a very awkward one; mostly because you hadn’t given the matter any thought. Recognising the problem, I’m sure you can design a better solution. This book will show you how.</p>
-<h2 id="the-basic-principle"><a href="#TOC"><span class="header-section-number">1.1</span> The Basic Principle</a></h2>
+<h2 id="the-basic-principle"><a href="#the-basic-principle"><span class="header-section-number">1.1</span> The Basic Principle</a></h2>
 <p>We have a large number of subjects to talk about. I’m going to throw before you a lot of techniques that you may be able to use. This is basically the result of the nature of a digital computer: a general purpose tool for processing information.</p>
 <p>A computer can do anything. I hope that your realize that, providing you allow me to define “anything”, I can prove this. I mean real, incontrovertible, mathematical-type proof. A computer cannot do everything. I can prove this, too. But most important, with only you and I to program it, a computer can not even do very much. This is of the nature of an empirical discovery.</p>
 <p>So to offer guidance when the trade-offs become obscure, I am going to define the Basic Principle:</p>
@@ -227,7 +228,7 @@ display:inline;
 <p>Moreover, the task is not that great as to deter you. Although it takes hundreds of instructions to write a general purpose subroutine, you can do what you need with tens of instructions. In fact, I would advise against writing a subroutine longer that a hundred instructions.</p>
 <p>So if you want to read double-precision, complex integers; don’t rely on the COBOL input subroutine, or wait till the manufacturer revises it. It’s a lot easier to write your own.</p>
 <p>But suppose everyone wrote their own subroutines? Isn’t that a step backward; away from the millennium when our programs are machine independent, when we all write in the same language, maybe even on the same computer? Let me take a stand: I can’t solve the problems of the world. With luck, I can write a good program.</p>
-<h2 id="preview"><a href="#TOC"><span class="header-section-number">1.2</span> Preview</a></h2>
+<h2 id="preview"><a href="#preview"><span class="header-section-number">1.2</span> Preview</a></h2>
 <p>I’m going to tell you how to write a program. It is a specific program; that is, a program with a specific structure and capabilities. In particular, it is a program that can be expanded from simple to complex along a well defined path, to handle a wide range of problems, likewise varying from simple to complex. One of the problems it considers is exactly the problem of complexity. How can you control your program so that it doesn’t grow more complicated than your application warrants?</p>
 <p>First I’ll define “input”, and mention some general rules of programming that apply to all programs, whether they have input or not. Actually we will be almost exclusively concerned with input, so I’ve not much to say about programs lacking input.</p>
 <p>By admitting input, a program acquires a control language by which a user can guide the program through a maze of possibilities. Naturally, this increases the flexibility of the program, it also requires a more complex application to justify it. However it is possible to achieve a considerable simplification of the program, by recognising that it needs a control language as a tool of implementation.</p>
@@ -238,7 +239,7 @@ display:inline;
 <p>I hope you find the ideas I describe of value to you. In particular, I hope that you will agree that the program I describe has a certain inevitability; that it must do certain things, it must do them in a certain order, and that a certain set of conventions yield an optimal solution.</p>
 <p>I’ve gone to some lengths to simplify. I hope that you don’t find too many violations of the Basic Principle, for it’s much easier to elaborate upon a program than it is to strip it to basics. You should feel free to build upon my basic routines, provided that you recognise that you are adding a convenience. If you confuse what is expedient with what is necessary, I guarantee your program will never stop growing.</p>
 <p>You will notice a lack of flow-charts. I’ve never liked them, for they seem to include a useless amount of information - either too little or too much. Besides they imply a greater rigidity in program structure than usually exists. I will be quite specific about what I think you should do and how you should do it. But I will use words, and not diagrams. I doubt that you would give a diagram the attention it deserved, anyway. Or that I would in preparing it.</p>
-<h1 id="programs-without-input"><a href="#TOC"><span class="header-section-number">2</span> Programs without input</a></h1>
+<h1 id="programs-without-input"><a href="#programs-without-input"><span class="header-section-number">2</span> Programs without input</a></h1>
 <p>The simplest possible program is one that has no input. That is a somewhat foolish statement, but if you’ll give me a chance to explain we can establish some useful definitions.</p>
 <p>First consider the word “input”. I want to use it in a specific sense:</p>
 <blockquote>
@@ -261,7 +262,7 @@ display:inline;
 <p>A program that has no input may be extremely complex. Lacking input simply means the program knows what to do without being told. That built into the code is all the information needed to run. If you are willing to re-compile the program, you can even modify it without input.</p>
 <p>But I’ll be viewing programs from the input side. I’ll be ranking programs according to the complexity of their input and I plan to demonstrate that a modest increase in the complexity of input can provide a substantial decrease in the complexity of the program. From this point of view, a program with no input is simple.</p>
 <p>Since I’m going to be talking about input, a program without input leaves me nothing to talk about. But I want to make some points about programs in general, so I’ll make them here. For one thing, we will be climbing a tree. When we reach the higher branches we’ll have enough trouble keeping our balance without worrying about the roots.</p>
-<h2 id="choosing-a-language"><a href="#TOC"><span class="header-section-number">2.1</span> Choosing a language</a></h2>
+<h2 id="choosing-a-language"><a href="#choosing-a-language"><span class="header-section-number">2.1</span> Choosing a language</a></h2>
 <p>We shall be less interested in computer language than most programmers. For 3 reasons: First, we will eventually define our own application-oriented language. How we implement that language is of lesser concern. Second, you probably aren’t in a position to pick a language. Your installation probably has reduced your choice to nil. Third, we won’t be talking about problems at the language level.</p>
 <p>This last comment deserves elaboration. I assume that you are already a competent programmer. I’m not interested in teaching you how a computer works, or how a language conceals the computer. I want to talk about problems common to all programs in a machine-independent and language-independent manner. I will leave to you the details of implementation. I am not going to write a program, I am going to show you how to write a program.</p>
 <p>I hope that you are a good enough programmer to think in computerese. That is, as someone discusses their application, you interpret it in terms of computer operations: a loop here, a calculation there, a decision . . . The details are largely irrelevant, the gross structure of the program is of concern.</p>
@@ -281,33 +282,32 @@ display:inline;
 <p>You will have to code in assembler! Not the whole program, if you insist, but the important parts that we’ll be concentrating on. You might be able to do some of these in FORTRAN, but it simply isn’t worth the effort. I’ll show you where higher-level subroutines can go, and I think you’ll agree there is good reason to restrict them to that function.</p>
 <p>I recognise the drawbacks of assembler and chafe at them as much as anyone. I don’t like to punch and debug 10 times as many cards either. But I will in order to get the performance I need. By the way, I will use the word “compiler” to include assembler; we will <em>compile</em> an assembly language program.</p>
 <p>Later I’ll show you how to write a program in a forgotten language: machine language. By that I mean sitting at the console and entering absolute, binary instructions with the switches. Depending on the hardware and software available, and the nature of your application, it may just be the best language of all.</p>
-<h2 id="choosing-a-computer"><a href="#TOC"><span class="header-section-number">2.2</span> Choosing a computer</a></h2>
+<h2 id="choosing-a-computer"><a href="#choosing-a-computer"><span class="header-section-number">2.2</span> Choosing a computer</a></h2>
 <p>Of course I don’t expect that you’re in a position to choose a computer. Nor am I going to discuss hardware at all. But I do have a mental image of the kind of computer, and explaining it may help you understand some of my comments.</p>
 <p>Most applications can be programmed very nicely on a small computer: say 4K of 16-bit words with a typical instruction set, floating-point hardware if needed. If, that is, the computer is augmented with random access secondary memory, which I will call disk. The capacity of disk is unimportant, even a small disk providing plenty for our purposes, and is determined by the application. However, it is important to be able to copy the disk onto another disk, or tape, for back-up. Thus I envisage a small computer with 2 secondary memories, and of course a keyboard or card-reader and printer or scope for input and output.</p>
 <p>Instead of running applications in serial on a small computer, you can run them in parallel on a large one. I see no advantage, for the amount of core and disk you can afford to use for a single application is about that available on a small computer. You don’t gain speed, you suffer from a complex operating system, and you have a enormous capital investment. But the configuration I have in mind remains the same: 4K of core, secondary memory and input/output device.</p>
-<h2 id="arrangement-and-formatting"><a href="#TOC"><span class="header-section-number">2.3</span> Arrangement and formatting</a></h2>
+<h2 id="arrangement-and-formatting"><a href="#arrangement-and-formatting"><span class="header-section-number">2.3</span> Arrangement and formatting</a></h2>
 <p>Now I’m going to tell you how to write a program. Independent of language or computer. Things you ought to be doing already, but probably aren’t because on one ever told you to. Little things. But if you don’t do them you won’t have a good program; and we’re going to write a good program.</p>
 <p>Remember the Basic Principle! If you didn’t read the Introduction, do it now.</p>
 <p>Declare all variables. Even in FORTRAN when you don’t have to. Everyone likes to know what parameters you are using, presumably need to use; likes to count them, to see if they could use fewer; is annoyed if you slip one in without mentioning it.</p>
 <p>Define everything you can before you reference it. Even in FORTRAN when you don’t have to. Why not? You don’t like to read a program backwards either. ‘Everything you can’ means everything except forward jumps. You better not have many forward jumps.</p>
 <p>Make variables as GLOBAL as possible. Why not? You can save some space and clarify your requirements. For instance, how many Is, Js and Ks do you need? In most cases a single copy in COMMON would suffice (you have to declare them, remember, and may as well put them in COMMON); you can redefine it locally if you must; and it is of interest that you must.</p>
 <p>Indent! High-level languages, even modern assemblers, fail to insist that you start in column x. But you do! The unbelievable appeal of a straight left margin! Paper is 2-dimensional. Use it! If you indent all statements inside a loop, it’s obvious at a glance the extent of the loop. If you indent conditionally executed statements you’ll find that nested conditions sort themselves out - automatically. If you indent little statements you wish you didn’t have to include (I = I) you’ll find they intrude less as you glance through the listing. Always indent the same amount, 3 spaces/level is good. Be consistently and be accurate. Sloppy indenting is obvious.</p>
-<h2 id="mnemonics"><a href="#TOC"><span class="header-section-number">2.4</span> Mnemonics</a></h2>
+<h2 id="mnemonics"><a href="#mnemonics"><span class="header-section-number">2.4</span> Mnemonics</a></h2>
 <p>You will find as you read, that I have strong opinions on some subjects and no opinion of others. Actually I have strong opinions on all, but sometimes I can’t make up my mind which to express. Fortunately it leaves you some decisions to make for yourself.</p>
 <p>Use words with mnemonic value. Unfortunately what is mnemonic to you may not be mnemonic to me; and I’m the one who judges. Also unfortunately, mnemonic words tend to be long, which conflicts with:</p>
 <p>Use short words. You don’t want to type long words, and I don’t want to read them. In COBOL this means avoid dashes and avoid qualification, though both can be useful upon occasion.</p>
 <p>So let me suggest a compromise: abbreviate in some consistent fashion and stick to your own rules. I can probably figure out the rules you’re using. You might even mention them in a comment.</p>
 <p>Use words with the correct grammatical connotations: nouns for variables, verbs for subroutines, adjectives for . . . Do <em>not</em> use clever words (GO TO HELL). Their cuteness wears off very fast and their mnemonic value is too subjective. Besides they offer an unwanted insight into your personality.</p>
 <p>Use comments sparingly! (I bet that’s welcome.) Remember that program you looked through - the one with all the comments? How helpful were all those comments? How soon did you quit reading them? Programs are self-documenting, even assembler programs, with a modicum of help from mnemonics. It does no good to say:</p>
-<pre><code>LA B . Load A with B
-</code></pre>
+<pre><code>LA B . Load A with B</code></pre>
 <p>In fact it does positive bad: if I see comments like that I’ll quit reading them - and miss the helpful ones.</p>
 <p>What comments should say is <em>what</em> the program is doing. I have to figure out <em>how</em> it’s doing it from the instructions anyway. A comment like this is welcome:</p>
 <blockquote>
 <p>COMMENT SEARCH FOR DAMAGED SHIPMENTS</p>
 </blockquote>
 <p>Mnemonics apply to variables and labels (You can even get mnemonic value in FORTRAN statement numbers). Where possible you should apply them to registers also. You may do well to assign several names to the same entity, to indicate its current use. However, don’t waste effort naming things that don’t need names. If you need a counter, use I, J, K; to assign a big name (EXC-CNTR) to an insignificant variable is no help.</p>
-<h2 id="routines-and-subroutines"><a href="#TOC"><span class="header-section-number">2.5</span> Routines and subroutines</a></h2>
+<h2 id="routines-and-subroutines"><a href="#routines-and-subroutines"><span class="header-section-number">2.5</span> Routines and subroutines</a></h2>
 <p>There are two words I need to establish precise definitions for: A <em>subroutine</em> is a set of instructions that return from whence they came. A <em>routine</em> is a set of instructions that return to some standard place.</p>
 <p>To put it another way, you <em>jump</em> to a routine, you <em>call</em> a subroutine. The difference is retained in higher-level languages: GO TO versus CALL or ENTER.</p>
 <p>So what? Subroutines suffer from nesting. If you call a subroutine from within a subroutine you must somehow save the original return address. I’m sure you can rattle-off a dozen hardware/software ways of doing this. They’re all expensive.</p>
@@ -319,27 +319,23 @@ display:inline;
 <p>You must also consider the value of a subroutine. It isolates a logical function and it eliminates repeated instructions. The first is acceptable only at minimal cost. The second only if space is saved: a 1-instruction subroutine is ridiculous; a 2-instruction must be called from 3 places to break even. Be careful!</p>
 <p>Finally, it is important to use registers efficiently. Assign registers for specific purposes and use them consistently. Re-assign registers if you must to avoid conflicts. Do not move data from one register to another; see that it is where it belongs in the first place.</p>
 <p>When I say register, I’m obviously thinking assembler. However, you will have to simulate the function of registers with subscripts, etc. in other languages, and the same considerations apply.</p>
-<h1 id="programs-with-input"><a href="#TOC"><span class="header-section-number">3</span> Programs with input</a></h1>
+<h1 id="programs-with-input"><a href="#programs-with-input"><span class="header-section-number">3</span> Programs with input</a></h1>
 <p>A program without input is a program with a single task. A program with input may have many tasks, which it will perform as directed by its input. Thus I consider input to be control information, and the control information to define a control language.</p>
 <p>We shall have a problem in this chapter, for we are discussing a loop. Each element of the loop depends on its predecessor and successor, and we have nowhere to start. I have done the best I could, but am obliged to refer to things before I define them. Especially in the next section where I try to justify some of the details we’ll encounter immediately after.</p>
 <p>This chapter is full of details, more than I anticipated when I started it. Although I’m surprised there’s so much to say, I think it’s all of value. I only caution you not to get lost in the details; the structure, the concept of the program are what is important.</p>
 <p>To set the stage, let me briefly outline how our program must operate. You are sitting at a keyboard typing input. You type a string of characters that the computer breaks into words. It finds each word in a dictionary, and executes the code indicated by the dictionary entry, perhaps using parameters also supplied by the entry. The process of reading words, identifying them and executing code for them is certainly not unusual. I am simply trying to systematize the process, to extract the inevitable functions and see that they are efficiently performed.</p>
-<h2 id="nouns-and-verbs"><a href="#TOC"><span class="header-section-number">3.1</span> Nouns and verbs</a></h2>
+<h2 id="nouns-and-verbs"><a href="#nouns-and-verbs"><span class="header-section-number">3.1</span> Nouns and verbs</a></h2>
 <p>I’ve mentioned the dictionary and we’ll soon examine the details required to implement it. But first I’d like to talk a bit about individual entries to try and give you a feel for what we’re doing.</p>
 <p>We’re going to read words from your input, find them in the dictionary, and execute their code. A particular kind of word is a literal, a word that identifies itself:</p>
-<pre><code>1 17 -3 .5
-</code></pre>
+<pre><code>1 17 -3 .5</code></pre>
 <p>We won’t find such words in the dictionary, but we can identify them by their appearance. Such words act as if they were in the dictionary, and the code executed for them places them on a push-down stack.</p>
 <p>Other words act upon arguments found on this stack, for example:</p>
 <pre><code>`+` -- add the last 2 numbers placed on the stack, leave the sum there.
-`,` -- type the number on top of the stack, and remove it from the stack.
-</code></pre>
+`,` -- type the number on top of the stack, and remove it from the stack.</code></pre>
 <p>If we type a phrase such as:</p>
-<pre><code>1 17 + ,
-</code></pre>
+<pre><code>1 17 + ,</code></pre>
 <p>We are saying: put 1 onto the stack, 17 onto the stack, add them, and type their sum. Each word performs its specific, limited function; independently of any other word. Yet the combination of words achieves something useful. In fact if we type:</p>
-<pre><code>4837 758 + -338 + 23 + 4457 + -8354 + ,
-</code></pre>
+<pre><code>4837 758 + -338 + 23 + 4457 + -8354 + ,</code></pre>
 <p>we can even do something non-trivial: each number is added to the sum of its predecessors, and the result typed.</p>
 <p>This is basically the value of our program. It lets us combine simple operations in a flexible way to accomplish a task.</p>
 <p>Let’s look more closely at the words we used above. They fall into 2 distinct classes; English even provides names for them:</p>
@@ -367,8 +363,7 @@ display:inline;
 <li>Variables place the address of their parameter field onto the stack.</li>
 </ul>
 <p>For example, if PI is a constant, it places 3.14 onto the stack. Thus:</p>
-<pre><code>1. PI 2. \* / ,
-</code></pre>
+<pre><code>1. PI 2. \* / ,</code></pre>
 <p>reads: place 1. onto the stack, place 3.14 onto the stack, place 2. onto the stack, multiply (2. and PI), divide (1. by 2PI), and type. Constants are particularly useful when you’re using code numbers. It lets you give names to numbers that might otherwise be hard to remember.</p>
 <p>However the most important nouns by far are literals and variables. A variable gives a name to a location and not to a value, as elementary programming texts laboriously explain. However, what higher-level languages conceal is that variables may be used in 2 distinct ways:</p>
 <ul>
@@ -381,25 +376,20 @@ display:inline;
 <li><code>=</code> Store into the address on the stack, the value just beneath it on the stack.</li>
 </ul>
 <p>Thus if I type, where X is a variable,</p>
-<pre><code>X @ ,
-</code></pre>
+<pre><code>X @ ,</code></pre>
 <p>I mean: place the address of X onto the stack, fetch its value, and type. And if I type,</p>
-<pre><code>X @ Y @ + ,
-</code></pre>
+<pre><code>X @ Y @ + ,</code></pre>
 <p>I mean: fetch the value of X, the value of Y, add, and type. On the other hand,</p>
-<pre><code>X @ Y =
-</code></pre>
+<pre><code>X @ Y =</code></pre>
 <p>will: fetch the address of X, then its value, fetch the address of Y, and store the value of X into Y. But if I type</p>
-<pre><code>X Y =
-</code></pre>
+<pre><code>X Y =</code></pre>
 <p>I’m saying: fetch the address of X, the address of Y, and store the address of X into Y. Maybe this is that I mean to do, it’s not unreasonable.</p>
 <p>I don’t want to belabor the point, for we’re getting ahead of ourselves. But variables require special verbs, one of which (@) is not ordinarily explicit. Incidentally, I originally used the word VALUE for @. But the verb is used so often it deserves a single character name, and I thought @ (at) had some mnemonic value, besides being otherwise useless.</p>
 <p>I urge you to adopt the verb @. Although you can conceal it in various ways - we’ll discuss one later - it adds needless complication. Such a useful verb oughtn’t be invisible. Besides it lets you store addresses in variables - indirect addressing</p>
-<pre><code>X Y = Y @ @ ,
-</code></pre>
+<pre><code>X Y = Y @ @ ,</code></pre>
 <p>reads: store the address of X in Y; place the address of Y on the stack, fetch its value (the address of X) fetch <em>its</em> value (the contents of X), and type.</p>
 <p>I hope I’ve given you some idea of how you can put arguments onto the stack and act on them with verbs. Although I define constants and variables, unary and binary verbs, I hope it’s clear that these are only examples. You must define the nouns and verbs and perhaps other kinds of words that are useful for your application. In fact, I think that is what programming is all about. If you have available a program such as I will now describe, once you decide what entries an application requires, you’ll find it absolutely trivial to code those entries, and thus complete your problem.</p>
-<h2 id="control-loop"><a href="#TOC"><span class="header-section-number">3.2</span> Control loop</a></h2>
+<h2 id="control-loop"><a href="#control-loop"><span class="header-section-number">3.2</span> Control loop</a></h2>
 <p>Our program has a structure that is easy to miss: it is a single loop. However, it is a loop that is diffuse - scattered among all the code in the program. Very few instructions are gathered together to form an identifiable loop, so the loop warrants some explanation.</p>
 <p>We are going to read a word from the input string, look up that word in the dictionary, and jump to the routine it specifies. Each routine will return to the top of the loop to read another word. We will be discussing many routines and it will be helpful to have a term to identify “return to the top of the loop to read another word”. I will use the word RETURN; you should provide a standard macro or label in your program for the same purpose.</p>
 <p>Actually, you accomplish 2 purposes: you mark the end of a routine. And you identify the preceding code as being a routine, as distinct from a subroutine. Thus, I use the word RETURN with a totally different meaning from the FORTRAN RETURN statement. I shall speak of EXITing from a subroutine.</p>
@@ -410,7 +400,7 @@ display:inline;
 <p>The image of a person at a keyboard in invaluable for this purpose. No matter what problem arises, we needn’t worry about what to do. Pass the buck; ask the user. For example, he types a word not in the dictionary. What to do? Ask him: type the word and an error message, in this case “?”. He tries to add 2 numbers and there’s only 1 on the stack: type the word and “STACK!”. He tries to access a field beyond the limit of his memory: type the word and “LIMIT!”.</p>
 <p>Of course you want to be careful not to pose the user problems he can’t solve. Faced with a message “MEMORY PARITY” what can he do about it? But he’s certainly in a better position than your program to take corrective action to most problems. And of course it’s up to you to decide what situations are problems.</p>
 <p>By the way. Since you don’t check the stack until after you executed a routine, it will exceed stack limits before you know it. Thus stack overflow and underflow should be non-fatal. A good solution is to let the parameter stack overflow into the return stack, and underflow into the message buffer. The return stack should never underflow.</p>
-<h2 id="word-subroutine"><a href="#TOC"><span class="header-section-number">3.3</span> Word subroutine</a></h2>
+<h2 id="word-subroutine"><a href="#word-subroutine"><span class="header-section-number">3.3</span> Word subroutine</a></h2>
 <p>I’ve described the control loop that will run our program. The first thing it does is to read a word; so the first thing we shall discuss is how to read a word.</p>
 <p>What is a word? Not a computer word, as I’m sure you realise, although we shall have to use the word “word” in that sense. A word is a string of characters bounded by spaces. It is extracted from a larger string of characters by the routine we are discussing.</p>
 <p>Let me contrast this definition with more conventional input routines. FORTRAN formatted input, for example, doesn’t speak of words but of fields. The meaning of a number is determined by the field it resides in; that is, by its position on a card. Since we are not using cards, the notion of position becomes clumsy and we replace it with order: The order of the words we read is significant, though their position is not. We lose, however, the ability to leave a field empty, since we cannot recognise an empty word. All our data must be explicit, which is probably a good idea but a slow one to learn. Decide now that you will not specify input conventions that have optional parameters.</p>
@@ -418,9 +408,8 @@ display:inline;
 <p>Fetch input characters and discard them so long as they’re spaces. Thereafter deposit them until you find another space. Deposit this space and as many others as needed to fill out the last computer-word. If you have a character-oriented machine you may be amused at my insistence on word-alignment. Mainly I’m anticipating the search subroutine when we’ll want to compare as large a piece of the word as possible. If a word holds 6 characters (or even 2) it’s much more efficient to compare them in parallel than serially, even if you have the hardware.</p>
 <p>You may want to set an upper limit on word length. Such a limit should include the largest number you will be using. Then the question arises as to what to do with a longer word. You might simply discard the excess characters, providing you don’t plan to dissect the word (Chapter 8). Better, perhaps, that you force a space into the word at the limit. That is, break the word into 2 words. Presumably something’s wrong and you will eventually discover it in attempting to process the fragments. However this limit should be large enough - 10 to 20 characters - so that it does not constitute a real restriction on your input. It should also be 1 character less than a multiple of your computer-word length, so that you can always include the terminal space in the aligned word.</p>
 <p>Words are bounded by spaces. You can probably find objections to such a simple definition. For instance, arithmetic expressions often do not have spaces between words. We shall discuss this in Chapter 9. Let me just say that we need to embed periods, dashes, and other characters in words in order not to unreasonably restrict our potential vocabulary. We’d like these to be words:</p>
-<pre><code>1,000 1.E-6 I.B.M. B&amp;O 4'3&quot; $4.95
-</code></pre>
-<h3 id="message-io"><a href="#TOC"><span class="header-section-number">3.3.1</span> Message I/O</a></h3>
+<pre><code>1,000 1.E-6 I.B.M. B&amp;O 4&#39;3&quot; $4.95</code></pre>
+<h3 id="message-io"><a href="#message-io"><span class="header-section-number">3.3.1</span> Message I/O</a></h3>
 <p>The WORD subroutine presumably examines input characters. Where does it get these characters?</p>
 <p>Although it’s possible to read cards, I’m going to assume that you have a keyboard to type input. Now there are 2 kinds of keyboards, buffered and unbuffered. A buffered keyboard stores the message until you type an end-of-message character. An unbuffered keyboard sends each character as you type it. Your hardware, in turn, may buffer input for you or not.</p>
 <p>In any case we may want to examine each character more than once, so we want buffered input. Even if you can process characters as they arrive, don’t. Store them into a message buffer.</p>
@@ -431,20 +420,19 @@ display:inline;
 <p>We will use the same message buffer for both input and output. My motivation is to save space, or rather to increase the utilization of space. My reasoning is that input and output are mutually exclusive. There are exceptions, but we don’t usually read input and prepare output simultaneously. At least we never have to.</p>
 <p>However, we do need a switch (1 bit) that states whether the message buffer still contains input. The first time (or perhaps every time) we type output, we must reset this switch. We’ll use it later.</p>
 <p>We need a receive subroutine that will exit when we have a complete input message. Likewise a transmit subroutine that will exit after sending an output message. It should await an acknowledgement if the hardware provides one. Don’t try to overlap transmission of one message with preparation of the next. Transmission is so slow and preparation so fast that no noticeable increase in speed is available. And it complicates the program considerably.</p>
-<h3 id="moving-characters"><a href="#TOC"><span class="header-section-number">3.3.2</span> Moving characters</a></h3>
+<h3 id="moving-characters"><a href="#moving-characters"><span class="header-section-number">3.3.2</span> Moving characters</a></h3>
 <p>I will speak of fetching and depositing characters several times, mostly concerned with input and output. For example, the WORD subroutine moves characters from the message buffer to a word buffer. A simple task conceptually, but a difficult one to implement. We would have exactly the same problem moving arrays from place to place. But in fact we needn’t move arrays and we must move characters.</p>
 <p>Let us define 2 entities: an input pointer and an output pointer. For the moment you can think of them as index registers, although we will have to generalize later. Let’s also write 2 subroutines, although your hardware may permit them to be instructions: FETCH will load the character identified by the input pointer into a register, and advance the input pointer; DEPOSIT will store that register at the position identified by the output pointer, and advance the output pointer.</p>
 <p>Depending on your computer, FETCH and DEPOSIT can be veery simple, or extremely complex. If they require more than 1 instruction, they should be subroutines, for we’ll use them often. By combining them, we can perform a move. However, it’s important to be able to examine the character before depositing it. A hardware move instruction is of little value.</p>
 <p>The input and output pointers use index registers. However, those registers should only be used during a move. They should be loaded prior to a move and saved after it, for they will be used for a number of purposes, and it becomes impractical to store anything there permanently.</p>
-<h2 id="decimal-conversion"><a href="#TOC"><span class="header-section-number">3.4</span> Decimal conversion</a></h2>
+<h2 id="decimal-conversion"><a href="#decimal-conversion"><span class="header-section-number">3.4</span> Decimal conversion</a></h2>
 <p>After isolating and aligning a word from the input string, your control loop searches the dictionary for it. If it isn’t in the dictionary, it might be a number. A number is a special kind of word that doesn’t need a dictionary entry; by examining the word itself we can decide what to do with it. The code executed for a number will place the binary representation of the number onto the stack.</p>
 <p>We will discuss the stack in the next section. First let’s define a number more precisely.</p>
-<h3 id="numbers"><a href="#TOC"><span class="header-section-number">3.4.1</span> Numbers</a></h3>
+<h3 id="numbers"><a href="#numbers"><span class="header-section-number">3.4.1</span> Numbers</a></h3>
 <p>It is very hard to state exactly what is a number and what is not. You will have to write a NUMBER subroutine to convert numbers to binary, and this subroutine is the definition of a number. If it can convert a word to binary, that word is a number; otherwise not.</p>
 <p>It is foolish to examine a word to see if it is a number, and then to convert the number to binary. Examination and conversion can be combined into one process very easily.</p>
 <p>There is one kind of word that invariably is a number: a string of digits possible prefixed with a minus. Such numbers are usually converted to binary integers. For example:</p>
-<pre><code>1 4096 -3 7777 0 00100 10000000 6AF2 -B
-</code></pre>
+<pre><code>1 4096 -3 7777 0 00100 10000000 6AF2 -B</code></pre>
 <p>are some decimal, octal and hex numbers. The number does not specify its base, and a word that may be a hexadecimal number, may not be a decimal number.</p>
 <p>So already base has complicated numbers. And beyond simple integers are endless other kinds of numbers: fixed-point fractions, floating-point fractions double-precision integers, complex fractions, etc. And such numbers can have many different formats as words: decimal point, implied decimal point, exponents, suffixes. Indeed, the same word may represent different numbers depending on its context.</p>
 <p>One of your major tasks will be to decide what kinds of numbers you need for your application, how you will format them, and how you will convert them. Each kind of number must be uniquely identifiable by the NUMBER subroutine, and for each you must provide an output conversion routine.</p>
@@ -464,14 +452,21 @@ display:inline;
 </ul>
 <p>Basic Principle!</p>
 <p>Fixed-point numbers are rarely used. I am convinced of their value and would like to show you. With floating-point hardware, they offer only the advantage of greater significance, which is probably not worth much. However, without floating-point hardware they offer most of the capabilities of floating-point numbers, without the very great cost of floating-point software. The exception is a wide range of exponents.</p>
-<p>I am convinced that exponents are badly misused on computers. Most applications use real numbers that can be used on a desk-calculator - say between 10<sup>6</sup> and 10<sup>–6</sup>. Such numbers can be equally well represented in fixed-point format. Floating-point is not needed, although if hardware is available it might as well be used. There are cases, especially in physics, when large exponents occur - 10<sup>43</sup> or 10<sup>–13</sup>. But this usually indicates that the proper units have not been chosen, or maybe even that logarithms should be used.</p>
+<p>I am convinced that exponents are badly misused on computers. Most applications use real numbers that can be used on a desk-calculator - say between 10<sup>6</sup> and 10<sup>-6</sup>. Such numbers can be equally well represented in fixed-point format. Floating-point is not needed, although if hardware is available it might as well be used. There are cases, especially in physics, when large exponents occur - 10<sup>43</sup> or 10<sup>-13</sup>. But this usually indicates that the proper units have not been chosen, or maybe even that logarithms should be used.</p>
 <p>Of course compilers do not implement fixed-point, so people don’t use it. We are in a position to implement it, and to take advantage of the speed possible with fixed-point (integer) instructions. What does a fixed-point number look like? Choose the number of decimal places you want to use. You may change this from time-to-time, but shouldn’t mix numbers with different precision. Have your NUMBER subroutine align all numbers (with decimal points) as if you had typed exactly that number of decimal places. Thereafter treat that number like an integer. That is, if you choose 3 decimal places:</p>
-<p>* 1. is considered 1.000 and treated as 1000 * 3.14 is 3.140 and 3140 * 2.71828 is 2.718 and 2718 * -.5 is -.500 and –500</p>
+<ul>
+<li><ol type="1">
+<li>is considered 1.000 and treated as 1000</li>
+</ol></li>
+<li>3.14 is 3.140 and 3140</li>
+<li>2.71828 is 2.718 and 2718</li>
+<li>-.5 is -.500 and -500</li>
+</ul>
 <p>I wouldn’t bother rounding unless your application demanded it, or your hardware made it easy.</p>
 <p>You can add and subtract such numbers without concern; their decimal points are aligned. After multiplying 2 numbers, you must divide by 1000 to re-align the decimal points. Hardware usually facilitates this; the result of a multiply is a double-precision product in the proper position for a dividend. Before dividing 2 numbers, you must multiply the dividend by 1000 to maintain precision and align the decimal points. Again this is easy.</p>
 <p>So providing your words are large enough to store the number of decimal places you need, fixed-point arithmetic is easy. If you have the hardware, double-precision numbers and operations let you deal with larger numbers. Just as easily. And much easier than simulating floating-point operations. You may have to write your own square-root and trig-function subroutines, but there are approximations available that make this not-difficult. And they’ll be much faster than the equivalent simulated floating-point subroutines.</p>
 <p>Aligning decimal points is easy to visualize, and avoids truncation problems. However you may prefer to align binary points. That is, instead of 3 decimal places, keep 10 binary places to the right of the point. The multiplication and division by 1000 can then be replaced by binary shifts - the equivalent for binary - which are much faster. You must balance the gain in speed against the problem of alignment during conversion (input and output) and truncation during multiplication and division being more subtle. And possibly the difficulty of explaining your arithmetic.</p>
-<h3 id="input-conversion"><a href="#TOC"><span class="header-section-number">3.4.2</span> Input conversion</a></h3>
+<h3 id="input-conversion"><a href="#input-conversion"><span class="header-section-number">3.4.2</span> Input conversion</a></h3>
 <p>Now let’s discuss the NUMBER subroutine in detail. First, why is it a subroutine? If you examine the program I’ve outlined so far, and even the program as augmented by the end of the book, you’ll find NUMBER is called only once - in the control loop. By my own rules NUMBER should thus be in-line code. However, I can’t bring myself to put it in line; the logic in NuMBER is so complex that I want to isolate it away from the control loop, to emphasize its logical function - one purpose of a subroutine - and to reduce confusion in the control loop itself; also I’m never confident that I won’t want to call NUMBER from some other routine, in fact I have. But I think that such violations of programming standards should be explicitly recognised.</p>
 <p>The key to a good NUMBER subroutine is another subroutine that it calls. This subroutine has 2 entry points: SIGNED tests the next character for minus, sets a switch, zeros number-so-far and falls into NATURAL. NATURAL fetches characters, tests that they’re digits, multiplies the number-so-far by 10 and adds the digit. It repeats until it finds a non-digit.</p>
 <p>With this routine, NUMBER can work as follows: set the input pointer to the start of the aligned word, call SIGNED. If the stopping character is a decimal point, clear counter, call NATURAL to get the fraction, and use counter to choose a power-of-ten to convert to a floating or fixed-point fraction. In any case, apply SIGNED’s switch to make number-so-far negative. Exit.</p>
@@ -481,11 +476,9 @@ display:inline;
 <li>Otherwise, the word was not a number.</li>
 </ul>
 <p>For example, the following are numbers:</p>
-<pre><code>0 3.14 -17 -.5
-</code></pre>
+<pre><code>0 3.14 -17 -.5</code></pre>
 <p>The following are not:</p>
-<pre><code>0- 3.14. +17 -.5Z X 6.-3 1.E3
-</code></pre>
+<pre><code>0- 3.14. +17 -.5Z X 6.-3 1.E3</code></pre>
 <p>In each case NUMBER will stop on a non-space. The number-so-far will be correctly converted up to that point (possibly 0) but it is of no value.</p>
 <p>SIGNED/NATURAL is a valid subroutine since it is called twice. Moreover, if you define other number formats, you’ll find it useful. For example, the format <code>ft'in</code></p>
 <blockquote>
@@ -494,12 +487,11 @@ display:inline;
 <p>If you want to verify that “in” are less than 12, you’ll want to modify this slightly.</p>
 <p>In NATURAL the number-so-far is multiplied by 10. Don’t use a literal 10, but rather define a field (BASE) and store a 10 there as multiplier. Then you can change BASE to 8 (or 16) and handle octal numbers. You can even change it to 2 to use binary numbers. NATURAL should test for digits by comparing them with BASE, thus prohibiting 9 in an octal number. Hexadecimal input numbers cause an additional problem because the digits A-Z do not follow 9 in standard character sets. It is thus harder to recognise digits; but this problem is isolated in a single place (NATURAL) and is easy to code:</p>
 <blockquote>
-<pre><code>An origin must usually be subtracted from a digit to get its binary
-</code></pre>
+<pre><code>An origin must usually be subtracted from a digit to get its binary</code></pre>
 <p>value. If BASE is 16, a different origin is subtracted from A-F.</p>
 </blockquote>
 <p>NUMBER should be efficient, at least in recognising words that are not numbers. Not so much because you will use so many numbers, but because you will examine many words that aren’t numbers. We will discuss this further in Chapter 8. It is also important that you examine the aligned copy of a word. There are several reasons: to avoid trouble with the input pointer, to guarantee a terminal space. However this creates a problem: the largest number you will use must fit in the aligned word; this may require a longer word than you would otherwise use. A number longer than word-size will have its right-most digits discarded. This will probably not destroy its numeric appearance so that no error will be detected; but the conversion will be incorrect. This problem is not serious, just be aware of it.</p>
-<h3 id="output-conversion"><a href="#TOC"><span class="header-section-number">3.4.3</span> Output conversion</a></h3>
+<h3 id="output-conversion"><a href="#output-conversion"><span class="header-section-number">3.4.3</span> Output conversion</a></h3>
 <p>Numeric output is harder than numeric input because there is an extra step involved. During input, you multiply the number by 10 and add each digit. You can work from left to right. During output, you divide by 10, save the remainder for the digit, and repeat with the quotient until it becomes 0. You get the digits from right to left, but you want to type them from left to right.</p>
 <p>Thus you need somewhere to store the digits temporarily. A good place is the far end of the message buffer. The space is unused since you presumably have enough space for the number. Of course, you can use the stack. If you place a space at the right end of your temporary storage, and then deposit the digits from right to left, you can use the TYPE<sub>B</sub> subroutine to finally type the number.</p>
 <p>You’ll probably want to handle both negative numbers and fractions. Remember the number is negative and work with its absolute value. After you’re finished, prefix a minus. Fractions require 2 conversion loops: one to convert the fraction, counting the number of digits and depositing a decimal point; another to convert the integer, stopping when the quotient becomes 0. You don’t want to test the quotient in the fraction.</p>
@@ -513,12 +505,12 @@ display:inline;
 <p>If you want to produce reports - carefully formatted columns of numbers - you will need to right-justify numbers. That is, to line up decimal points. For this you need another parameter F, the width of the field in which the number is to be right-justified. It’s easy to use: after converting the number right-left, compute the number of spaces you need and call SPACE. Then call TYPE<sub>B</sub>. In determining spaces, remember that TYPE<sub>B</sub> always types a space <em>after</em> the number. Thus you will always have at least a single space between numbers. If the number won’t fit in the field you specify, you’ll still have that one space, and the full number will be typed - fouling up the report format - but showing you the bad number.</p>
 <p>Let me acknowledge that if you are going to right-justify numbers you can place the digits directly into position from right to left, for you know where the rightmost digit must go. But then you must space-fill the message buffer before starting output, and you can’t type unbuffered output immediately. However, my main objection is that you can’t compose free-format output. For example, place a number in a sentence without extra leading spaces. And very often unformatted output is adequate, saving you having to specify field sizes you don’t care about.</p>
 <p>Depending on your formatting requirements, there are other dictionary entries you might want: A SPACE entry, to space the number of positions on the stack. It can even space backwards - by changing the output pointer - if the stack is negative. This is useful if you want to suppress that space provided by TYPE<sub>B</sub>. A tab entry might calculate the amount to space in order to reach a specific position on the stack.</p>
-<h2 id="stacks"><a href="#TOC"><span class="header-section-number">3.5</span> Stacks</a></h2>
+<h2 id="stacks"><a href="#stacks"><span class="header-section-number">3.5</span> Stacks</a></h2>
 <p>We will be using several push-down stacks and I want to make sure you can implement them. A push-down stack operates in a last-in first-out fashion. It is composed of an array and a pointer. The pointer identifies the last word placed in the array. To place a word onto the stack you must advance the pointer, and store the word (in that order). To take a word off the stack you must fetch the word and drop the pointer (in that order). There is no actual pushing-down involved, though the effect is the same.</p>
 <p>A stack pointer is an excellent use for an index register, if you have enough. Indirect addressing is also a possibility, especially if you have an add-to-memory instruction.</p>
-<h3 id="return-stack"><a href="#TOC"><span class="header-section-number">3.5.1</span> Return stack</a></h3>
+<h3 id="return-stack"><a href="#return-stack"><span class="header-section-number">3.5.1</span> Return stack</a></h3>
 <p>This stack stores return information. One use is to store the return address for subroutines, when subroutine calls use an index register. The last-in first-out nature of a stack is exactly the behavior required for nested subroutine calls. We will later encounter several other kinds of return information that can be stored in the same stack. It is important not to attempt to combine the return stack and the parameter stack. They are not synchronized. 8 words is probably enough space for the return stack.</p>
-<h3 id="parameter-stack"><a href="#TOC"><span class="header-section-number">3.5.2</span> Parameter stack</a></h3>
+<h3 id="parameter-stack"><a href="#parameter-stack"><span class="header-section-number">3.5.2</span> Parameter stack</a></h3>
 <p>This stack is the one I intend when I say simply stack. Numbers, constants, variables are all placed on this stack, as will be discussed later. This stack is used to pass parameters among routines. Each routine can find its arguments there, regardless of how many other parameters are present, or how long ago they were placed there. You should not implement a parameter stack less than 16 words long.</p>
 <p>A valuable refinement to the parameter stack is to set aside a register to hold the word on top of the stack. Several rules must be religiously observed if this is not to cause trouble:</p>
 <ul>
@@ -540,12 +532,12 @@ display:inline;
 <li><code>SWAP</code> exchange the top and lower words.</li>
 <li><code>OVER</code> place the lower word onto the stack; move it over the top word.</li>
 </ul>
-<h2 id="dictionary"><a href="#TOC"><span class="header-section-number">3.6</span> Dictionary</a></h2>
+<h2 id="dictionary"><a href="#dictionary"><span class="header-section-number">3.6</span> Dictionary</a></h2>
 <p>Every program with input must have a dictionary. Many programs without input have dictionaries. However these are often not recognised as such. A common ‘casual’ dictionary is a series of <code>IF ... ELSE IF ... ELSE IF ...</code> statements, or their equivalent. Indeed this is a reasonable implementation if the dictionary is small (8 entries) and non-expandable.</p>
 <p>It is important to acknowledge the function and existence of a dictionary, to concentrate it in a single place and to standardize the format of entries. A common characteristic of bad programs is that the equivalent of a dictionary is scattered all over the program at great cost in space, time and apparent complexity.</p>
 <p>The most important property of an entry is one that is usually overlooked. Each entry should identify a routine that is to be executed. Very often many entries execute the same routine. Perhaps there are few routines to choose among. This tends to conceal the importance of specifying what is to be done for each entry. By placing the address of a routine in each entry, an optimal and standard procedure for getting to that code can be designed.</p>
 <p>Significantly, the IF . . . ELSE IF construction has the characteristic of associating a routine with each entry.</p>
-<h3 id="entry-format"><a href="#TOC"><span class="header-section-number">3.6.1</span> Entry format</a></h3>
+<h3 id="entry-format"><a href="#entry-format"><span class="header-section-number">3.6.1</span> Entry format</a></h3>
 <p>There are 2 distinct ways to organize dictionary entries. The choice may depend upon hardware characteristics, but I recommend the second. A dominant feature of entries is that they have variable length. A part of the entry may be the code to be executed, or parameters or an area of storage, all of which may have arbitrary length.</p>
 <p>One possibility is to split an entry into two portions, one of fixed size, one of variable size. This permits scanning fixed size entries to identify a word and often there are hardware instructions to speed this search. A part of the fixed entry can be a link to a variable area; of course you choose the fixed size so as to make the link in the nature of an overflow - an exception.</p>
 <p>However, since input is relatively small volume (even as augmented in definitions), to minimize the time required to search the dictionary does not lead to a global optimum. You can gain greater flexibility, a simpler allocation of core, and ultimately greater speed by chaining the variable-sized entries together directly. This is the organization I shall discuss.</p>
@@ -560,43 +552,37 @@ display:inline;
 <li>A definition: an array of dictionary entries representing virtual-computer instructions; see 3.9.</li>
 <li>Machine instructions: code compiled by your program which is itself executed for this entry. Such data must probably be aligned on word boundary, the other need not.</li>
 </ul>
-<h3 id="search-strategies"><a href="#TOC"><span class="header-section-number">3.6.2</span> Search strategies</a></h3>
+<h3 id="search-strategies"><a href="#search-strategies"><span class="header-section-number">3.6.2</span> Search strategies</a></h3>
 <p>One basic principle applies to dictionary search: it must be backwards - from latest to oldest entries. You have perhaps noticed that the dictionary is <em>not</em> arranged in any order (ie. alphabetical) other than that in which entries are made. This permits the same word to be re-defined, and the latest meaning to be obtained. There is no trade-off valuable enough to compromise this property.</p>
 <p>To identify a word, place it (or its first portion) in a register and compare for equality with each entry (or its first portion). An algebraic comparison is adequate. Concern is sometimes expressed that treating words as floating-point numbers may permit a false equality. This has 0 probability and you can always change the word - ignore it.</p>
 <p>A full-word compare (rather than a character-by-character) should be used for speed. A match is usually found on the first portion, and extensions may be treated with less efficiency (though still full-word compares).</p>
 <p>Fixed-length entries may be scanned with a simple loop. Linked entries require an equally simple loop, but usually a slower one. However the speed of a linked search can be increased without limit: Rather than link each entry to its physical predecessor, link it to a predecessor in one of a number of chains. Scramble the word to determine which chain it belongs in, both when you enter it and when you search for it. Thus, only a fraction of the total dictionary need be searched to find the word or assure its absence.</p>
 <p>The number of chains should be a power of 2: 8 will provide a useful increase in speed. The scramble technique may be very simple: add the first few characters together and use the low-order bits. In order to maintain a linked dictionary, the next available location and the location of the last entry must be kept. A multiply-chained dictionary requires the location of the last entry for each chain: a small price in space for a large gain in time.</p>
 <p>However, search time is not a important consideration, and I advise against multiple chains unless the dictionary is very large (hundreds of entries).</p>
-<h3 id="initialization"><a href="#TOC"><span class="header-section-number">3.6.3</span> Initialization</a></h3>
+<h3 id="initialization"><a href="#initialization"><span class="header-section-number">3.6.3</span> Initialization</a></h3>
 <p>The dictionary is built into your program and is presumably initialized by your compiler. This is certainly true if you have fixed-size entries. Variable-sized entries must be linked together, however, and this can be beyond the ability of your compiler, especially if you have multiple chains.</p>
 <p>In such a case, it is a simple matter to write a loop that scans the dictionary and establishes the links. It should scan the core occupied by the dictionary and recognise an entry by some unique flag (7’s in the link field). It can the pick up the word, scramble it and add it to the appropriate chain.</p>
 <p>This is purely temporary code. Although it may call permanent subroutines to scramble and link, the initialization code will have no further use. Thus it should be placed where it can be overlaid as the program proceeds. The message buffer, if large enough, or the disk buffer are possibilities.</p>
 <p>Other things may need initializing, particularly any registers that are assigned specific tasks. All such duties should be concentrated in this one place.</p>
-<h2 id="control-language-example"><a href="#TOC"><span class="header-section-number">3.7</span> Control language, example</a></h2>
+<h2 id="control-language-example"><a href="#control-language-example"><span class="header-section-number">3.7</span> Control language, example</a></h2>
 <p>Applications tend to be complicated before they become interesting. But here’s a fairly common problem that shows off a control language to advantage. Implementation would be tricky, execution would be inefficient; but the program would be simple, and its application flexible.</p>
 <p>The problem is to examine a sequential file, select certain records, sort them, and list them - in many different ways. Suppose these variables define the fields in the record:</p>
-<pre><code>NAME AGE SALARY DEPT JOB SENIORITY
-</code></pre>
+<pre><code>NAME AGE SALARY DEPT JOB SENIORITY</code></pre>
 <p>Let’s define these verbs:</p>
-<pre><code>LIST SORT EQUAL GREATER LESS
-</code></pre>
+<pre><code>LIST SORT EQUAL GREATER LESS</code></pre>
 <p>Each acts upon the temporary file produced by the previous, in accordance with the following examples:</p>
 <p>List in alphabetical order all employees in dept 6:</p>
-<pre><code>6 DEPT EQUAL NAME SORT LIST
-</code></pre>
+<pre><code>6 DEPT EQUAL NAME SORT LIST</code></pre>
 <p>First we choose records with dept = 6 and copy them into a temporary file. Then we sort that file by name. Then we list it.</p>
 <p>List twice, by seniority, all employees holding job 17 in dept 3:</p>
-<pre><code>17 JOB EQUAL 3 DEPT EQUAL SENIORITY SORT LIST LIST
-</code></pre>
+<pre><code>17 JOB EQUAL 3 DEPT EQUAL SENIORITY SORT LIST LIST</code></pre>
 <p>List, by age, all employees whose salary is greater than $10,000; and identify those whose seniority is less than 3:</p>
-<pre><code>10000 SALARY GREATER AGE SORT LIST 3 SENIORITY LESS LIST
-</code></pre>
+<pre><code>10000 SALARY GREATER AGE SORT LIST 3 SENIORITY LESS LIST</code></pre>
 <p>Several comments seem indicated. We can apply a logical “and” by using several select verbs in sequence; we cannot use a logical “or”. We can sort on several fields, if our sorting technique does not unnecessarily re-arrange records. We need 2 more verbs:</p>
-<pre><code>REWIND END
-</code></pre>
+<pre><code>REWIND END</code></pre>
 <p>to start over with the original file, and to quit.</p>
 <p>Actually many other capabilities could be provided, including the ability to locate specific records and modify them. But rather than design a particular application, I just want to show how nouns and verbs combine to provide great flexibility with a simple program. Notice how even such a simple example uses all our facilities: the word subroutine, the number subroutine, the dictionary, the stack. We’re not speculating, we are providing essential code.</p>
-<h1 id="programs-that-grow"><a href="#TOC"><span class="header-section-number">4</span> Programs that grow</a></h1>
+<h1 id="programs-that-grow"><a href="#programs-that-grow"><span class="header-section-number">4</span> Programs that grow</a></h1>
 <p>So far our dictionary has been static. It contains all the entries you need - placed there when the program was compiled. This need not be. We can define entries that will cause additional entries to be made and deleted. Let me point out why this might be desirable.</p>
 <p>You have a program that controls an application. Based upon the words you type, it will do as you direct. In Chapter 3 we provided the ability to type out results. Not the sort of results that are the inevitable result of the application, but variables that you’d maybe like to see. More a conversational sort of output, since it is controlled directly by input.</p>
 <p>There are 2 problems with this situation. Firsts, to add an entry to your dictionary you must re-compile the program. Clearly, you won’t be adding many entries - but maybe you won’t have to. Second, all your entries must be present at the same time. This creates, not so much a volume problem, as a complexity problem. If your application is complex, it becomes increasingly difficult to make all aspects compatible. For instance, to find distinct names for all fields. Third, if you find an error in an entry you must recompile the program. You have no ability to correct an entry - though of course you could define entries to provide that ability.</p>
@@ -605,35 +591,31 @@ display:inline;
 <p>I hesitate to say whether this is good or bad. By now you surely know - it depends on the application. I suspect any application of sufficient complexity, and surely any application of any generality, must develop a specialized language. Not a control language, but a descriptive language.</p>
 <p>Some examples: A simulator does not want a control language. It is important to be able to describe with great facility the system being simulated. A linear-programming problem needs a language that can describe the problem. A compiler actually provides a descriptive language for use with the programs it compiles. A compiler-compiler describes compilers. What is a compile-compiler that can execute the compiler it describes and in turn execute the program it compiled? That is the question!</p>
 <p>Let me now assume that you have a problem that qualifies for a descriptive language. What dictionary entries do you need?</p>
-<h2 id="adding-dictionary-entries"><a href="#TOC"><span class="header-section-number">4.1</span> Adding dictionary entries</a></h2>
+<h2 id="adding-dictionary-entries"><a href="#adding-dictionary-entries"><span class="header-section-number">4.1</span> Adding dictionary entries</a></h2>
 <p>Let us now assume that you want to expand your dictionary; that you have a sufficiently complex application to justify a specialized language. How do you make a dictionary entry?</p>
 <p>Recall the control loop: it reads a word and searches the dictionary. If you want to define a word, you must not let the control loop see it. Instead you must define an entry that will read the next word and use it before RETURNing to the control loop. In effect, it renders the following word invisible. It must call the word subroutine, which is why it is a subroutine rather than a routine. Let us call such an entry a <em>defining</em> entry, its purpose is to define the next word.</p>
 <p>In principle we only need one defining entry, but we must supply as a parameter the address of the code to be executed for the entry it defines. Remember that 4 fields are required for each entry: the word, its code address, a link, and (optionally) parameters. The word we obtain from the word subroutine; the link we construct; the parameters we take from the stack. We could also take the address from the stack, but it’s more convenient to have a separate defining word for each kind of entry to be constructed. That is, to have a separate defining entry for each address we need, that provides the address from its parameter field.</p>
 <p>I’m afraid this is confusing. We have one entry that supplies the address field of a new entry from its own parameter field. Let’s take an example; suppose we want to define a constant:</p>
-<pre><code>0 CONSTANT ZERO
-</code></pre>
+<pre><code>0 CONSTANT ZERO</code></pre>
 <p>0 is placed on the stack; the code for the word CONSTANT reads the next word, ZERO, and constructs a dictionary entry for it: it establishes the link to a previous entry, stores 0 from the stack into the parameter field, and from its own parameter field stores the address of the code ZERO will execute. This is, presumably, the address of code that will place the contents of the parameter field onto the stack.</p>
 <p>Thus for each kind of entry we will be making, we need a defining entry to supply the code address and do the work. Since all defining entries have much in common, you should write an ENTRY subroutine they can call. It should have as parameter the code address, and construct all of the new entry except the parameter field, which is specialized by the defining entry.</p>
 <p>Other defining entries might be:</p>
 <ul>
-<li><code>0 INTEGER I</code> — an integer-size parameter field is initialized to 0; its address will be placed on the stack.</li>
-<li><code>1. REAL X</code> — a floating-point parameter field is initialized to 1.</li>
-<li><code>8 ARRAY TEMP</code> — an 8 word parameter field is cleared to 0; the address of its 1st word will be placed on the stack.</li>
+<li><code>0 INTEGER I</code> – an integer-size parameter field is initialized to 0; its address will be placed on the stack.</li>
+<li><code>1. REAL X</code> – a floating-point parameter field is initialized to 1.</li>
+<li><code>8 ARRAY TEMP</code> – an 8 word parameter field is cleared to 0; the address of its 1st word will be placed on the stack.</li>
 </ul>
 <p>I must emphasize the word “might”. Different applications will require different defining entries; even the same word might act differently for different applications. But you are in a position to define any kind of noun you need, and then create as many instances of that noun as you like. It is a futile exercise to attempt to establish a universal set of nouns. Compiler languages have repeatedly stumbled by not providing enough, and no matter how many they provide, someone will want one more.</p>
 <p>For example, you might define the following noun:</p>
 <pre><code>`0 8 INDEX J` -- J is defined to be an index, that varies from 0 to 8.
-When executed, it adds its value to the top of the stack.
-</code></pre>
+When executed, it adds its value to the top of the stack.</code></pre>
 <p>If you then define appropriate verbs to advance, test and reset J, you can have a powerful indexing facility. Or define:</p>
-<pre><code>3 VECTOR X 3 VECTOR Y 9 VECTOR Z
-</code></pre>
+<pre><code>3 VECTOR X 3 VECTOR Y 9 VECTOR Z</code></pre>
 <p>and define arithmetic verbs to implement vector arithmetic:</p>
 <pre><code>X Z = Z Y + add X and Y, store in Z.
-X Y Z \*C multiply X and Y (outer product), store in Z.
-</code></pre>
+X Y Z \*C multiply X and Y (outer product), store in Z.</code></pre>
 <p>Anything you need for your application you can define. But you can never define everything. Basic Principle!</p>
-<h2 id="deleting-entries"><a href="#TOC"><span class="header-section-number">4.2</span> Deleting entries</a></h2>
+<h2 id="deleting-entries"><a href="#deleting-entries"><span class="header-section-number">4.2</span> Deleting entries</a></h2>
 <p>So far we’ve only discussed defining nouns. Actually you’ll be using more verbs than nouns, but they require much longer explanations. Here is one kind of verb.</p>
 <p>If you can add entries to your dictionary, eventually you’re going to want to get rid of them. You’ll need to delete entries in order to re-enter them correctly, or delete entries in order to make room for another application. After all, your dictionary is finite; no matter how large you make it, you will be aware of its upper limit. Parkinson’s Law may be rephrased: Dictionaries expand to fill the available space.</p>
 <p>There is only one feasible way to delete entries. That is to delete all entries after a certain point. If you were to delete specific entries, you would leave holes in the dictionary, since it occupies contiguous core. If you attempt to pack the dictionary to recover the holes, you are faced with a wicked re-location problem, since we use absolute addresses. To avoid absolute addresses is inefficient and unnecessary.</p>
@@ -642,10 +624,9 @@ X Y Z \*C multiply X and Y (outer product), store in Z.
 <p>OK, how do you delete trailing entries? You want to mark a point in your dictionary and reset evereything to that position. One thing is the dictionary pointer that identifies the next available word in the dictionary. That’s easy. However you must reset the chain heads that identify the previous entry for each of your search chains. It only takes a small loop: follow each chain back, as you do when searching, until you find a link that precedes your indicated point.</p>
 <p>If you have fixed-size entries, you must reset the pointer to the parameter area, but you don’t have to follow links.</p>
 <p>A convenient way to specify the point you want to delete from is to place a special entry there. A verb that will delete itself and evereything following it when you execute it. For example,</p>
-<pre><code>REMEMBER HERE
-</code></pre>
+<pre><code>REMEMBER HERE</code></pre>
 <p>is a defining entry. When you type HERE, it is forgotten; it both marks a place in the dictionary and executes the deleting code. HERE doesn’t need a parameter field, unless you use fixed-length entries, whereupon it must save the current value of the parameter pointer. This is our first example of a verb-defining entry.</p>
-<h2 id="operations"><a href="#TOC"><span class="header-section-number">4.3</span> Operations</a></h2>
+<h2 id="operations"><a href="#operations"><span class="header-section-number">4.3</span> Operations</a></h2>
 <p><strong>Recall that the stack is where arguments are found. There are some words you may want to define to provide arithmetic capabilities. They are of little value to a control language, but essential to add power to it. I’ll use logical constructs TRUE (1) and FALSE (0). And remember the definition of top and lower from 3.6.</strong></p>
 <p>Unary operators: change the number on top of the stack.</p>
 <ul>
@@ -655,13 +636,25 @@ X Y Z \*C multiply X and Y (outer product), store in Z.
 <li>NONZERO if top is nonzero, place TRUE onto the stack; otherwise leave it alone (leave FALSE on the stack).</li>
 </ul>
 <p>Binary operators: Remove top from the stack and replace lower by a function of both.</p>
-<p>* + add top to lower. * * multiply lower by top. * - subtract top from lower. * / divide lower by top, leave the quotient. * MOD divide lower by top, leave the remainder. * MAX if top is larger than lower, replace lower by top. * MIN if top is smaller than lower, replace lower by top. * ** raise lower to power of top.</p>
+<ul>
+<li><ul>
+<li>add top to lower.</li>
+</ul></li>
+<li>* multiply lower by top.</li>
+<li><ul>
+<li>subtract top from lower.</li>
+</ul></li>
+<li>/ divide lower by top, leave the quotient.</li>
+<li>MOD divide lower by top, leave the remainder.</li>
+<li>MAX if top is larger than lower, replace lower by top.</li>
+<li>MIN if top is smaller than lower, replace lower by top.</li>
+<li>** raise lower to power of top.</li>
+</ul>
 <p>These are only samples. Clearly you are free to define whatever words you feel useful. Keep in mind that you must place the arguments on the stack before you operate on them. Numbers are automatically placed on the stack. Constants are too. Thus the following make sense:</p>
 <pre><code>1 2 +
 PI 2. \*
 1 2 + 3 \* 7 MOD 4 MAX
-1 2 3 + \*
-</code></pre>
+1 2 3 + \*</code></pre>
 <p>This notation permits arithmetic calculation in the same manner a desk calculator. It is often called parenthesis-free representation or perhaps right-handed Polish, but it is simply the way you work with arguments on a stack. Conventional algebraic notation is much harder to implement (8.2).</p>
 <p>Other binary operations are the arithmetic relations: these leave a truth value on the stack:</p>
 <ul>
@@ -689,11 +682,10 @@ PI 2. \*
 <p>Another is to make a stack entry long enough to contain a code identifying the kind of number. This makes the code defining each operation more elaborate and raises the problem of illegal arguments. I recommend not checking arguments and defining separate operations, for reasons of simplicity. Actually, you are working with one kind of number at a time and the problem may never arise.</p>
 <p>Do not bother with mixed-mode arithmetic. You never <em>need</em> it, and it’s not convenient often enough to be worth the great bother. With multiple word numbers (complex, double-precision) you may put the address of the number on the stack. However, this leads to 3-address operations with the result generally replacing one of the arguments. And this, in turn, leads to complications about constants.</p>
 <p>In general, the number of things you <em>might</em> do with numbers increases indefinitely. Many of these are mutually incompatible. Basic Principle!</p>
-<h2 id="definition-entries"><a href="#TOC"><span class="header-section-number">4.4</span> Definition entries</a></h2>
+<h2 id="definition-entries"><a href="#definition-entries"><span class="header-section-number">4.4</span> Definition entries</a></h2>
 <p>I must now describe an entry more complicated than any so far, though not the most complicated that you’ll see. It is also exceptional in that it’s not optional. For this ability is required for any effective application language: to be able to define one word in terms of others. To abbreviate, if you will. You recall that I characterised words as being simple in themselves, but powerful in combination. Well here is a way to combine words.</p>
 <p>A definition consists of a defining entry “:” followed by a series of words terminated by “;”. The intention is that the word defined by “:” has the meaning expressed by the words that follow. For example:</p>
-<pre><code>: ABS DUP 0 LESS IF MINUS THEN ;
-</code></pre>
+<pre><code>: ABS DUP 0 LESS IF MINUS THEN ;</code></pre>
 <p>This is a definition of the word ABS. Its purpose is to take the absolute value of the number on the stack. It does this by executing a series of words that have the proper effect.</p>
 <p>You may consider this a rather clumsy definition of ABS. Especially since there is an instruction on your computer that does exactly that. you’re quite right, definitions tend to be clumsy. But they let us use words that we hadn’t the foresight to provide entries for. Given certain basic words we can construct any entry we need. Definitions provide a succinct distinction between a control language and an application language: The control language must have all its capabilities built in; the application language can construct those capabilities it needs.</p>
 <p>To implement definitions is simple, yet awkwardly subtle. The parameter field of a definition contains the addresses of the dictionary entries that define it. You must somehow deposit these entries in the parameter area, and later fetch them when you execute the definition. The complementary processes of definition and execution are more involved than for any other entry we’ve encountered.</p>
@@ -706,7 +698,7 @@ PI 2. \*
 <p>Of course you have to pay for this convenience, though probably less than you would with FORTRAN subroutine calls. The price is the control loop. It’s pure overhead. Executing the code for each entry of course proceeds at computer speed; however obtaining the address of the next code to execute takes some instructions, about 8. This is why I urge you to optimize your control loop.</p>
 <p>Notice that if the code executed for words is long compared to the control loop, the cost is negligible. This is the principle of control languages. As the code shrinks to control loop size, and smaller, overhead rises to 50% and higher. This is the price of an application language. Note, however, that 50% overhead is easily reached with operating systems and compilers that support an application program.</p>
 <p>I suggest that you compromise. Code the computation-limited portions of your problem and use definitions for the rest. The use of definitions to control, rather than perform, calculations is inexpensive. And the ease of constructing them reduces the time and effort, and thus cost, of implementation.</p>
-<h3 id="defining-a-definition"><a href="#TOC"><span class="header-section-number">4.4.1</span> Defining a definition</a></h3>
+<h3 id="defining-a-definition"><a href="#defining-a-definition"><span class="header-section-number">4.4.1</span> Defining a definition</a></h3>
 <p>The defining entry “:” acts just like any other. It passes the address EXECUTE to the ENTRY subroutine. I’ll discuss that code in the next section.</p>
 <p>It then sets a switch STATE. The control loop must be changed to test STATE: if it is 0, words are executed as I’ve already described; if it is 1, words are compiled. Let me repeat: if you add definitions to your program, you must modify the control loop so that it will either execute or compile words. If you plan to include definitions from the start, you should plan the control loop accordingly. Implement the switch so that executing words is as fast a possible; you’ll execute many more words than you’ll compile.</p>
 <p>To compile a word is simple. After finding it in the dictionary, you have the address of its dictionary entry. Deposit this address in the parameter field. Notice 2 things: we already have a mechanism for depositing words in the dictionary. ENTRY uses it as well as many defining entries for parameters. The dictionary pointer DP identifies the next available word in the dictionary. All you must do to compile a word is to store its address at DP and advance DP. Also notice that we deposit the address of the <em>entry</em> not the address of the code executed. This is so we have access not only to the code but also to the parameter field, and even the word itself should we need it.</p>
@@ -715,16 +707,14 @@ PI 2. \*
 <p>As you’ve probably guessed, in order to compile a literal you compile a pseudo-entry. You then follow it by the number itself; that is, you compile the number also. The result is a double-length virtual-computer instruction. The code executed for the pseudo-entry must fetch the number and place it onto the stack. Thus literals that are compiled have the same effect, when executed, as if they were executed immediately.</p>
 <p>Notice that if you have different-size literals, you’ll need different pseudo-entries for them And having brought up the subject, let me discuss word length a moment. Word length for the virtual computer should be about 12 bits. This is because each instruction is composed of simply a dictionary address and 12 bits is enough to identify one of perhaps 1000 entries. If your real computer word length is longer than 18 bits you should pack several virtual-computer instructions into one word. This is possibly awkward, since you must modify DP to address other than a real computer word. But you’ll save a lot of space.</p>
 <p>Incidentally, since literals require extra space when compiled, you might define commonly used literals as words:</p>
-<pre><code>1 CONSTANT 1
-</code></pre>
+<pre><code>1 CONSTANT 1</code></pre>
 <p>Recall that numbers may be words, since the dictionary is searched before numeric conversion is attempted. And a word requires only a single-length virtual-computer instruction. On the other hand, a dictionary entry takes much more space than a compiled literal, so watch the trade-off.</p>
 <p>The code in the control loop that compiles words much watch for “;”. It is compiled as usual, but it also resets STATE to prevent further compiling. It also performs another task, which requires a digression.</p>
 <p>Notice that when we’re compiling a definition we’re searching the dictionary for each word. If we reference the word we’ve just defined, we’ll find it. Thus we’ll have made a recursive reference. If you want recursive definitions, fine. However it’s extremely convenient to exchange recursion for re-definition. That is, to understand a reference to itself inside a definition to refer to an earlier definition. For example,</p>
-<pre><code>: = SWAP = ;
-</code></pre>
+<pre><code>: = SWAP = ;</code></pre>
 <p>Here I redefine the = verb to operate upon arguments in the opposite order. I could use a different word for that purpose, but = has mnemonic significance.</p>
 <p>In any case, the capability is easy to provide. Let “:” bugger the search so the latest entry cannot be found. And let “;” unbugger the search and thereby activate the new definition. If you want recursive definitions, you could provide a defining entry “:R” that did not bugger, providing you make “;” work for both. I’ll mention another technique later.</p>
-<h3 id="executing-a-definition"><a href="#TOC"><span class="header-section-number">4.4.2</span> Executing a definition</a></h3>
+<h3 id="executing-a-definition"><a href="#executing-a-definition"><span class="header-section-number">4.4.2</span> Executing a definition</a></h3>
 <p>I named the code executed for a definition EXECUTE. It must modify the instruction-fetch circuitry of the virtual computer.</p>
 <p>Recall the structure of the control loop: the routine NEXT<sub>W</sub> provides the address of a dictionary entry; the routine associated with this entry is entered; it ultimately returns to NEXT<sub>W</sub>. The same procedure is required in order to execute a definition, with the exception that NEXT<sub>W</sub> is replaced by NEXT<sub>I</sub>. Where NEXT<sub>W</sub> read a word and found it in the dictionary, NEXT<sub>I</sub> simply fetches the next entry from the parameter field of the definition.</p>
 <p>Thus you need a variable that identifies the routine to be entered for the next entry. One implementation is to define a field NEXT that contains either the address of NEXT<sub>W</sub> or NEXT<sub>I</sub>. If you jump indirect to NEXT, you will enter the appropriate routine. One task of EXECUTE is therefore to store the address of NEXT<sub>I</sub> into NEXT, causing subsequent entries to be obtained in a different way.</p>
@@ -733,14 +723,13 @@ PI 2. \*
 <p>Now let’s return to EXECUTE. Clearly, in addition to establishing NEXT<sub>I</sub> it must initialize IC. But first it must save IC. The process is analogous to a virtual-computer subroutine call. The obvious place to save IC is the return stack. Although it is used for other purposes, none of these conflict with such use. If one definition is executed from within another, it is clear the current IC must be saved. Otherwise the current value of IC is undefined.</p>
 <p>One more routine is involved in this process. The code executed for “;” must return from the definition. This means simply that it must restore IC from the return stack. However it must also restore the value of NEXT, which was set to NEXT<sub>I</sub> by EXECUTE. You might store the old value of NEXT in the return stack and let “;” recover it. Simpler, perhaps, is to let the undefined value of IC be zero, and act as a flag to restore NEXT to NEXT<sub>W</sub>. For while executing definitions, NEXT will always contain NEXT<sub>I</sub>. Only when returning from a definition that originated within the source text must NEXT<sub>W</sub> be reestablished. Since while executing source text IC is irrelevant, it might as well by useful in this limited way.</p>
 <p>That’s all there is to it. The combination of EXECUTE, NEXT<sub>I</sub> and “;” provide a powerful and efficient subroutine facility. Notice that the code “executed” for a definition might actually be compiled, depending on the field STATE, as discussed earlier. Notice also that the entries executed by a definition might compile other entries. That is, one entry might deposit numbers in the dictionary, using DP. Thus although the fields IC and DP are similar in use, DP deposits entries and IC fetches them, they may both be in use at the same time. If you’re short of index registers, don’t try to combine them.</p>
-<h3 id="conditions"><a href="#TOC"><span class="header-section-number">4.4.3</span> Conditions</a></h3>
+<h3 id="conditions"><a href="#conditions"><span class="header-section-number">4.4.3</span> Conditions</a></h3>
 <p>Let me review briefly the process of defining a definition: The word “:” sets a switch that modifies the control loop; it will now compile words instead of executing them. The word “;” is compiled, but also causes the switch to be reset, ending the process of compilation. Following words will now be executed as usual.</p>
 <p>We can thus view “;” as being an exceptional word, for it is - in a sense - executed during compilation, at which time it resets that switch. Of course it is also executed during execution of the definition, with a different effect: it resets IC.</p>
 <p>There are other words like “;” that must be executed during compilation. These words control the compilation. They perform code more complicated that simply depositing an entry address. In particular, they are required to provide forward and backward branching.</p>
 <p>Rather than talk abstractly about a difficult and subtle point, I’ll give some examples of words that I’ve found useful. As always, you are free to choose your own conventions, but they will probably resemble mine in their basic effects.</p>
 <p>Define the words IF, ELSE and THEN to permit the following conditional statement format:</p>
-<pre><code>boolean value IF true statement ELSE false statement THEN continue
-</code></pre>
+<pre><code>boolean value IF true statement ELSE false statement THEN continue</code></pre>
 <p>The words have a certain mnemonic value, though they are permuted from the familiar ALGOL format. Such a statement can only appear in a definition, for IF, ELSE and THEN are instruction-generating words.</p>
 <p>At definition time, the word IF is executed. It compiles a forward jump. Now I must sidetrack the discussion and define jumps. A jump instruction for the virtual computer is similar to a literal. An in-line literal is a double-length instruction. The code executed for the pseudo-entry comprising the first half, uses the second half as a parameter. Likewise for jumps: a pseudo-entry uses an in-line parameter to change the virtual-computer instruction-counter (IC). This parameter is the amount, positive or negative, to be added to IC: positive for a forward jump, negative for a backward jump. It is a relative jump address, and the whole construction is used by some real computers.</p>
 <p>Actually we need 2 jump pseudo-entries: a conditional jump and an unconditional jump. The conditional jump jumps only if the stack is non-zero, and it is a destructive operation (its argument is dropped).</p>
@@ -749,64 +738,51 @@ PI 2. \*
 <p>Finally we come to THEN. It fixes-up the address that ELSE left dangling. That is, it subtracts the stack from DP and stores the result indirectly in the stack; and destructively. Thus the combination of IF, ELSE and THEN use the stack to construct forward jump virtual-computer instructions. Since ELSE and THEN act identically in fixing-up the missing address, ELSE can be omitted without any modification. Also since the stack is used to store unfulfilled jumps, IF . . . THEN statements may be nested. The only restriction is that all addresses are determined; that is, that all locations are removed from the stack. This will be the case if every IF has a matching THEN; ELSE is always optional.</p>
 <p>Of course there’s nothing unusual about this technique. All compilers generate forward jumps in this manner. What is somewhat unusual is applying it to the compilation of instructions for a virtual-computer. But it seems to be the best way.</p>
 <p>Let’s consider a related construction. Very often we are faced with logical expressions that consist of a string of ANDs or a string of ORs. The truth value of such expressions may be determined before the entire expression is evaluated. You can save time by quitting once you know the final result. For example, consider the statement:</p>
-<pre><code>a b AND c AND IF . . . THEN
-</code></pre>
+<pre><code>a b AND c AND IF . . . THEN</code></pre>
 <p>where a, b, c are boolean expressions; and the statement would read in ALGOL</p>
-<pre><code>*if* a *and* b *and* c *then* . . .
-</code></pre>
+<pre><code>*if* a *and* b *and* c *then* . . .</code></pre>
 <p>If a is false, we might as well quit, since the disjunction cannot possibly be true. If you re-write the statement as:</p>
-<pre><code>a IF b IF c IF . . . THEN THEN THEN
-</code></pre>
+<pre><code>a IF b IF c IF . . . THEN THEN THEN</code></pre>
 <p>the effect is the same; if a, b and c are all true the conditional statement is executed. Otherwise not. Each IF generates a forward jump that is caught by its matching THEN. Note that you must still match IFs with THENs. In fact this is one sort of nested IF . . . THEN statement. It is an extremely efficient construction.</p>
 <p>Now consider the corresponding statement with ORs:</p>
-<pre><code>a b OR c OR IF . . . THEN
-</code></pre>
+<pre><code>a b OR c OR IF . . . THEN</code></pre>
 <p>or in ALGOL</p>
-<pre><code>*if* a *or* b *or* c *then*
-</code></pre>
+<pre><code>*if* a *or* b *or* c *then*</code></pre>
 <p>If a is true you may as well quit, for the conjunction cannot be false. If you re-write the statement as</p>
-<pre><code>a -IF b -IF c IF HERE HERE . . . THEN
-</code></pre>
+<pre><code>a -IF b -IF c IF HERE HERE . . . THEN</code></pre>
 <p>and if you define</p>
 <pre><code>: HERE SWAP THEN ;
-: -IF NOT IF ;
-</code></pre>
+: -IF NOT IF ;</code></pre>
 <p>the statement works as follows: if a is true, -IF will jump; if b is true, -if will jump; if c is false, IF will jump. The first HERE will catch b’s jump (the SWAP gets c’s address out of the way); the second HERE catches a’s jump; THEN catches c’s jump. Thus a and b jump into the condition, while c jumps over it.</p>
 <p>This is a slightly clumsy statement, but I’ve found no simpler solution. If you used them regularly, you’d doubtless acquire facility, and it would seem quite natural. Just watch that you match all IFs. Moreover the same technique could be applied to more complex logical expressions - with even greater clumsiness.</p>
-<h3 id="loops"><a href="#TOC"><span class="header-section-number">4.4.4</span> Loops</a></h3>
+<h3 id="loops"><a href="#loops"><span class="header-section-number">4.4.4</span> Loops</a></h3>
 <p>I’ll continue with a couple more examples of words executed at definition time. This time examples of backward jumps, used to construct loops.</p>
 <p>Consider the pair of words BEGIN and END, as used in a statement like:</p>
-<pre><code>BEGIN . . . boolean END
-</code></pre>
+<pre><code>BEGIN . . . boolean END</code></pre>
 <p>BEGIN stores DP onto the stack, thus marking the beginning of a loop. END generates a conditional backward jump to the location left by BEGIN. That is, it deposits a conditional jump pseudo-entry, subtracts DP+1 from the stack, and deposits that relative address. If the boolean value is false during execution, you stay in the loop. When it becomes true, you exit.</p>
 <p>BEGIN and END provide a loop terminated by a logical condition. Let’s define another loop. This one counts an index through a range to control the looping:</p>
-<pre><code>a b DO . . . CONTINUE
-</code></pre>
+<pre><code>a b DO . . . CONTINUE</code></pre>
 <p><code>a</code> and <code>b</code> represent arguments on the stack. DO acts just like BEGIN. CONTINUE requires a new pseudo-entry that tests the top 2 words on the stack for equality, and jumps if they are unequal. During compilation CONTINUE deposits this pseudo-entry and then computes the jump distance as did END. Thus CONTINUE uses another conditional jump: one that tests the stack for equal, instead of for false. It is also a non-destructive operation, so long as its arguments are unequal. When they become equal and terminate the loop, it drops them.</p>
 <p>Presumably, inside the DO . . . CONTINUE loop the arguments are modified so as to terminate the loop. This can be done many ways. For example, to run the loop from 1 to 10:</p>
-<pre><code>10 0 DO 1 + . . . CONTINUE
-</code></pre>
+<pre><code>10 0 DO 1 + . . . CONTINUE</code></pre>
 <p>The first argument is 10, the stopping value; the second is 0, which is immediately incremented to 1, the index value. Within the loop this index is available for use. the DUP operation will obtain a copy. Each time through the loop the index will be incremented by 1. After the loop is executed for index value 10, the CONTINUE operation will stop the loop and drop the 2 arguments - now both 10.</p>
 <p>Alternatively, the same loop could be written:</p>
-<pre><code>11 1 DO . . . 1 + CONTINUE
-</code></pre>
+<pre><code>11 1 DO . . . 1 + CONTINUE</code></pre>
 <p>Here the index is incremented at the end of the loop, instead of the beginning. Upon reaching 11 and exceeding the limit of 10, the loop is stopped.</p>
 <p>Naturally loops can be counted backwards, or indeed many other methods of modifying the index used. It will always terminate on equality. Of course, such a flexible loop control runs the risk of never stopping at all. If you increment the index incorrectly, it will happily run forever. But used carefully, it’s a convenient tool.</p>
 <p>A refinement of DO . . . CONTINUE is not difficult. If the arguments are equal to start with, DO can generate a conditional forward jump that CONTINUE will fix-up. Thus you may do a loop <em>no</em> times. However, such loops are the exception; but if you encounter one, you’ll find the conditional statement required to protect it most awkward.</p>
-<h3 id="implementation"><a href="#TOC"><span class="header-section-number">4.4.5</span> Implementation</a></h3>
+<h3 id="implementation"><a href="#implementation"><span class="header-section-number">4.4.5</span> Implementation</a></h3>
 <p>I hope you now appreciate the need for words that are executed at define time. I’m sure you’re aware of the need for branches and loops. Perhaps you’ll notice that I did not mention labels; the branch generating words I mentioned, and others you can invent, are perfectly capable of handling jumps without labels. You saw in the definition of HERE how the stack can be manipulated to permit overlapping jumps as well as nested ones. However in a sense we have many labels, for every dictionary entry effectively assigns a name to a piece of code.</p>
 <p>Now to consider some problems I glossed over. Clearly you must be able to recognize those words that are to be executed during definitions. That is, IF, THEN, BEGIN, END, etc. must somehow override the normal mechanism whereby the control loop would compile them. I mentioned a switch that distinguished execution from compilation. Let’s establish a similar flag (1 bit) in each dictionary entry, with the values</p>
 <pre><code>1: execute
-0: compile
-</code></pre>
+0: compile</code></pre>
 <p>applying both to switch and flag.</p>
 <p>For a given entry, ‘or’ the switch and flag together; if either is 1, execute the word, else compile it.</p>
 <p>The above rule is correct, and even fairly efficient. Remember that we want the control loop efficient! And it’s adequate providing all words that must be executed are built into your system dictionary. Unfortunately, it’s not adequate for the examples I gave above, which probably means it’s inadequate, since those were pretty simple examples. But complication is part of the fun of programming. So pay attention and I’ll try to explain some problems I don’t understand very well myself.</p>
-<h2 id="editor-i-dont-understand-my-concern-about-swap-below.-the-word"><a href="#TOC"><span class="header-section-number">4.5</span> Editor: I don’t understand my concern about SWAP below. The word !</a></h2>
+<h2 id="editor-i-dont-understand-my-concern-about-swap-below.-the-word"><a href="#editor-i-dont-understand-my-concern-about-swap-below.-the-word"><span class="header-section-number">4.5</span> Editor: I don’t understand my concern about SWAP below. The word !</a></h2>
 <p>did not endure. Don’t try to reconcile what I said. I can’t.</p>
 <p>Consider the definition of HERE I gave above:</p>
-<pre><code>: HERE SWAP THEN ;
-</code></pre>
+<pre><code>: HERE SWAP THEN ;</code></pre>
 <p>Here is one of those imperative words; it must be executed at definition time. But it is defined as an ordinary definition - and would be compiled. Even if we managed to execute HERE, the first word in its definition is SWAP: a most ordinary word, and one that would certainly be compiled, except that we intend it, too, to be executed. The next word, THEN, offers no problem - or does it? If we can execute HERE we’ll also execute THEN, since it’s imperative. However we have a problem at the time we <em>define</em> HERE; we’ll try to <em>execute</em> THEN, when we want to <em>compile</em> it. That is, sometimes we want to compile imperative words; and sometimes we want to execute ordinary words - even in a definition.</p>
 <p>So, what to do? I bet you think I have a solution. Your faith is touching, but I don’t have a very good one. It suffers a small restriction, but a nagging one: you may not execute a literal in a definition. To phrase it positively: literals must be compiled inside definitions. Let’s see how it works.</p>
 <p>Consider the switch STATE. It’s normally 0; “:” makes it 1 to indicate compilation. Let’s define a new defining entry “:!” that acts exactly like “:” with 2 exceptions:</p>
@@ -827,7 +803,7 @@ PI 2. \*
 <li>A definition can be made imperative by using “:!” instead of “:” to define it.</li>
 </ul>
 <p>Now the restriction I mentioned should be apparent. A literal cannot be made imperative with a “!” because it’s a double-length instruction - and the “!” code has no way of knowing that. Oh well, we could set a field to indicate the length of the last compiled instruction, but it’s not that great a problem. Besides, in that case successive !s wouldn’t work.</p>
-<h2 id="code-entries"><a href="#TOC"><span class="header-section-number">4.6</span> Code entries</a></h2>
+<h2 id="code-entries"><a href="#code-entries"><span class="header-section-number">4.6</span> Code entries</a></h2>
 <p>I’ve explained definitions and how they, in effect, compile instructions for the virtual-computer. What about compiling code for your real computer then? Of course you can. But you probably won’t.</p>
 <p>The Basic Principle intrudes. If you add code entries to your program, you add enormous power and flexibility. Anything your computer can do, any instructions it has, any tricks you can play with its hardware are at you fingertips. This is fine, but you rarely need such power. And the cost is appreciable. You’ll need many entries (say 10) to provide a useful compiler; plus all the instruction mnemonics. Moreover you’ll have to design an application language directed at the problem of compiling code.</p>
 <p>I don’t want to down-grade the possibility or value of such efforts, but you wrote your program in some language to start with. If you need additional code it’s much easier to re-compile your program and add what you need. Only if you have an application that needs tailored code. or can profit by providing different code to different users, or different code at different times, can you satisfy the Basic Principle.</p>
@@ -843,26 +819,24 @@ PI 2. \*
 <p>As usual when adding an ability, several distinct entries must cooperate to provide it. In this case ENTER and ;CODE. Let me illustrate:</p>
 <pre><code>: UNIT ENTER , ;CODE 1 V LDA , SP MPY , SP STA , NEXT ,
 2.54 UNIT IN
-4. IN
-</code></pre>
+4. IN</code></pre>
 <p>The first line defines the word UNIT. The next line uses this defining entry to define the word IN (inches). The last line uses IN in a way that puts 4 inches onto the stack, as centimeters. The 3 lines are equivalent to</p>
-<pre><code>: IN 2.54 \* ;
-</code></pre>
+<pre><code>: IN 2.54 \* ;</code></pre>
 <p>which is certainly simpler. But if you want to define many UNITs, a special defining entry is much more convenient and efficient.</p>
 <p>The first special word is ENTER. It calls the ENTRY subroutine used by all your defining entries, but passes a 0 address as the location of the code to be executed. Look at the definition of UNIT. The word ENTER is imperative. It generates a double-length pseudo-instruction; a pseudo-entry for the first half and a 0 constant for the second. At execution time, the pseudo-entry will call ENTRY to construct a new dictionary entry, passing the following constant as the address of code to be executed. The word ;CODE is a combination of the words “;” and CODE. It terminates the definition of UNIT and stores DP into the address field established by ENTER. Thus the code that follows ;CODE is the code that will be executed for all entries created by UNIT. ;CODE knows where to store DP because ENTER is restricted to being the first word in any definition that uses it; and ;CODE knows which definition it is terminating.</p>
 <p>The restriction on the position of ENTER is unimportant, it may as well be first as anywhere else. In the case of UNIT, only a “,” to deposit the constant was needed. Other nouns might need more elaborate processing to establish their parameter field.</p>
 <p>You notice I gave an example of code following ;CODE. You see instruction mnemonics and addresses deposited by “,”. I don’t want to explain this compiler language, for it is not relevant for your computer.</p>
 <p>One more suggestion might prove helpful. You might define a new kind of constant: an instruction. When executed, an instruction expects an address on the stack, extracts a constant from its parameter field and constructs and deposits a completed instruction. You’ll probably have a large number of instructions, and use a large number. This will save you many deposit entries.</p>
 <p>I’m sorry, but I think it’s infeasible to attempt an example. If you can’t see how to construct your own code entries from what I’ve already said, forget it. The application is extremely machine dependent - and rightly so. Don’t attempt to apply the same code to several computers; definitions already do that for you. The purpose of code is to exploit the properties of your particular computer.</p>
-<h1 id="programs-with-memory"><a href="#TOC"><span class="header-section-number">5</span> Programs with memory</a></h1>
+<h1 id="programs-with-memory"><a href="#programs-with-memory"><span class="header-section-number">5</span> Programs with memory</a></h1>
 <p>You may perhaps grant the value of a program that grows, without being willing to provide the volume of input required. Naturally it does little good to have a hundred dictionary entries if you must type every one. Obviously we need a place to save entries and obviously that place is disk (or drum, or other random secondary memory).</p>
 <p>What is not obvious is how to store entries. It ought to be a Second Principle that you never save anything on disk without being able to modify it, but this rule is universally ignored. To simply copy dictionary entries violates another cardinal principle: never store core address on disk. You could never modify your program without chasing down all code addresses.</p>
 <p>Fortunately there is a solution. Store on disk the text from which dictionary entries are constructed. It is a simple matter to divert the input routine from reading your message buffer to reading disk. This chapter will show how.</p>
-<h2 id="organization-of-disk"><a href="#TOC"><span class="header-section-number">5.1</span> Organization of disk</a></h2>
+<h2 id="organization-of-disk"><a href="#organization-of-disk"><span class="header-section-number">5.1</span> Organization of disk</a></h2>
 <p>There is only one way to organize disk. In the same way that core is divided into a large number of words, disk must be divided into a large number of blocks. In the same way that words are the smallest field that can be fetched from core, blocks are the smallest field that can be fetched from disk. A block contains 256 words.</p>
 <p>A block contains 256 words because that is the size of a 1-byte address, and because 256 4-byte words hold 1024 bytes which is the amount of text that can be displayed on a typical scope.</p>
 <p>However, here is another instance in which your application and hardware must play a dominant role. Disks usually have a hardware block-size that offers advantages. You must choose a multiple of that. Your application may involve storing data on disk, and you must choose a block size useful for data as well as text. I say no less than 512 characters nor more than 1024. 128 word blocks have recently been mentioned; fine if the words are 6 or 3 bytes (characters).</p>
-<h3 id="getting-blocks"><a href="#TOC"><span class="header-section-number">5.1.1</span> Getting blocks</a></h3>
+<h3 id="getting-blocks"><a href="#getting-blocks"><span class="header-section-number">5.1.1</span> Getting blocks</a></h3>
 <p>In trying to anticipate the organization of a random file, certain principles are obvious. Cross-references between blocks will probably be wanted. Such references are simple if they use absolute block addresses; extremely clumsy otherwise. We may use absolute addresses if we promise never to move a block. This means we can never pack disk. We agree cheerfully because we didn’t want to pack disk anyway.</p>
 <p>This means that as the data in blocks becomes useless, space will become available in block-sized holes. We must somehow re-use these holes. Which means that we must allocate, and re-allocate, disk in block-sized pieces.</p>
 <p>All addresses start at 0, block addresses included (otherwise you find yourself forever adding and subtracting 1). However we cannot use block 0 - for anything. You will find that most addressing errors involve block 0. If you look at block 0 from time to time you will find the most amazing things there. You will find block 1 a useful place to store things you need to remember from run to run. Like the address of the first block available for re-use - none: 0. And the address of the last block used - initially: 1.</p>
@@ -870,67 +844,59 @@ PI 2. \*
 <p>You may want to put your object program on this disk. Fine! It won’t even take many blocks. You may need to start it in block 0 in order to do an initial load (bootstrap). OK, but be able to re-load the program (only) from back-up because you will destroy block 0. Only if you destroy the block (we’ll call it block 1) containing available space information must you re-load data (all data). Unless you destroy many blocks. Choose the path of least confusion, not least effort. Re-loading disk will confuse you, you’ll forget what you’ve changed and be days discovering it. Much better you spend hours re-typing text and re-entering data.</p>
 <p>So when you need a block, you type a word (GET) which reads block 1, places the block up for re-use on the stack, reads that block, places the contents of its first word into block 1, and re-writes block 1. The first word, of course, contains the address of the next block up for re-use. If no block was available for re-use (initially the case), GET increments the last block used, puts it on the stack and re-writes block 1. GET then clears your new block to 0 and re-writes it.</p>
 <p>Several comments: Notice that GET places its result on the stack - the logical place where it is available for further use. Notice that blocks are re-used in preference to expanding the disk used. This makes sense except for the problem of arm motion. Forget arm motion. You just have to live with it. This is, after all, a random memory. Don’t neglect clearing the block to 0.</p>
-<h3 id="releasing-blocks"><a href="#TOC"><span class="header-section-number">5.1.2</span> Releasing blocks</a></h3>
+<h3 id="releasing-blocks"><a href="#releasing-blocks"><span class="header-section-number">5.1.2</span> Releasing blocks</a></h3>
 <p>To release a block, put it on the stack and say RELEASE. It will read block 1, extract the next block for re-use, place the stack there and write block 1; then read the released block and place the old next-block in the first word. All we’re doing, of course, in constructing the chain of available blocks used by GET. Possibly the block you release is linked to other blocks. You must release all those, too. A convenient way is to use the first word as a link field. Then the available block chain is the same as any other block chain. To concatenate chains you place the first block in block 1, run down the chain to the last block (0 in link) and place the old next-block in that link.</p>
 <p>Don’t be tempted to maintain a count of the available blocks. Its not worth the trouble. If you must know, you can count the length of the available chain.</p>
 <p>If you have enough different kinds of blocks, it may be useful to store a code identifying the block in the first word (or second). You can then examine all blocks of a certain kind. Available blocks should have code 0.</p>
 <p>How many blocks you can have is probably limited by the disk, however it may be limited by the field you choose to store block addresses in. Be careful! You can circumvent the first limit by modifying your read subroutine to choose one of several disks. You must re-format all your block addresses (cross-references on disk, remember) to expand the second.</p>
-<h3 id="reading-and-writing-disk"><a href="#TOC"><span class="header-section-number">5.1.3</span> Reading and writing disk</a></h3>
+<h3 id="reading-and-writing-disk"><a href="#reading-and-writing-disk"><span class="header-section-number">5.1.3</span> Reading and writing disk</a></h3>
 <p>I’m sure you know how to read disk. However, do not choose a block size that causes the slightest difficulty: like half a block between tracks. If you check the GET routine, you’ll see that you’ll need 2 blocks in core at once. This is a reasonable minimum, it makes it easy to move things from one block to another. However, you’ll have lots of core left over and you might as well use it for buffering disk; especially if access time is noticeable.</p>
 <p>You’ll want a table specifying which blocks are in core: your read routine can check this table before reading.</p>
 <p>But you should not write a block when you change it. Rather mark it ‘to be written’ in the buffer table. When you come to re-use that buffer, write the old block first. The principle is that you’re likely to change a block again if you change it once. If you minimize writes you can save a lot of disk accesses. Of course, there is a trade-off - if you program crashes, you may have updated blocks in core that aren’t on disk. You should be able to re-start your program and preserve the core buffers.</p>
 <p>Of course, multiple core buffers imply an allocation problem. A simple round-robin is as effective a scheme as any.</p>
 <p>If you are going to scan data sequentially, you can save many accesses by reading consecutive blocks at the same time. However it is likely that random reads may be interspersed with these sequential ones. An effective solution is to store the <em>last</em> block in the sequential area and the number of blocks somewhere for your read subroutine. If the block isn’t in core, and is within the sequential range, it can read as many consecutive blocks as there are consecutive buffers available. Don’t attempt more than this - ie, making more buffers available. The net effect is that you will do the best you can with sequential blocks, subject to interfering constraints.</p>
 <p>You will inevitably spend a lot of effort reading-writing disk. But remember the Basic Principle!</p>
-<h2 id="text-on-disk"><a href="#TOC"><span class="header-section-number">5.2</span> Text on disk</a></h2>
+<h2 id="text-on-disk"><a href="#text-on-disk"><span class="header-section-number">5.2</span> Text on disk</a></h2>
 <p>You will store a lot of text on disk - hundreds of blocks - but this is probably a small fraction of your disk. The rest is presumably data for your application(s).</p>
 <p>A block that contains text (I mean text to be read and executed by your program) contains one long character string. If the first word contains control information, it starts in the second word and extends until a particular word marks the end (perhaps ;S). This end word is important because it is inconvenient to have the input routine test for end-of-block. You quickly learn not to leave that word out.</p>
 <p>A block that contains text should have a special name, for you will be using it often in conversation. I have called such blocks SHEETs - since the text filled a sheet of paper - and SCREENs - since the text filled the screen of a scope. Define the word READ to save the input address, the block and character position of the next character to be scanned, on the return stack; and reset the input pointer to the block on the stack and the first character position. Define the word ;S to restore the original input pointer. Very simply you can have your program read block 123:</p>
-<pre><code>123 READ
-</code></pre>
+<pre><code>123 READ</code></pre>
 <p>However . . . there’s always a however, isn’t there. You must modify your word routine to read the current block before scanning. This is expensive but essential (of course no actual read is performed if the block is in core), for the last word executed may have caused a block to be read that overlaid the block the word was read from. This can especially occur if one screen directs the reading of others (as they will). No other solution to this problem has been satisfactory, so swallow the code - which need not be great.</p>
 <p>You will find that with text on disk, the original characterization of ‘input’ as low volume is strained. You will read many words and do many dictionary searches. However, on a microsecond computer, you won’t notice it.</p>
-<h3 id="text-editing"><a href="#TOC"><span class="header-section-number">5.2.1</span> Text editing</a></h3>
+<h3 id="text-editing"><a href="#text-editing"><span class="header-section-number">5.2.1</span> Text editing</a></h3>
 <p>Never put anything on disk you can’t modify! And we haven’t discussed how you get text on disk in the first place. Do not load it from cards! You’re misdirecting your effort toward card reading, and you had to punch the cards anyway. Type it. The definitions required to edit the text stored in blocks (SCREENs) is simple.</p>
 <p>You must be able to handle character strings surrounded with quotes (4.1). Given that, I shall exhibit a text editing screen. This is a simple example of the value of definitions. You may notice it is the first non-trivial example I’ve given. You should be motivated by now to give it proper attention.</p>
 <p>Naturally, you’re going to have to type these definitions twice. Once to put them into your dictionary; again, to use them to put them in a screen (bootstrapping). In fact you’ll probably type them many times, but 2 is minimum.</p>
 <p>I’m going to exhibit an annotated copy of the EDIT screen I used in a particular program. It uses system entries whose value may not be clear. They are borrowed from other aspects of the application.</p>
-<pre><code>0 C1 42 \# :R RECORD
-</code></pre>
+<pre><code>0 C1 42 \# :R RECORD</code></pre>
 <p>Here I am constructing a field description: RECORD is a 42 character field starting in character 1 of word 0 of the current block (understood). I’m using blocks that can hold 15 42-character lines; a word has 6 characters, so that’s 15 7-word lines.</p>
-<pre><code>: LINE 1 - 7 \* RECORD + ;
-</code></pre>
-<p>Here I’m defining a verb that will convert a line number (1–15) to a field address. It modifies the RECORD descriptor by changing the word specification (low order bits). Thus line 1 starts in word 0; line 2 in word 7; etc.</p>
-<pre><code>: T CR LINE ,C ;
-</code></pre>
+<pre><code>: LINE 1 - 7 \* RECORD + ;</code></pre>
+<p>Here I’m defining a verb that will convert a line number (1-15) to a field address. It modifies the RECORD descriptor by changing the word specification (low order bits). Thus line 1 starts in word 0; line 2 in word 7; etc.</p>
+<pre><code>: T CR LINE ,C ;</code></pre>
 <p>If I type 3 T - I want line 3 typed. T does a carriage return (CR), executes LINE to compute the field address, and copies the (character) field into the message buffer (,C).</p>
-<pre><code>: R LINE =C ;
-</code></pre>
+<pre><code>: R LINE =C ;</code></pre>
 <p>If I type &quot; NEW TEXT&quot; 6 R - I want line 6 to be replaced by the text in quotes. The leading quote puts a string descriptor on the stack. R then executes LINE, followed by =C to store the quote string in the field. The block will automatically be re-written, since it was changed.</p>
 <pre><code>: LIST 15 0 DO 1 +
-CR DUP LINE ,C DUP ,I CONTINUE ;
-</code></pre>
+CR DUP LINE ,C DUP ,I CONTINUE ;</code></pre>
 <p>LIST will list the entire block: 15 42-character lines followed by line numbers. It sets up a DO-CONTINUE loop with the stack varying from 1 - 15. Each time through the loop it: does a CR; copies the stack and executes LINE; types the field (,C); copies the stack again and types it as an integer (,I).</p>
 <pre><code>: I 1 + DUP 15 DO 1 -
-DUP LINE DUP 7 + =C CONTINUE R ;
-</code></pre>
+DUP LINE DUP 7 + =C CONTINUE R ;</code></pre>
 <p>If I type &quot; NEW TEXT&quot; 6 I - I want the text inserted after line 6. “I” must first shift lines 7 - 14 down one position (losing line 15) and then replace line 7. It adds 1 to the line number, sets up a backwards DO-CONTINUE loop starting at 14, constructs two field descriptors, LINE and LINE+7, and shifts them (,C). When the loop if finished, it does an R.</p>
 <pre><code>: D 15 SWAP DO 1 +
-DUP LINE DUP 7 - =C CONTINUE &quot; &quot; 15 R ;
-</code></pre>
-<p>If I type 12 D - I want to delete line 12. D must move lines 13–15 up one position and clear line 15: It sets up a DO-CONTINUE loop from stack+1 to 15. Each iteration it: constructs fields LINE and LINE–7 and shifts them (=C). Then it replaces line 15 with spaces.</p>
+DUP LINE DUP 7 - =C CONTINUE &quot; &quot; 15 R ;</code></pre>
+<p>If I type 12 D - I want to delete line 12. D must move lines 13-15 up one position and clear line 15: It sets up a DO-CONTINUE loop from stack+1 to 15. Each iteration it: constructs fields LINE and LINE-7 and shifts them (=C). Then it replaces line 15 with spaces.</p>
 <p>That’s it. With 10 lines of code I can define a text-editor. It’s not the most efficient possible, but it’s fast enough and illustrates many points: In dealing with small amounts of text, you needn’t be clever; let the machine do the work. The verb LINE is an extremely useful one; such useful verbs are invariably an empirical discovery. The verbs ,C and =C are the heart of the method; incidentally, they only work on fields less than 64 characters. Notice how one definition wants to reference another (R used by I and D; LINE used by all). Notice how I and D are similar yet different. And notice how a few verbs eliminate a lot of bookkeeping and let you concentrate on the problem and not the details.</p>
-<h1 id="programs-with-output"><a href="#TOC"><span class="header-section-number">6</span> Programs with output</a></h1>
+<h1 id="programs-with-output"><a href="#programs-with-output"><span class="header-section-number">6</span> Programs with output</a></h1>
 <p>By now I’m sure you’re aware that the heart of your program is its control loop. It not only controls the operation, but also the philosophy and organization of the program. Let me review its operation: it reads a word, finds it in the dictionary and executes its code; failing that it converts it to a binary number and places it onto the stack; failing that it types an error message.</p>
 <p>So far I’ve ignored that error message; not because it’s unimportant or trivial to implement, but because it’s part of a difficult subject - output. Logically I oughtn’t have delayed discussing output this long, for even a control language needs output. But as usual in this program it is involved with other features that we’ve only just discussed. I’ll leave it to you to implement those features of the output capabilities I’ll present, that your application requires.</p>
 <p>Most compilers, and therefore most programmers, regard output the inverse of input. For example, FORTRAN uses the same FORMAT statements for output as for input, thereby suggesting that the two processes are very similar. But are they?</p>
 <p><em>You</em> compose input: you select words and combine them into fairly complex phrases; your program spends considerable effort deciphering this input and extracting its meaning. In reply it will not go through any such elaborate procedure. You’ll see that most of its output consists of the word OK. You are talking to the computer, but it is hardly talking to you; at best it’s grunting.</p>
 <p>I maintain that the two processes have nothing in common, that the computer does not prepare output in a manner analogous to you preparing input. In Chapter 8 I’ll describe a way your program can compose complex output messages. Although such a technique might provide a 2-way dialog, it has even less similarity to interpreting input.</p>
-<h2 id="output-routines"><a href="#TOC"><span class="header-section-number">6.1</span> Output routines</a></h2>
+<h2 id="output-routines"><a href="#output-routines"><span class="header-section-number">6.1</span> Output routines</a></h2>
 <p>You will need 3 output subroutines; conceivably you could get by with 2. One to type a number of spaces. One to type a number of characters from a specified location (TYPE<sub>N</sub>). One to type characters until it encounters a space (TYPE<sub>B</sub>) and including the space. This last depends on your dictionary format, for it is used to type entry words. Of course, these should use the fetch and deposit subroutines you use for input.</p>
 <p>Let us use the composition of an error message as an example. You have just typed an input message, the carriage is positioned at the last character. First you want a space. Then use TYPE<sub>B</sub> to type the current word. It caused the error and will tell you where it occurred. You don’t need this for an unbuffered device. Then use TYPE<sub>B</sub> again to type a word that describes the error. Avoid long error messages - you’re the one who will wait while they’re typed. You can detect a number of errors, so it’s worth your while to devise a routine to generate them.</p>
 <p>After finding an error, you of course quit doing whatever you were doing. There is no point in trying to continue when you’re standing by ready to correct and start again. However it is convenient to reset things that you’d probably have to reset anyway. In particular, set the stacks empty. This is sometimes unfortunate since the parameter stack might help you locate an error. But it usually is most convenient. Don’t try to reset the dictionary since you’re not sure what you may want to reset it to.</p>
-<h2 id="acknowledgement"><a href="#TOC"><span class="header-section-number">6.2</span> Acknowledgement</a></h2>
+<h2 id="acknowledgement"><a href="#acknowledgement"><span class="header-section-number">6.2</span> Acknowledgement</a></h2>
 <p>I mentioned in Chapter 3 that you must write subroutines to send and receive messages. Now I must expand on exactly how you should use these subroutines.</p>
 <p>Recall that input and output share the same message buffer. This now causes trouble. However it considerably simplifies the more powerful message routines of Chapter 7. On balance the single message buffer seems optimal.</p>
 <p>First let me call the subroutine that sends a message SEND. It sends a single line and should add a carriage return to the line, as well as any other control characters needed, and translate characters as required. The routine that receives a message is QUERY. It is a routine, and not a subroutine. QUERY calls SEND to send a message, and then awaits and processes an input message. stripping control characters and translating characters as required. It initializes the input pointer IP and jumps to NEXT<sub>W</sub>. Notice that your program can send output via SEND wherever it pleases. However it can only receive input in conjunction with output, via QUERY. You have no provision for receiving successive messages without intervening output. This is exactly the behavior you need, and actually simplifies the coding of message I/O.</p>
@@ -947,16 +913,14 @@ DUP LINE DUP 7 - =C CONTINUE &quot; &quot; 15 R ;
 <p>Notice that if entries are coming from a definition or from a screen, no conflict can arise with the message buffer. Only if input is currently being read from the message buffer is there a problem.</p>
 <p>However there are 2 places where source of input is changed. This is in the code for “;” and “;S”. If “;” restores NEXT<sub>W</sub> to NEXT, it must guarantee that input is available. That is, jump to QUERY if EMPTY is true and SCREEN is 0. Likewise, if “;S” restores SCREEN to 0, it should jump to QUERY if EMPTY is true (NEXT is guaranted to be NEXT<sub>W</sub>.</p>
 <p>The logic required is summarized in Fig 6.2 and is the price paid for duplexing the message buffer. One final complication concerns EMPTY. If true, it states that input has been destroyed; it does not indicate that output is currently in the message buffer. Output may have been placed there and already sent. If the message buffer is empty, type OK before jumping to QUERY.</p>
-<h2 id="character-strings"><a href="#TOC"><span class="header-section-number">6.3</span> Character strings</a></h2>
+<h2 id="character-strings"><a href="#character-strings"><span class="header-section-number">6.3</span> Character strings</a></h2>
 <p>Everything isn’t easy, and this particular feature is my nemesis. Perhaps a measure of its value is the difficulty of its implementation. A character string is an awkward entity. Mostly because there is nowhere to put it. Numeric literals go on the stack in a most natural fashion. Character strings won’t fit, and that isn’t what we want to do with them anyway.</p>
 <p>My solution is this. When you see a character string, leave it alone. Put on the stack a descriptor giving the address of the first character and the number of characters in the string. Skip over the string. That is, advance the input pointer to its end. You can’t do it in quite that order, of course, because only by skipping can you discover the number of characters.</p>
 <p>What does a character string look like? Of all the ways you might choose, one is completely natural:</p>
-<pre><code>&quot;ABCDEF . . . XYZ&quot;
-</code></pre>
+<pre><code>&quot;ABCDEF . . . XYZ&quot;</code></pre>
 <p>A character string is enclosed in quotes. It can contain any character except a quote, specifically including spaces.</p>
 <p>We get in trouble immediately! How do you recognize a character string? By the leading quote, for course. But do you modify your word subroutine to recognize that quote? If you do so you may never use a leading quote for any other purpose. Much better that the quote is a word by itself, treated like any other dictionary entry, for it can then be re-defined. But words are terminated by spaces, and I still resist making quote an exception. So let’s type character strings:</p>
-<pre><code>&quot; ABCDEF . . . XYZ&quot;
-</code></pre>
+<pre><code>&quot; ABCDEF . . . XYZ&quot;</code></pre>
 <p>The extra space is annoying, but in Chapter 8 I will tell you how to eliminate it without the objections I just raised. So a character string is started with a quote-space and terminated by a quote.</p>
 <p>Remember that we leave the character string alone, merely remembering where it is. We are talking about character strings in the input buffer (so far), and we had better use the string before we destroy it with output or additional input. <em>When</em> it is destroyed depends on many things, so the best rule is to use it immediately.</p>
 <p>What can you do with a character string? I’ve only found 2 uses. They are very similar, but part of the frustration of implementing them is to take advantage of the similarity. You can type a string, or you can move it to a character field.</p>
@@ -965,25 +929,24 @@ DUP LINE DUP 7 - =C CONTINUE &quot; &quot; 15 R ;
 <p>If you can do the above, you can also move one character field to another. That is, if you make your character string and field descriptors compatible - which adds to the fun. You might want to prevent moving a field to a string, but than who cares.</p>
 <p>The problem is to reconcile all the above requirements. Not really to produce optimum code, but even to produce code that is remotely acceptable in size, speed, restrictions and correct operation.</p>
 <p>We’ve slid into the subject of field descriptors. You might want to type a character field, and of course the same code should work as for string descriptors.</p>
-<h2 id="field-entries"><a href="#TOC"><span class="header-section-number">6.4</span> Field entries</a></h2>
+<h2 id="field-entries"><a href="#field-entries"><span class="header-section-number">6.4</span> Field entries</a></h2>
 <p>We’ve talked about the different kinds of numbers you might want, and the different entries these require. However, all these entries dealt with computation. Another kind of entry is useful for more sophisticated output purposes. I call it a field-entry because its most common use is to define a field in a data record.</p>
 <p>In addition to the descriptor associated with a variable, a field entry needs additional parameters that specify the output format. It is extremely useful to be able to specify a field width for output once and for all, and then use it automatically on all reports. Also it is useful to be able to reference the name of the field - which of course is contained in the dictionary entry.</p>
 <p>So a useful convention is that a field entry puts the address of itself - that is the dictionary entry - on the stack. Recall that a variable entry places the address of the variable on the stack. If you want the name of the entry, this address tells you where it is. If you want the format, this address - offset by some constant - tells you where to find it. And if you want the address of the field, you can get that too - a process that is executed automatically for a variable.</p>
 <p>These various capabilities require various entries to effect them. You might define:</p>
 <pre><code>,NM - type out field name.
 F - extract field width.
-@F - obtain field address.
-</code></pre>
-<p>Depending (as usual) you might be able to make @F compatible with @. Or make @ automatically work correctly for field entries. You may want to distinguish addresses of variables from address of field entries. This would be analogous to distinguishing different kinds of numbers, and for the same reason - so that the same operations (in this case probably @ and =) will work on all.</p>
+@F - obtain field address.</code></pre>
+<p>Depending (as usual) you might be able to make <span class="citation" data-cites="F">@F</span> compatible with @. Or make @ automatically work correctly for field entries. You may want to distinguish addresses of variables from address of field entries. This would be analogous to distinguishing different kinds of numbers, and for the same reason - so that the same operations (in this case probably @ and =) will work on all.</p>
 <p>Apply the Basic Principle.</p>
-<h1 id="programs-that-share"><a href="#TOC"><span class="header-section-number">7</span> Programs that share</a></h1>
+<h1 id="programs-that-share"><a href="#programs-that-share"><span class="header-section-number">7</span> Programs that share</a></h1>
 <p>It is not obvious, but a program organised as we have discussed is ideally suited to handling several users simultaneously. All of the basic problems of interactive processing have been solved by interacting with one user. The organization is such that all data is, or can be, stored in the user’s dictionary. To distinguish users merely requires the program recognise the proper dictionary.</p>
 <p>Of course the value of multiple users depends upon the application. There appears to be a correlation between the complexity of an application and the number of potential users. An application that deserves a problem-oriented-language my well be of interest to many users on a continuous basis.</p>
 <p>Moreover, once the basic program is available, it is relatively simple to add other, even unrelated, applications. The ability to control your vocabulary by reading screens allows a terminal to be used by different people with absolute minimum effort: each can have a personal screen that will load his dictionary with the vocabulary he wants.</p>
 <p>Providing the message traffic from any one terminal is low enough, as is inevitably the case - for we have in effect slowed the computer down to human speed - we can handle a much larger number of terminals than can fit in core, hundreds, by storing inactive users on disk.</p>
 <p>However there is a cost, primarily of assuring that re-entrant programming rules are strictly followed. The additional code required to switch the computer’s attention among users and the additional core required for disk buffers and user dictionaries demand that a single user application by de-bugged first. And then the capacity of the computer multiplied with a multiple-user control routine as the demand develops. It is all too easy to get bogged down in the multiple-user controller and never to perfect an application. Or to perfect a multiple-user control and never to find a demand to justify it.</p>
 <p>Given a successful single-user application, I will show how it can be expanded to many users. If you plan to take this step, there are certain precautions you should take with your original implementation. But mind the Basic Principle!</p>
-<h3 id="non-user-activities"><a href="#TOC"><span class="header-section-number">7.0.1</span> Non-user activities</a></h3>
+<h3 id="non-user-activities"><a href="#non-user-activities"><span class="header-section-number">7.0.1</span> Non-user activities</a></h3>
 <p>Each user has a position in the ready table to identify his status. The computer examines this table to decide what to do next. You may want to add to the ready table entries not associated with users, but representing tasks that must be performed by the computer.</p>
 <p>For example, if you have to poll phone lines to acquire input, you want to perform these polls asynchronously with whatever other work you’re doing. Since interrupt routines are best kept small, the task of translating character sets, checking parity, distributing messages, etc., should be performed at lower priority. This is easy to do with an entry in the ready table. The interrupt routine sets a message routine “ready” and the computer will process it when possible.</p>
 <p>Each such independent activity should have a ready table entry and a (perhaps) small dictionary in which to store its parameters; return address, register contents, etc. in the same format as a user activity. In fact these activities are completely equivalent to users, except that they don’t process users. This is significant, for it means they never generate error messages, they must handle their own errors, somehow.</p>
@@ -993,16 +956,16 @@ F - extract field width.
 <li>A routine to write blocks on disk. Periodically it might scan the block buffers for blocks to copy. (however, writing blocks when the read routine needs a buffer seems simpler.)</li>
 </ul>
 <p>Such activities cost little, and usually provide the simplest answer to any asynchronous problem. Mind the Basic Principle, though!</p>
-<h3 id="message-handling"><a href="#TOC"><span class="header-section-number">7.0.2</span> Message handling</a></h3>
+<h3 id="message-handling"><a href="#message-handling"><span class="header-section-number">7.0.2</span> Message handling</a></h3>
 <p>If you can read input from one user, you can read input from many. You must get an interrupt that tells you input is available and from whom it comes. You simple direct it to the proper message buffer. Likewise with output.</p>
 <p>It needn’t be simple, but it certainly depends on hardware exclusively. If you have to poll terminals, it can become very interesting, indeed. But the problem remains beyond the scope of this book.</p>
 <p>If all your users are not core resident, it is better if none of them are. Then any input message can be written into the message buffer area on disk. And all output messages read from disk. The fact that some users might reside in core, causes an unreasonable complication, and the fact that disk access is fast compared to message transmission means that to attempt to save such disk accesses is not efficient.</p>
-<h2 id="user-control"><a href="#TOC"><span class="header-section-number">7.1</span> User control</a></h2>
+<h2 id="user-control"><a href="#user-control"><span class="header-section-number">7.1</span> User control</a></h2>
 <p>The fact that you have several users creates a new problem. Of course the computer can only process one user at a time (we assume a single processor). But when it’s finished with one user, it must switch its attention to another.</p>
 <p>When is it finished with one user? Clearly, if a user is awaiting input the computer is finished. We are talking about keyboard input, which will take many seconds to arrive. Similarly if the user is sending output, the computer may as well stop. Output will take several seconds, especially if an acknowledgement from the device is anticipated. It needn’t stop. While sending one message, it could be composing the next. But it’s much simpler not to attempt such overlap. If the user is reading disk, the computer can stop.</p>
 <p>I want to define a single phrase to cover these situations. I shall say that a user relinquishes control of the processor whenever he does message or disk I/O. This is a voluntary action on his part, and those are the only times he relinquishes control. In particular, there is no time quantum that will take control from him. For this reason: With several users, code must clearly be re-entrant. However, if a user is promised that he will be allowed to finish what he starts, if he will not lose control to someone else except when he relinquishes it, the re-entrant requirements become much less onerous. The program need only be re-entrant across I/O, which can save a lot of bother.</p>
 <p>All right, what happens when a user relinquishes control? The computer simple scans a table of users to see if anyone else is ready. The table contains the address of the user’s dictionary and a flag: ready or not? The I/O complete interrupt routines simply mark the proper user ready. And if no one is ready, the computer scans the table endlessly - it’s got nothing better to do. Naturally, upon program start-up, no one is ready.</p>
-<h2 id="queing"><a href="#TOC"><span class="header-section-number">7.2</span> Queing</a></h2>
+<h2 id="queing"><a href="#queing"><span class="header-section-number">7.2</span> Queing</a></h2>
 <p>You can save yourself a lot of trouble by putting some code in the user controller. Two subroutines: QUE and UNQUE. When a user needs a facility that might be in use by someone else, he calls QUE. If it’s available, he gets it. If it’s not available, he joins the que of people waiting for it. When it is released, and his turn, he will get it.</p>
 <p>For example, he can’t read disk if someone else if reading disk. Or at least he can’t use a particular channel or device. While he’s waiting, of course he relinquishes control. When he’s through with the facility, he calls UNQUE which passes it to someone else.</p>
 <p>These are extremely valuable routines, for there are many facilities that can be handled in the manner; each disk, each line (shared lines), the printer, block 1 (disk allocation), non-re-entrant routines (SQRT). An extension will even permit exclusive use of blocks.</p>
@@ -1028,24 +991,23 @@ F - extract field width.
 <p>The whole procedure is simple and efficient. It handles a lot of potential problems in a reasonable and effective way. Several comments: The ques will probably be very short. In fact, facilities will usually be free, unless the computer is over-loaded. A user can not be in more than one que. However, a user can own more than one facility. Hence the need for a waiter field with each facility: a que must descend from each facility, and not from each owner; the two concepts are independent. You must add to the error routine a loop to release any facilities held by the current user. Since a user needs to know his own number in order to que, this number must be stored in a field in his dictionary, and be set by the re-initialize routine.</p>
 <p>It’s complicated, it’s troublesome, and it’s the price you must pay for multiple users.</p>
 <p>To gain exclusive use of a block, with the exception of block 1, best handled as an exception, set aside some facility que-words for this purpose. Find a free one and store the block number it represents somewhere, then treat that block like any other facility. When the last waiter releases the block, release the facility que-word for re-use. Notice that this technique has no effect upon the block itself. It may be resident in core, or not. Anyone may read or write it. However, no one else may have exclusive use of it. If all users cooperate to request exclusive use when the should, it works perfectly - with no extra cost to ordinary reads/writes. Actually, exclusive use of a block is necessary only under exceptional circumstances. Block 1 is an example of such: The block may not be used by anyone else until another block has been read, and the available space up-dated.</p>
-<h2 id="private-dictionaries"><a href="#TOC"><span class="header-section-number">7.3</span> Private dictionaries</a></h2>
+<h2 id="private-dictionaries"><a href="#private-dictionaries"><span class="header-section-number">7.3</span> Private dictionaries</a></h2>
 <p>The key to the case of conversion to multiple users is that all required information about a user is stored in his dictionary - a single contiguous area of core. He makes extensive use of code that belongs to the system, and that does not reside in his dictionary. On the other hand, code unique to his application may reside there. Here is the first decision that you must make: What belongs in the user’s private dictionary?</p>
 <p>Let us look at the arrangement of core. If we choose, and we should, it follows dictionary format: each entry followed by the code it executes. Each entry is linked to the previous so that the dictionary may be searched backwards. Some entries are obviously of interest to all applications: those that control the stack, that define dictionary entries, that specify fields such as BASE, CONTEXT, etc. Other entries are probably of local concern: the names of fields in records, definitions used to edit text, special purpose code (random number generator, square root, etc.). At some point you must separate the system and user dictionaries.</p>
 <p>If you establish several user dictionaries, the first entry in each will link to the system dictionary (Fig 7.1) at the same point.Thus each user is unaware of any other user, and his dictionary search is unaffected.</p>
-<h2 id="controlled-access"><a href="#TOC"><span class="header-section-number">7.4</span> Controlled access</a></h2>
+<h2 id="controlled-access"><a href="#controlled-access"><span class="header-section-number">7.4</span> Controlled access</a></h2>
 <p>It would appear that you want the system dictionary as large as possible to avoid redundancy. That is not necessarily the case. There are some entries that might go into the system dictionary - except that you specifically want to deny them to some users. Prime examples are the GET and DELETE entries that control disk allocation. Misuse of these words by ignorant users can badly damage data stored on disk. The best solution is to place the code in the system, without a dictionary entry. Define a table of entry points into code of this nature. Then if a user wants to use an entry point, he must first define it, perhaps:</p>
-<pre><code>17 ENTRY GET 18 ENTRY RELEASE
-</code></pre>
+<pre><code>17 ENTRY GET 18 ENTRY RELEASE</code></pre>
 <p>establishing the words GET and RELEASE with the code identified in the 17th and 18th table positions. Library subroutines (FORTRAN arithmetic subroutines) might be treated similarly.</p>
 <p>Incidentally, this illustrates a general method of protection: In addition to using a word, the user must define it correctly. Clearly you can cascade the process. The value of such protection against malicious mischief depends on secrecy, which is always the ultimate protection. However even in the absence of secrecy, it provides valuable protection against inadvertent damage.</p>
-<h2 id="memory-protection"><a href="#TOC"><span class="header-section-number">7.5</span> Memory protection</a></h2>
+<h2 id="memory-protection"><a href="#memory-protection"><span class="header-section-number">7.5</span> Memory protection</a></h2>
 <p>If all users will fit in core simultaneously, we are finished. You divide memory into the appropriate dictionaries. You should provide memory protection so that one user cannot damage another. The stack and dictionary size checking discussed earlier, should be augmented by checks on the = operator, so that a user cannot write outside his dictionary, or outside a block he has read. If you have hardware memory protect, you will find it difficult to take advantage of. The user must be able to read his dictionary, the system dictionary and the block buffers; he must be able to write his dictionary and the block buffers. Several users might want to write the same block buffer; if not simultaneously, at least consecutively. If your hardware can help, it’s better than any I’ve seen. But software protection can be made adequate - except against malicious mischief.</p>
 <p>Although a user cannot hurt anyone else, he is certainly capable of destroying himself. Thus you should have a system entry that will restore his dictionary to empty, with all control fields reset. Such an entry will get heavy use, for it is a simple way to start over.</p>
 <p>If you have implemented fixed-size entries, you have no links to lead to the system dictionary. Your search routine must separately search the user’s dictionary and the system dictionary, since not all users can be contiguous to the system. This should only cost a few instructions, but is another reason to prefer the linked entries.</p>
 <p>If you have multiple chains in your dictionary, each chain must jump from the user’s to the system dictionary. This is only a problem when re-initializing the dictionary, and can be easily solved by keeping a copy of the chain heads for the system dictionary.</p>
-<h2 id="disk-buffers"><a href="#TOC"><span class="header-section-number">7.6</span> Disk buffers</a></h2>
+<h2 id="disk-buffers"><a href="#disk-buffers"><span class="header-section-number">7.6</span> Disk buffers</a></h2>
 <p>The fact that you may have several users reading disk simultaneously has no effect at all upon the disk-access subroutine. It can search the block buffers and find an available buffer without concern as to who asked for it. Of course you must have at least as many buffers as users. In fact, all of core not required for dictionaries might as well be devoted to block buffers, as left idle. However, if a block is being read, you should mark the buffer busy some way, so someone else will not assume it’s there before it arrives. If you attempt to read a busy block, you should relinquish control and try again when you’re re-started.</p>
-<h2 id="user-swapping"><a href="#TOC"><span class="header-section-number">7.7</span> User swapping</a></h2>
+<h2 id="user-swapping"><a href="#user-swapping"><span class="header-section-number">7.7</span> User swapping</a></h2>
 <p>So far we’ve had all users resident in core. This is by far the best arrangement for handling a small number of users. The step to allowing more users than can be simultaneously resident is a small one philosophically, but can be very difficult to implement. Suppose we had room for 4 user’s dictionaries in core, but we wanted to permit 40 users. Clearly we can store all 40 user dictionaries on disk and load each one into core when he becomes active. Providing disk I/O is substantially faster than message I/O there is not even a performance penalty associated. When a user is awaiting message I/O we write him out to disk. When he completes his message I/O we read him back into core. Naturally, we do not move him from core when he is waiting for disk I/O, since it would take unreasonably long to write him out and read him back compared to the original delay.</p>
 <p>So far there are no problems. The problem arises as to where to read him back into. We have 4 buffers: if we load users always into the same buffer we have 4 classes of users, each of which can go into a single buffer. We are begging for delays at one buffer while another is empty.</p>
 <p>If we are going to the trouble anyway, we should make all buffers equivalent, and load a user into whichever one is free. However, now a user’s dictionary must be relocatable. That is, any references to his dictionary must be relative to its origin, which is presumably stored in an index register. This isn’t too bad if we’ve planned from the start - way back with a single-user program - to make all dictionary references relative; it requires almost a complete re-write of the program if we did not, for all dictionary references, and they’re scattered all through the program, must be indexed.</p>
@@ -1057,19 +1019,17 @@ F - extract field width.
 <li>Make all code re-entrant. At least all code within which a user might relinquish control - which turns out to be most code.</li>
 </ul>
 <p>Do this if you have the slightest intention of implementing a many-user version. This violates the Basic Principle, but we’re dealing with such basic issues as to be worth it.</p>
-<h1 id="programs-that-think"><a href="#TOC"><span class="header-section-number">8</span> Programs that think</a></h1>
+<h1 id="programs-that-think"><a href="#programs-that-think"><span class="header-section-number">8</span> Programs that think</a></h1>
 <p>The mystery of consciousness has intrigued philosophers for a long time. It now seems apparent that just as life is a result of complex organization, so is consciousness. It is somehow a byproduct of complex interactions among data. Interactions so complex they only occur in mammalian brains.</p>
 <p>Therefore, one way of investigating the mind is to experiment with manipulating data. The obvious way to do this is on a computer. We now have a program with capabilities previously unattainable. Why not use it in such a way as to probe the realm of ‘thinking’? I don’t propose that you become a psychobiologist. But you can have a lot of fun, and do some really impressive things with simple extensions to your program.</p>
 <p>I will describe a number of entries of unusual capability. If you have an application that can use them, or if you can create an application to use them, by all means give them a try. However, the Basic Principle forbids you including them without a purpose. They are sufficiently elaborate and sufficiently specialized as to never prove unexpectedly valuable.</p>
 <p>I have had all the entries I describe in a single program. This program had less than 1500 instructions so it is practical to include everything in a single program. But I was experimenting, and never found an application that needed a fraction of them.</p>
-<h2 id="word-dissection"><a href="#TOC"><span class="header-section-number">8.1</span> Word dissection</a></h2>
+<h2 id="word-dissection"><a href="#word-dissection"><span class="header-section-number">8.1</span> Word dissection</a></h2>
 <p>One of the most awkward characteristics of our program is that words must be separated by spaces. Very often you’d like to suffix punctuation or operator without an intervening space. And we will soon add abilities that make prefixing desirable, too.</p>
 <p>It is not difficult to modify the word subroutine to recognise characters other than space as terminating characters. But it is impossible to provide satisfying generality. Inevitably, you complicate the word subroutine unduly by considering innumerable special cases. And you can waste much ingenuity trying to achieve generality. For example, there are no simple rules that permit all these to be words:</p>
-<pre><code>HELLO GOOD-BY 3.14 I.B.M. -.5 1.E-3
-</code></pre>
+<pre><code>HELLO GOOD-BY 3.14 I.B.M. -.5 1.E-3</code></pre>
 <p>Likewise, there are no simple rules that separate these strings into the words intended:</p>
-<pre><code>-ALPHA 1+ ALPHA+BETA +X\*\*-3 X,Y,Z; X.OR.Y
-</code></pre>
+<pre><code>-ALPHA 1+ ALPHA+BETA +X\*\*-3 X,Y,Z; X.OR.Y</code></pre>
 <p>But don’t despair! There is a general solution that can handle all these cases. It is expensive in time, perhaps very expensive. But it solves the problem so thoroughly, while demonstrating that no lesser solution is possible, that I consider it well worth the price. Besides, the speed of processing text is not a critical factor. We maximize speed precisely so that we can afford extravagances such as this.</p>
 <p>If you haven’t already guessed: We read a word terminated by a space, search the dictionary, convert it to a number. If it isn’t a word by this definition, we drop the last character and try again. Eventually we strip off enough characters so that the remainder is a word.</p>
 <p>Let me review the cost. We do as many dictionary searches (plus numeric conversions) as there are letters to be dropped. This encourages fast searches and quick recognition of non-numbers. It also encourages minimizing the length of strings that must be dissected. But let’s be practical: The number of occasions when dissection is convenient are few enough that you can afford the price. With the exception of compiler source code. But I’m not writing a compiler, and if you are you can probably make your word subroutine cope.</p>
@@ -1077,38 +1037,33 @@ F - extract field width.
 <p>Backing the input pointer is not possible with unbuffered input. This is why I suggested that you buffer un-buffered devices back in Chapter 3. If you aren’t going to dissect, apply the Basic Principle.</p>
 <p>You must also have a way to detect that you have dropped the last character: a counter is one solution. Another is to place a space immediately ahead of your aligned word, and to stop on the space. I prefer the second, for I find I lack a convenient counter that is preserved over dictionary search and numeric conversion. But this means that I must fetch each character before I deposit a space over it. And this means that my fetch subroutine must operate backwards, the only place I ever need to fetch backwards. It depends on your hardware.</p>
 <p>There are 2 things we can do to refine this dissection. They are incompatible and the choice depends on your application: We don’t need to drop characters one-at-a-time. If you have several letters in succession, or several digits, or perhaps a combination, you might drop the all and then perform a single search/conversion. This means that you must examine each character (which suggests the second termination above). It also means that you must be able to distinguish alphanumerics from special-characters. This requires a 64-character table of character type tailored to your particular character set and application. If your hardware permits, you may be able to use a 64-bit table - classic trade-off of time vs. space.</p>
-<p>However, this means you cannot dissect letter strings and you might want to. Plurals, for instance, can be easily accommodated by dropping the terminal ’s’. On the other hand, you can easily mis-identify words by dissecting letter strings: I once dissected the word SWAP: S was defined, W was defined and my error message was AP ? Perhaps when dropping a single letter you should replace it with a dash to indicate a word stem. Or perhaps it doesn’t matter if unidentifiable words are mis-identified.</p>
+<p>However, this means you cannot dissect letter strings and you might want to. Plurals, for instance, can be easily accommodated by dropping the terminal ‘s’. On the other hand, you can easily mis-identify words by dissecting letter strings: I once dissected the word SWAP: S was defined, W was defined and my error message was AP ? Perhaps when dropping a single letter you should replace it with a dash to indicate a word stem. Or perhaps it doesn’t matter if unidentifiable words are mis-identified.</p>
 <p>One further caution: If you are going to dissect, you must not discard extra characters while initially aligning the word. Your input pointer must be positioned so that you can backspace it correctly. If you exceed maximum word size, stop immediately and supply a terminal space. This means that no single word can exceed maximum size, which has now become maximum string size.</p>
 <p>Another optimization has to do with the size of words in the dictionary. If you only match part of the word, you may as well start dropping characters at that point, if number format permits.</p>
 <p>What does word dissection mean to a program? How does it help it ‘think’? It means that your program can read your mind. It means that no matter how you type something, the computer will extract the meaning you intended. It will use the meaning of the longest character string it can, consistent with a left-to-right scan. It’s not infallible: if you define +1 and then type +1000 it will mis-understand. But if you use your language consistently, it will follow.</p>
 <p>I would like to be able to say that this ability will impress people. It will impress you - at least it should. But ordinary people, like your boss, expect this kind of ability from computers. They are only impressed, negatively, if they discover its absence.</p>
-<h2 id="level-definitions"><a href="#TOC"><span class="header-section-number">8.2</span> Level definitions</a></h2>
+<h2 id="level-definitions"><a href="#level-definitions"><span class="header-section-number">8.2</span> Level definitions</a></h2>
 <p>I am embarrassed not to know the standard terminology for what I am going to discuss. I have never heard it discussed and I have never searched for it. But it must be a standard aspect of compiler writing - discussed in courses dealing with compilers. If you know the terminology, you also know most of what I’m going to say: although I hope I can get you to stretch its application.</p>
 <p>Our arithmetic operators have found their arguments already on the stack. Conventional algebraic notation uses such operators as infixes, and a left-right scan provides only 1 operand when the operator is discovered. Consequently the operation must be deferred until the other operand is available.</p>
 <p>Moreover, we have a hierarchy of operations than control when that other operator becomes available. For example:</p>
-<pre><code>A+B\*C
-</code></pre>
+<pre><code>A+B\*C</code></pre>
 <p>the multiply must be done before the add. Moreover, parentheses are used to modify the standard hierarchy:</p>
-<pre><code>A\*(B+C)
-</code></pre>
+<pre><code>A\*(B+C)</code></pre>
 <p>Such a notation is completely equivalent to ours. It offers no advantages over the operands-preceding-operator and has some limitations. But people are accustomed to it and negatively-impressed by its absence. So I will show you how to provide the capability.</p>
 <p>However there is no reason to restrict our attention to the customary arithmetic and/or logical operators. I will show you some other similar hierarchies. The capability I describe will handle them all.</p>
 <p>Let us establish a new kind of dictionary entry. It is identical to a definition except that it has a number appended, a level number. So let’s call it a level-definition. The rule is that a level-definition is not to be executed when it is encountered, but rather placed on a push-down stack. It will be executed when another definition with a equal or smaller level number is encountered.</p>
 <p>A convenient format for level-definitions is:</p>
-<pre><code>2 :L word . . . ;
-</code></pre>
-<p>The 2 is the level number, taken from the stack. :L declares the next word as a level-definition. ’;’ marks the end.</p>
+<pre><code>2 :L word . . . ;</code></pre>
+<p>The 2 is the level number, taken from the stack. :L declares the next word as a level-definition. ‘;’ marks the end.</p>
 <p>Let’s talk about + and *:</p>
 <pre><code>0 :L , ;
 1 :L + + ;
-2 :L \* \* ;
-</code></pre>
-<p>We have re-defined them in terms of their old definitions, but as level-definitions. We defined ’,’ to have some way to stop. Now we can say:</p>
-<pre><code>3 + 4 \* 5 ,
-</code></pre>
-<p>What happened? 3 goes onto the parameter stack, + goes onto the level-stack, 4 onto the parameter stack, * onto the level-stack (since it has a higher level number than the + already there), 5 onto the parameter stack. Now ’,’ forces the * to be executed (since its level number is smaller) and * finds 5 and 4 on the parameter stack. ’,’ also forces + to be executed (with arguments 20 and 3) and then, because its level number is 0, is itself executed and does nothing.</p>
+2 :L \* \* ;</code></pre>
+<p>We have re-defined them in terms of their old definitions, but as level-definitions. We defined ‘,’ to have some way to stop. Now we can say:</p>
+<pre><code>3 + 4 \* 5 ,</code></pre>
+<p>What happened? 3 goes onto the parameter stack, + goes onto the level-stack, 4 onto the parameter stack, * onto the level-stack (since it has a higher level number than the + already there), 5 onto the parameter stack. Now ‘,’ forces the * to be executed (since its level number is smaller) and * finds 5 and 4 on the parameter stack. ‘,’ also forces + to be executed (with arguments 20 and 3) and then, because its level number is 0, is itself executed and does nothing.</p>
 <p>Clear? I would like to assume you’re familiar with this technique, but I don’t quite dare. All I’m really contributing is a way to implement with dictionary entries a technique usually built into compilers. Perhaps the cop-out of suggesting you define the arithmetic operators and work out some examples for yourself. Remember that <em>equal</em> level operators force each other out, and that a <em>lower</em> level operator forces out a higher. It is strangely easy to reason out the relative levels of operators incorrectly.</p>
-<p>What do we have so far? Why should you be interested in level-definitions? You’ve seen a couple, their definitions are simple. Level-definitions tend to be simple compared to ordinary definitions. But given level-definitions you can write a compiler, for any language! Level-definitions are necessary and sufficient to implement any context-free grammar, not only the LR–1 grammars at the base of contemporary languages. Frankly I don’t know what to do with the power they provide, but I’ll toss out some suggestions later.</p>
+<p>What do we have so far? Why should you be interested in level-definitions? You’ve seen a couple, their definitions are simple. Level-definitions tend to be simple compared to ordinary definitions. But given level-definitions you can write a compiler, for any language! Level-definitions are necessary and sufficient to implement any context-free grammar, not only the LR-1 grammars at the base of contemporary languages. Frankly I don’t know what to do with the power they provide, but I’ll toss out some suggestions later.</p>
 <p>Now back to work. You’ve seen some level definitions. I hope you’ve played with them some. How do we implement them? Well we don’t. Rather we implement a generalization: level-entries. When I found an application for level-entries I also found out it was cheaper to implement level-definitions as such than the way I was doing.</p>
 <p>Every dictionary entry may be considered a virtual-computer instruction, as discussed in Chapter 5. We consider a level-entry an instruction whose execution can be delayed - after the fashion of a level definition. Why not? A definition is, after all, only a particular sort of instruction. If it may be profitably delayed, so might other instructions.</p>
 <p>I’m sorry if it seems complicated. It is! It’s going to get more complicated - you aren’t getting something for nothing. But it’s worth it. However, notice that everything we’re doing now builds on everything we’ve done before. Notice that the concept of a special sort of entry depends on having a dictionary available; and the extension of definitions to include level numbers depends on having definitions. We are gradually building a tree and are in the higher branches. We might not depend on all the lower branches, but we have to have some.</p>
@@ -1161,7 +1116,7 @@ Define IF so it will be forced out by THEN and generate a conditional branch. De
 <p>I pass the ball to you. If you have an application that could profit from a natural language input format, you have the capability with level definitions to implement it. For example, it would not be hard to teach your program to solve the problems at the end of a high-school physics text.</p>
 <p>Keep in mind, that level-entries do not enhance the power of the computer. They merely let you specify instructions in what, to the computer, is an unnatural order. You are well advised to get your application working, and <em>then</em> to append a fancy control language.</p>
 <p>How does this relate to a program ‘thinking’? Solely by deferring to the human-oriented format of control languages. Not even this is impressive to anyone but us! And even how impressed are you by FORTRAN’s expression evaluator any longer?</p>
-<h2 id="infinite-dictionary"><a href="#TOC"><span class="header-section-number">8.3</span> Infinite dictionary</a></h2>
+<h2 id="infinite-dictionary"><a href="#infinite-dictionary"><span class="header-section-number">8.3</span> Infinite dictionary</a></h2>
 <p>I would guess that your dictionary will average several hundred entries. Even a small amount of data seems to generate a large number of fields - to mention one source. However some applications need much larger vocabularies. Perhaps you need to identify one of 10,000 customers; or maybe you want the symbols for 104 elements available; or the names of 1000 approved additives.</p>
 <p>Clearly such volume must be stored on disk. Also clearly, you don’t want to have to search disk explicitly. There is a gratifyingly effective solution: If you can’t find the word in the core dictionary, and it’s not a number, search a block on disk. Now the question reduces to: Which block?</p>
 <p>Establish a field called CONTEXT. Treat it like you did a block address: it both identifies a block and suggests where it might be in core. Search this block. By changing CONTEXT you can search different disk dictionaries. By linking several blocks together, you can search larger amounts of disk; or search several dictionaries in sequence.</p>
@@ -1172,17 +1127,15 @@ Define IF so it will be forced out by THEN and generate a conditional branch. De
 <p>For instance you can name blocks. When you type the name of a block its address is moved from the parameter field onto the stack. That is an excellent place for it, because if you type the block number itself that’s where it would be placed. You can use block numbers and block names interchangeably. Thus when you type an account number the block associated with that account is placed onto the stack, whereupon you store it into the base word that its fields reference. An illegal account will cause an error message, in the ordinary way. Or you might name the instructions for your computer. Then typing its name will place a 1-word instruction on the stack, ready for further processing.</p>
 <p>Although I spoke of account numbers, notice that you can’t number blocks. That is, the name of a disk dictionary entry cannot be a number. For if you type a number it will be converted onto the stack, and never sought on disk. And you must attempt to convert <em>before</em> searching disk or you’ll search disk for every literal you type. But then “numbers” often don’t look much like the numbers defined by NUMBER. They tend to have embedded dashes, letters and such; or else you can prefix a letter or suffix a # character.</p>
 <p>How do you put an entry on disk? A special defining entry:</p>
-<pre><code>0 NAME ZERO
-</code></pre>
+<pre><code>0 NAME ZERO</code></pre>
 <p>analogous to CONSTANT. Alternatively you might set a flag and let the dictionary entry subroutine decide whether to use disk or core. This latter is preferable if you have several different kinds of entries that might go either to disk or core.</p>
 <p>You will also need a way to forget disk entries:</p>
-<pre><code>FORGET ZERO
-</code></pre>
+<pre><code>FORGET ZERO</code></pre>
 <p>FORGET must call WORD as defining entries do, since this is a non-typical use of the word ZERO. When it finds the entry, it simple clears it without trying to pack. Your entry routine should first search disk to see if the word is already there. You don’t want multiple definitions on disk, even though there’re useful in core. Then it should search for a hole. If it finds the word already there, or if it can’t find a hole? You guessed it, an error message.</p>
 <p>Let’s talk about a refinement. With a thousand names on disk it’s easy to run out of mnemonics. Let’s re-use the field CONTEXT: after you scramble the word into a block address, add the contents of CONTEXT and search that block. If CONTEXT is 0, no difference. But if CONTEXT is non-zero, you’re searching a different block. If CONTEXT can vary from 0 to 15, you can have 16 different definitions of the same word. You’ll find the one that had the same value of CONTEXT when you defined it. If there is no entry for a word under a given CONTEXT, you won’t get a match. A block containing a definition for the same word under a different CONTEXT won’t be searched.</p>
 <p>For example, stock numbers might look the same for different sales-lines. By setting CONTEXT you can distinguish them. You can use the same name for a report screen that you use for its instruction screen; distinguish them by CONTEXT. If you’re scrambling anyway, you may as well add in CONTEXT (modulo a power of 2); it costs nothing, and vastly extends the universe of names. In fact, you can use CONTEXT in both the ways we’ve discussed, simultaneously. For as an additive constant it tends to be small; and as a block number, large. So your search routine can decide whether to scramble or not based on its size.</p>
 <p>A problem arises if you plan to dissect words. All those extra dictionary searches are augmented by disk searches and their attendant disk accesses. Several solutions are possible: Scramble with only the first couple of characters, so at least the disk searches are in the same block - which will be in core. Or use only non-zero values of CONTEXT and let 0 inhibit the disk search. That is, make dissection and disk searching mutually exclusive. As is often the case, the problem is serious only if you aren’t aware of it.</p>
-<h2 id="infinite-memory"><a href="#TOC"><span class="header-section-number">8.4</span> Infinite memory</a></h2>
+<h2 id="infinite-memory"><a href="#infinite-memory"><span class="header-section-number">8.4</span> Infinite memory</a></h2>
 <p>Of course you can’t really have infinite memory. Not even unlimited memory. But you can access directly the entire random memory available to your computer. A small augmentation of the field entries introduced in Chapter 4 will do it. I postponed the discussion to here because it has no particular connection with output, and because it’s impressive enough to relate to ‘thinking’.</p>
 <p>The problem of what to do with infinite memory, I leave up to you. You will have to organize it somehow. Examine different parts of it, move fields around, what you will. All I can do is show you how to eliminate any explicit reference to disk.</p>
 <p>Let’s include in our field a parameter that points to a disk address. The field is assumed to be relative to that address; that is, contained in the disk block. The program will automatically read the block to obtain the field. Of course a number of fields will point to the same block address.</p>
@@ -1200,18 +1153,18 @@ Define IF so it will be forced out by THEN and generate a conditional branch. De
 <p>It is easy to remove a record. You create a hole by storing 0 in the first word. It is hard to discover whether by doing this you have caused an empty block which can be un-chained. Unless you expect your data to shrink and need to recover space, don’t bother. How can data shrink? Also, don’t move records around - to squeeze out holes perhaps. Just as we want to use absolute block addresses, we want to use absolute record addresses (if we use record addresses at all).</p>
 <p>So, we can have automatic access to fields scattered all over disk and in variable size records at that. Basic Principle!</p>
 <p>One thing! If field entries can address other field entries, you need some way to distinguish a field from a disk address. I have no suggestion.</p>
-<h1 id="programs-that-bootstrap"><a href="#TOC"><span class="header-section-number">9</span> Programs that bootstrap</a></h1>
+<h1 id="programs-that-bootstrap"><a href="#programs-that-bootstrap"><span class="header-section-number">9</span> Programs that bootstrap</a></h1>
 <p>It’s sometimes hard to appreciate how it all gets started. We have been tacitly assuming that your computer has a compiler and that you used it to compile your program. But how did your compiler get written? Today the answer is certainly that it was prepared by another compiler on another computer. We’ve achieved parity with the biological maxim: all life comes from previously existing life. For practical purposes, all programs are prepared by previously existing programs.</p>
 <p>Although this makes life somewhat easier for compiler writers, especially when the target computer isn’t built yet, it has a drawback. You can never drop you ultimate dependence on the pre-existing program. If you use a compiler that generates certain instructions, or assumes a certain disk format, you are constrained to be compatible. Consider that a simple version of our program, providing it includes compiler verbs, is perfectly capable of compiling itself. It can do this with greater freedom than the standard compiler, but more important, you can then discard the standard compiler.</p>
 <p>In Chapter 1, I discussed the sad state of software quality. Although we can prepare an excellent object program, we are obliged to maintain it as a source program for an unhappy compromise of a compiler. I must admit that this is the most expedient way to get the program started. However, I question whether it is most efficient over the long haul of re-compiling and modifying.</p>
 <p>Let us imagine a situation in which you have access to your computer. I mean sole user sitting at the board with all the lights, for some hours at a time. This is admittedly an a-typical situation, but one that can always be arranged if you are competent, press hard, and will work odd hours. Can you and the computer write a program? Can you write a program that didn’t descend from a pre-existing program? You can learn a bit and have a lot of fun trying.</p>
-<h2 id="getting-started"><a href="#TOC"><span class="header-section-number">9.1</span> Getting started</a></h2>
+<h2 id="getting-started"><a href="#getting-started"><span class="header-section-number">9.1</span> Getting started</a></h2>
 <p>First you’ll have to know some things: how to turn the computer on and off (odd hours), how to enter and display data from the console switches, and how to avoid damaging data stored on disk. You may have to corner operators or engineers to discover such information; it is so rarely of interest it doesn’t get written down.</p>
 <p>So now you’re face to face with the computer. What do you do? First an exercise. Initialize the interrupt locations in such a way that the computer will run, will execute an endless loop, when you start it. OK? Then modify your loop so that it will clear memory. OK? You’ve probably learned a lot.</p>
 <p>Now we’re going to start for real. We’re going to start building your dictionary, even though you can’t use it yet. You must choose your entry format now; variable-sized entries are required, but you can decide about word-size and layout. The first entry is SAVE; it will save your program on disk. Lacking a control loop you’ll have to jump to it manually, but at least you can minimize re-doing a lot of work. The second entry is LOAD; it will re-load your program from disk. You may have a hardware load button, if you can store your program compatibly with it, fine. You might want to punch a load card, to provide initial load otherwise. But it’s always convenient to be able to re-start from core.</p>
 <p>The third entry is DUMP; it will dump core onto the printer. It needn’t be very fast to be a lot faster than looking with the switches. This probably isn’t a trivial routine, but it oughtn’t take more than a dozen instructions. You might want to postpone it just a bit.</p>
 <p>So, with a couple hours work - providing you read the manual first - you have an operating system (SAVE, LOAD) and debugging package (DUMP). And you know a lot about your computer.</p>
-<h2 id="the-roots"><a href="#TOC"><span class="header-section-number">9.2</span> The roots</a></h2>
+<h2 id="the-roots"><a href="#the-roots"><span class="header-section-number">9.2</span> The roots</a></h2>
 <p>Lest you worry, I have gone through this process myself. I’ve done it twice, actually, and I’m not describing it as I did it, but as I now think I should have done it. So you’ve room for improvisation.</p>
 <p>In a sense we’re building a tree. We’ve now reached a point where we can start making the roots. For a while everything will be concealed but we’ll eventually reach daylight and start on branches.</p>
 <p>I presume you can LOAD your program and DUMP core. It’s time to get away from the switches and use the typewriter. So set up a message buffer from which you can send and receive text. Presumably when awaiting text your program sits in an endless loop somewhere. Learn to recognise that loop. You’ll spend most of your running time there and it’s reassuring to know that everything’s all right.</p>
@@ -1220,7 +1173,7 @@ Define IF so it will be forced out by THEN and generate a conditional branch. De
 <p>Now write a control loop. You might test the stack, but jump to an unspecified error routine. And run. DUMP is still our only output routine, but you should be able to read and execute words like DUMP, SAVE and LOAD.</p>
 <p>Write an entry for ENTRY, the subroutine that constructs dictionary entries. I haven’t specified the code executed for WORD, NUMBER and ENTRY. These are subroutines, and the only time we’ll use their names is when compiling code. So they should execute code that generates a call instruction. We haven’t written that code yet.</p>
 <p>Now define the code-entry, the word that names code; and the deposit word, the word that places the stack in core. Now you can type octal numbers and store them in the dictionary. No more switches. You can also construct new dictionary entries, for code.</p>
-<h2 id="the-branches"><a href="#TOC"><span class="header-section-number">9.3</span> The branches</a></h2>
+<h2 id="the-branches"><a href="#the-branches"><span class="header-section-number">9.3</span> The branches</a></h2>
 <p>We’ve reached a milestone. The invisible work is done and we can have a written record of what remains. There are many things to do and the order not so obvious. We’ve reached the position of having a source language, and we need to be able to modify it and re-compile without re-doing everything. Here we’re forced to generate temporary code that will become obsolete, but it will save a lot of effort.</p>
 <p>First a READ and WRITE entry to provide disk-access to a single core buffer. Then a simple T and R to type and replace lines of text in that block. These entries will later become obsolete, so keep them simple.</p>
 <p>We now need the READ and ;S verbs for screens. Specify a block number and we can read the text in that block.</p>
